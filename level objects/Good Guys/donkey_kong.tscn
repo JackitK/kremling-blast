@@ -1,0 +1,134 @@
+[gd_scene load_steps=16 format=3 uid="uid://d183a8xpgyt22"]
+
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="1_et42i"]
+[ext_resource type="Texture2D" uid="uid://d4bcmf8ibissx" path="res://sprite/Donkey Kong.png" id="2_7f52k"]
+[ext_resource type="Script" uid="uid://b8rjwhmcfddms" path="res://level objects/Good Guys/donkey_kong.gd" id="2_s0n4a"]
+[ext_resource type="AudioStream" uid="uid://j1qlu5qc2w1a" path="res://sounds/sound effects/Kongs/DKhurt_1.wav" id="3_7f52k"]
+[ext_resource type="Texture2D" uid="uid://b4jgyg5thrxqs" path="res://Effects/Cookie Sparkle.png" id="4_jxg4a"]
+[ext_resource type="AudioStream" uid="uid://bmmectqfn3a8r" path="res://sounds/sound effects/Kongs/DKHappy_2.wav" id="4_s0n4a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxg4a"]
+size = Vector2(64, 63)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_et42i"]
+radius = 28.3333
+height = 56.6667
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxg4a"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eolrc"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn5l5"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brqu0"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xufb7"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uw2c2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxg4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eolrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxg4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn5l5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxg4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brqu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxg4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn5l5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxg4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xufb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxg4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn5l5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f52k"]
+size = Vector2(72, 70)
+
+[node name="Donkey Kong" instance=ExtResource("1_et42i")]
+script = ExtResource("2_s0n4a")
+speed = 200.0
+hit_speed = 20.0
+kong_type = "test"
+
+[node name="collide_area_DK_Area" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(-2, 2.5)
+shape = SubResource("RectangleShape2D_jxg4a")
+
+[node name="CollisionShape2D" parent="shoot_area" index="0"]
+visible = false
+position = Vector2(-1.66667, 5)
+shape = SubResource("CapsuleShape2D_et42i")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="shoot_area" index="1"]
+polygon = PackedVector2Array(8.66667, -16, 4, -21.3333, -0.666667, -26.6667, -7.33333, -20, -11.3333, -15.3333, -16.6667, -12, -12, -3.33333, -14, 2, -21.3333, 12.6667, -26, 22, -30.6667, 29.3333, -31.3333, 33.3333, -22.6667, 33.3333, -10.6667, 34, -6.66667, 34, -6, 25.3333, -2, 21.3333, 2.66667, 22, 5.33333, 26, 4, 32.6667, 4.66667, 34, 30, 34, 30, 20.6667, 28, 12.6667, 24.6667, 7.33333, 20, 0.666667, 16, -1.33333, 10.6667, -2, 7.33333, -3.33333, 13.3333, -7.33333, 12, -14)
+
+[node name="sparkle effect" type="AnimatedSprite2D" parent="." index="2"]
+visible = false
+z_index = 5
+position = Vector2(-1.33334, 3.66667)
+scale = Vector2(1.04167, 1.01042)
+sprite_frames = SubResource("SpriteFrames_uw2c2")
+autoplay = "default"
+frame_progress = 0.0161707
+
+[node name="default_area" parent="nearby_detector" index="0"]
+visible = false
+
+[node name="dk_collison" type="CollisionShape2D" parent="nearby_detector" index="1"]
+position = Vector2(-2, 2)
+shape = SubResource("RectangleShape2D_7f52k")
+
+[node name="Sprite2D" parent="." index="4"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_7f52k")
+
+[node name="strong_kong_timer" type="Timer" parent="." index="6"]
+wait_time = 0.5
+
+[node name="default_collision" parent="." index="7"]
+visible = false
+
+[node name="hurt_cry" parent="sound_effects" index="0"]
+stream = ExtResource("3_7f52k")
+
+[node name="power_up" parent="sound_effects" index="1"]
+stream = ExtResource("4_s0n4a")
+
+[connection signal="timeout" from="strong_kong_timer" to="." method="_on_strong_kong_timer_timeout"]

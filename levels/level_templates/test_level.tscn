@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbxcf76hamx8t"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_x25rp"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="2_gmgay"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="3_gmgay"]
+
+[node name="LevelTemplate" instance=ExtResource("1_x25rp")]
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("2_gmgay")]
+position = Vector2(614.256, 455.868)
+scale = Vector2(3, 3)
+kong_type = "test"
+
+[node name="Donkey Kong" parent="kong_group" index="1" instance=ExtResource("3_gmgay")]
+position = Vector2(307.372, 375.258)
+collision_layer = 3
+collision_mask = 5

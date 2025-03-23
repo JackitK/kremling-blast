@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=4 uid="uid://8u5hhvnpx8d2"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_rxes3"]
+[ext_resource type="PackedScene" uid="uid://boemhia0fccu4" path="res://levels/bonus_1.tscn" id="2_1jw75"]
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="2_3cb6x"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="3_lpgdq"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="4_lpgdq"]
+
+[node name="LevelTemplate" instance=ExtResource("1_rxes3")]
+next_level = ExtResource("2_1jw75")
+
+[node name="pop_up_message" parent="level_ui" index="3"]
+offset_left = 96.0
+offset_right = -336.0
+
+[node name="Camera2D" parent="." index="1"]
+zoom = Vector2(0.7, 0.7)
+metadata/_edit_lock_ = true
+
+[node name="baddy" parent="baddy group" index="0"]
+position = Vector2(416, 552)
+
+[node name="baddy2" parent="baddy group" index="1" instance=ExtResource("2_3cb6x")]
+unique_name_in_owner = true
+position = Vector2(640, 448)
+
+[node name="baddy3" parent="baddy group" index="2" instance=ExtResource("2_3cb6x")]
+unique_name_in_owner = true
+position = Vector2(536, 416)
+
+[node name="baddy4" parent="baddy group" index="3" instance=ExtResource("2_3cb6x")]
+unique_name_in_owner = true
+position = Vector2(680, 544)
+
+[node name="baddy5" parent="baddy group" index="4" instance=ExtResource("2_3cb6x")]
+unique_name_in_owner = true
+position = Vector2(536, 672)
+
+[node name="baddy6" parent="baddy group" index="5" instance=ExtResource("2_3cb6x")]
+unique_name_in_owner = true
+position = Vector2(448.091, 448.182)
+
+[node name="baddy7" parent="baddy group" index="6" instance=ExtResource("2_3cb6x")]
+unique_name_in_owner = true
+position = Vector2(446.273, 641.818)
+
+[node name="baddy8" parent="baddy group" index="7" instance=ExtResource("2_3cb6x")]
+unique_name_in_owner = true
+position = Vector2(640, 648)
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("3_lpgdq")]
+position = Vector2(752, 336)
+
+[node name="kong2" parent="kong_group" index="1" instance=ExtResource("3_lpgdq")]
+position = Vector2(752, 720)
+
+[node name="kong3" parent="kong_group" index="2" instance=ExtResource("3_lpgdq")]
+position = Vector2(344, 336)
+
+[node name="kong4" parent="kong_group" index="3" instance=ExtResource("3_lpgdq")]
+position = Vector2(344, 720)
+
+[node name="Diddy" parent="kong_group" index="4" instance=ExtResource("4_lpgdq")]
+position = Vector2(544, 536)
+scale = Vector2(1.5, 1.5)
+collision_layer = 3
+collision_mask = 5
+
+[node name="Level Tile Map" parent="." index="5"]
+tile_map_data = PackedByteArray("AAAEAAQAAAADAAEAAAAEAAUAAAADAAEAAAAEAAYAAAADAAEAAAAEAAcAAAADAAEAAAAEAAgAAAADAAEAAAAEAAkAAAADAAEAAAAEAAoAAAADAAEAAAASAAQAAAADAAEAAAASAAUAAAADAAEAAAASAAYAAAADAAEAAAASAAcAAAADAAEAAAASAAgAAAADAAEAAAASAAkAAAADAAEAAAASAAoAAAADAAEAAAAEAAwAAAADAAEAAAASAAwAAAADAAEAAAASAAsAAAADAAEAAAAEAAsAAAADAAEAAAASAA0AAAADAAEAAAASAA4AAAADAAEAAAASAA8AAAADAAEAAAASABAAAAADAAEAAAAEABAAAAADAAEAAAAEAA8AAAADAAEAAAAEAA4AAAADAAEAAAAEAA0AAAADAAEAAAAFAAMAAAABAAMAAAAEAAMAAAAEAAAAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAABAAMAAAASAAMAAAAHAAAAAAAEABEAAAADAAEAAAAEABIAAAAEAAMAAAASABIAAAAHAAMAAAASABEAAAADAAEAAAAFABIAAAABAAMAAAAGABIAAAABAAMAAAAHABIAAAABAAMAAAAIABIAAAABAAMAAAAJABIAAAABAAMAAAAKABIAAAABAAMAAAALABIAAAABAAMAAAAMABIAAAABAAMAAAANABIAAAABAAMAAAAOABIAAAABAAMAAAAPABIAAAABAAMAAAAQABIAAAABAAMAAAARABIAAAABAAMAAAA=")

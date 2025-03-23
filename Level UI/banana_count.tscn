@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce522uxf8f3wr"]
+
+[ext_resource type="Script" uid="uid://by7820ilju5sb" path="res://Level UI/banana_count.gd" id="1_xdkq5"]
+[ext_resource type="Texture2D" uid="uid://bs5b1it0fb3ck" path="res://sprite/banana.png" id="2_dat7c"]
+
+[node name="banana_count" type="Node2D" groups=["banana"]]
+script = ExtResource("1_xdkq5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 40)
+scale = Vector2(2, 2)
+texture = ExtResource("2_dat7c")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Bananas"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 80.0
+offset_bottom = 55.0
+text = "X"
+metadata/_edit_use_anchors_ = true
+
+[node name="banana_count_label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 56.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 55.0
+text = "0"
+metadata/_edit_use_anchors_ = true

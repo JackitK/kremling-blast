@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://boemhia0fccu4"]
+
+[ext_resource type="PackedScene" uid="uid://b32ogv250j2wt" path="res://levels/level_templates/bonus_level_template.tscn" id="1_lf5s8"]
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="2_xywe2"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="3_xllso"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="4_gsdob"]
+
+[node name="bonusLevel" instance=ExtResource("1_lf5s8")]
+
+[node name="bonus_prompt" parent="Bonus_message_container" index="1"]
+text = "Activate \"Kong Power\"
+by right-clicking a Kong.
+Bananas required."
+
+[node name="Score" parent="level_ui" index="0"]
+offset_left = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="baddy2" parent="baddy group" index="1" instance=ExtResource("2_xywe2")]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(434.884, 493.131)
+
+[node name="baddy3" parent="baddy group" index="2" instance=ExtResource("2_xywe2")]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(708.671, 475.561)
+
+[node name="baddy4" parent="baddy group" index="3" instance=ExtResource("2_xywe2")]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(701.351, 339.4)
+
+[node name="Donkey Kong" parent="kong_group" index="0" instance=ExtResource("3_xllso")]
+position = Vector2(458.31, 402.356)
+collision_layer = 3
+collision_mask = 5
+
+[node name="Banana" parent="collectables" index="0" instance=ExtResource("4_gsdob")]
+position = Vector2(613.505, 396.5)
+
+[node name="Banana2" parent="collectables" index="1" instance=ExtResource("4_gsdob")]
+position = Vector2(344.11, 396.5)
+
+[node name="audio_player" parent="." index="7"]
+process_mode = 3
+
+[node name="autofire_timer" parent="timers" index="0"]
+wait_time = 0.5
+
+[node name="intro_timer" type="Timer" parent="timers" index="3"]
+process_mode = 3
+wait_time = 2.4
+one_shot = true
+
+[connection signal="timeout" from="timers/intro_timer" to="." method="_on_intro_timer_timeout"]

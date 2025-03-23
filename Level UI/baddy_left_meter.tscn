@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://7hlyfhpltale"]
+
+[ext_resource type="Script" uid="uid://el6ehftqv44j" path="res://Level UI/baddy_left_meter.gd" id="1_4ux8l"]
+
+[node name="BaddyLeftMeter" type="Node2D"]
+script = ExtResource("1_4ux8l")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_top = 32.0
+offset_right = 320.0
+offset_bottom = 59.0
+max_value = 10.0
+step = 1.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 150.0
+offset_bottom = 34.0
+theme_override_font_sizes/font_size = 24
+
+[node name="baddy_left_label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 196.0
+offset_bottom = 34.0
+theme_override_font_sizes/font_size = 24
+text = "Baddies Left: xxx"

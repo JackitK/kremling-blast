@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=4 uid="uid://lsilrbvu1g2x"]
+
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="1_f04ci"]
+[ext_resource type="Script" uid="uid://c5q3ipxde5vs5" path="res://levels/level_templates/level_template.gd" id="1_vqyjd"]
+[ext_resource type="AudioStream" uid="uid://ly63m074sldg" path="res://sounds/sound effects/coconut_gun.ogg" id="3_3vaiy"]
+[ext_resource type="PackedScene" uid="uid://cfss21ky4obv6" path="res://Tiles/Default TileMap.tscn" id="4_iqiwu"]
+[ext_resource type="PackedScene" uid="uid://ce522uxf8f3wr" path="res://Level UI/banana_count.tscn" id="5_5pr7o"]
+[ext_resource type="PackedScene" uid="uid://bsgc8n6n7yaea" path="res://Level UI/score.tscn" id="6_t2qq1"]
+[ext_resource type="PackedScene" uid="uid://7hlyfhpltale" path="res://Level UI/baddy_left_meter.tscn" id="7_21ha5"]
+[ext_resource type="AudioStream" uid="uid://b728cgxp203xf" path="res://sounds/music/Monkey Smash.mp3" id="8_64qpc"]
+[ext_resource type="PackedScene" uid="uid://ctrphixjduwlj" path="res://Level UI/miss_counter.tscn" id="8_o30lq"]
+[ext_resource type="AudioStream" uid="uid://bhls71g1tmiix" path="res://sounds/sound effects/win.wav" id="9_u2643"]
+
+[node name="LevelTemplate" type="Node2D"]
+script = ExtResource("1_vqyjd")
+
+[node name="level_ui" type="Node" parent="."]
+
+[node name="Score" parent="level_ui" instance=ExtResource("6_t2qq1")]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -950.0
+offset_bottom = -544.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BaddyLeftMeter" parent="level_ui" instance=ExtResource("7_21ha5")]
+unique_name_in_owner = true
+position = Vector2(819, 11)
+
+[node name="MissCounter" parent="level_ui" instance=ExtResource("8_o30lq")]
+unique_name_in_owner = true
+position = Vector2(824, 72)
+
+[node name="pop_up_message" type="Label" parent="level_ui"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "Game State Here"
+horizontal_alignment = 1
+
+[node name="banana_count" parent="level_ui" instance=ExtResource("5_5pr7o")]
+unique_name_in_owner = true
+position = Vector2(896, 72)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="baddy group" type="Node" parent="."]
+
+[node name="baddy" parent="baddy group" instance=ExtResource("1_f04ci")]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(520, 289)
+
+[node name="kong_group" type="Node" parent="."]
+
+[node name="collectables" type="Node" parent="."]
+
+[node name="Level Tile Map" parent="." instance=ExtResource("4_iqiwu")]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAEAAQAAAAEAAAAAAAEAAUAAAADAAEAAAAEAAYAAAADAAEAAAAEAAcAAAADAAEAAAAEAAgAAAADAAEAAAAEAAkAAAADAAEAAAAEAAoAAAADAAEAAAASAAQAAAAHAAAAAAASAAUAAAADAAEAAAASAAYAAAADAAEAAAASAAcAAAADAAEAAAASAAgAAAADAAEAAAASAAkAAAADAAEAAAASAAoAAAADAAEAAAAEAAwAAAAEAAMAAAAFAAwAAAABAAMAAAAGAAwAAAABAAMAAAAHAAwAAAABAAMAAAAIAAwAAAABAAMAAAAJAAwAAAABAAMAAAAKAAwAAAABAAMAAAALAAwAAAABAAMAAAAMAAwAAAABAAMAAAANAAwAAAABAAMAAAAOAAwAAAABAAMAAAAPAAwAAAABAAMAAAAQAAwAAAABAAMAAAARAAwAAAABAAMAAAASAAwAAAAHAAMAAAASAAsAAAADAAEAAAAEAAsAAAADAAEAAAAFAAQAAAABAAMAAAAGAAQAAAABAAMAAAAHAAQAAAABAAMAAAAIAAQAAAABAAMAAAAJAAQAAAABAAMAAAAKAAQAAAABAAMAAAALAAQAAAABAAMAAAAMAAQAAAABAAMAAAANAAQAAAABAAMAAAAOAAQAAAABAAMAAAAPAAQAAAABAAMAAAAQAAQAAAABAAMAAAARAAQAAAABAAMAAAA=")
+
+[node name="audio_player" type="Node" parent="."]
+
+[node name="level_track" type="AudioStreamPlayer2D" parent="audio_player"]
+process_mode = 3
+stream = ExtResource("8_64qpc")
+autoplay = true
+bus = &"Music"
+
+[node name="victory_theme" type="AudioStreamPlayer2D" parent="audio_player"]
+unique_name_in_owner = true
+process_mode = 3
+auto_translate_mode = 1
+stream = ExtResource("9_u2643")
+bus = &"Music"
+
+[node name="CoconutGun" type="AudioStreamPlayer" parent="audio_player"]
+unique_name_in_owner = true
+stream = ExtResource("3_3vaiy")
+bus = &"Sfx"
+
+[node name="timers" type="Node" parent="."]
+
+[node name="autofire_timer" type="Timer" parent="timers"]
+unique_name_in_owner = true
+wait_time = 0.4
+
+[node name="gameover_timer" type="Timer" parent="timers"]
+unique_name_in_owner = true
+process_mode = 3
+wait_time = 20.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+offset_right = 1680.0
+offset_bottom = 1024.0
+mouse_filter = 2
+color = Color(0.380392, 0.443137, 0.188235, 1)
+metadata/_edit_lock_ = true
+
+[connection signal="finished" from="audio_player/victory_theme" to="." method="_on_victory_theme_finished"]
+[connection signal="timeout" from="timers/autofire_timer" to="." method="_on_autofire_timeout"]

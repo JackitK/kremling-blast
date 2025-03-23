@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd4edf32nb4xh"]
+
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="1_rb47x"]
+[ext_resource type="Script" uid="uid://ciec87ujo5wrf" path="res://level objects/Good Guys/diddy_kong.gd" id="2_8xug7"]
+[ext_resource type="Texture2D" uid="uid://dre8d2emt1vb5" path="res://sprite/Diddy Kong.png" id="2_sx0xs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xug7"]
+size = Vector2(31.3333, 32.6667)
+
+[node name="Diddy" instance=ExtResource("1_rb47x")]
+script = ExtResource("2_8xug7")
+speed = 200.0
+hit_speed = 20.0
+kong_type = "test"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="shoot_area" index="0"]
+position = Vector2(-2, 2)
+scale = Vector2(1.2, 1.2)
+polygon = PackedVector2Array(3.88889, -12.2222, 5.55556, -6.66667, 8.88889, -6.66667, 12.2222, -3.33333, 12.2222, 0, 11.6667, 0.555556, 8.88889, 0, 7.22222, -1.66667, 3.88889, -0.555555, 10.5556, 6.66667, 12.7778, 13.3333, 12.2222, 15, -12.7778, 15, -13.3333, 8.88889, -12.2222, 6.66667, -10.5556, 3.33333, -7.77778, 0, -6.11111, -1.66667, -8.33333, -5, -7.22222, -9.44444, -5.55556, -12.2222)
+
+[node name="CollisionShape2D" parent="shoot_area" index="1"]
+visible = false
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_sx0xs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(-2.33333, 3.66667)
+shape = SubResource("RectangleShape2D_8xug7")
+
+[node name="default_collision" parent="." index="4"]
+unique_name_in_owner = true
+visible = false

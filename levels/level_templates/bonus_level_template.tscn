@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://b32ogv250j2wt"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_s7tla"]
+[ext_resource type="Script" uid="uid://bovjeo6niboij" path="res://levels/level_templates/bonus_level_template.gd" id="2_7fvg4"]
+[ext_resource type="Texture2D" uid="uid://cum0x72wm36i3" path="res://splash_art/bonus_bashbaddies.jpg" id="3_gswlh"]
+[ext_resource type="AudioStream" uid="uid://dvfss8i5tfa6y" path="res://sounds/music/bonus_theme.mp3" id="3_kg2n1"]
+[ext_resource type="AudioStream" uid="uid://cukv5t8nt73m3" path="res://sounds/sound effects/bonus_victory.wav" id="4_gswlh"]
+[ext_resource type="FontFile" uid="uid://crtrgur4xllmj" path="res://Font/PublicPixel.ttf" id="4_tayes"]
+
+[node name="bonusLevel" instance=ExtResource("1_s7tla")]
+script = ExtResource("2_7fvg4")
+starting_bonus_time = 30
+
+[node name="Bonus_message_container" type="Control" parent="." index="0"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
+[node name="bonus_message_box" type="TextureRect" parent="Bonus_message_container" index="0"]
+unique_name_in_owner = true
+z_index = 20
+layout_mode = 2
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 965.0
+offset_bottom = 644.0
+texture = ExtResource("3_gswlh")
+
+[node name="bonus_prompt" type="Label" parent="Bonus_message_container" index="1"]
+unique_name_in_owner = true
+z_index = 21
+layout_mode = 2
+offset_left = 8.0
+offset_top = 122.0
+offset_right = 972.0
+offset_bottom = 225.0
+theme_override_colors/font_color = Color(0.78296, 0.134192, 0.174956, 1)
+theme_override_colors/font_shadow_color = Color(0.952941, 0.94902, 0.533333, 1)
+theme_override_colors/font_outline_color = Color(0.952941, 0.94902, 0.533333, 1)
+theme_override_fonts/font = ExtResource("4_tayes")
+theme_override_font_sizes/font_size = 35
+text = "Collect bananas. 
+Then right click a Kong 
+to use a \"Kong Power\""
+horizontal_alignment = 1
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 0
+
+[node name="pop_up_message" parent="level_ui" index="3"]
+offset_left = 97.0
+offset_right = -342.0
+offset_bottom = -538.0
+
+[node name="Label" type="Label" parent="level_ui" index="4"]
+offset_left = 809.0
+offset_top = 1.0
+offset_right = 968.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 60
+text = "Time:"
+
+[node name="level_time_label" type="Label" parent="level_ui" index="5"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 943.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = -537.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "xxxxx"
+horizontal_alignment = 1
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("3_kg2n1")
+
+[node name="victory_theme" parent="audio_player" index="1"]
+stream = ExtResource("4_gswlh")
+
+[node name="second_ticker" type="Timer" parent="timers" index="2"]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="timers/second_ticker" to="." method="_on_second_ticker_timeout"]

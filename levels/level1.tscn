@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7tuftj2atpdh"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_e6x4h"]
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="2_jkeiu"]
+[ext_resource type="PackedScene" uid="uid://ch65f5ssf0nv6" path="res://levels/level2.tscn" id="2_q1di1"]
+
+[node name="LevelTemplate" instance=ExtResource("1_e6x4h")]
+next_level = ExtResource("2_q1di1")
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 3
+
+[node name="baddy" parent="baddy group" index="0"]
+position = Vector2(549, 310)
+
+[node name="baddy2" parent="baddy group" index="1" instance=ExtResource("2_jkeiu")]
+unique_name_in_owner = true
+position = Vector2(692, 446)
+
+[node name="baddy3" parent="baddy group" index="2" instance=ExtResource("2_jkeiu")]
+unique_name_in_owner = true
+position = Vector2(393, 439)

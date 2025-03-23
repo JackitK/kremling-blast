@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://da8f5ofxqjnur"]
+
+[ext_resource type="Script" uid="uid://vjxvyxwttatn" path="res://level objects/Good Guys/kong_template.gd" id="1_gfnbd"]
+[ext_resource type="Script" uid="uid://lmagxoxykb0v" path="res://level objects/Good Guys/kong_collison.gd" id="2_yg4hk"]
+[ext_resource type="Texture2D" uid="uid://c6ah14iwiqy88" path="res://sprite/Helper Monkey.png" id="3_413k7"]
+[ext_resource type="AudioStream" uid="uid://dq1j0yvnk5rpx" path="res://sounds/sound effects/monkey.wav" id="4_llcik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhnte"]
+size = Vector2(25.3333, 27.3333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6s6w"]
+size = Vector2(28, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpunk"]
+size = Vector2(25.3333, 27.3333)
+
+[node name="kong" type="CharacterBody2D" groups=["good_guys"]]
+collision_mask = 7
+script = ExtResource("1_gfnbd")
+speed = 150.0
+hit_speed = 30.0
+kong_type = "monkey"
+
+[node name="shoot_area" type="Area2D" parent="."]
+script = ExtResource("2_yg4hk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shoot_area"]
+position = Vector2(-2, 2.33333)
+shape = SubResource("RectangleShape2D_lhnte")
+
+[node name="nearby_detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="default_area" type="CollisionShape2D" parent="nearby_detector"]
+position = Vector2(-2, 2.5)
+shape = SubResource("RectangleShape2D_q6s6w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 2)
+texture = ExtResource("3_413k7")
+metadata/_edit_lock_ = true
+
+[node name="change_direction_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="default_collision" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 2.33333)
+shape = SubResource("RectangleShape2D_dpunk")
+metadata/_edit_lock_ = true
+
+[node name="sound_effects" type="Node" parent="."]
+
+[node name="hurt_cry" type="AudioStreamPlayer2D" parent="sound_effects"]
+unique_name_in_owner = true
+process_mode = 3
+scale = Vector2(1.5, 1.5)
+stream = ExtResource("4_llcik")
+bus = &"Sfx"
+
+[node name="power_up" type="AudioStreamPlayer2D" parent="sound_effects"]
+unique_name_in_owner = true
+stream = ExtResource("4_llcik")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="mouse_entered" from="shoot_area" to="." method="_on_shoot_area_mouse_entered"]
+[connection signal="mouse_exited" from="shoot_area" to="." method="_on_shoot_area_mouse_exited"]
+[connection signal="area_entered" from="nearby_detector" to="." method="_on_nearby_detector_area_entered"]
+[connection signal="timeout" from="change_direction_timer" to="." method="_on_change_direction_timer_timeout"]

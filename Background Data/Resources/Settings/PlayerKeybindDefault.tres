@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="PlayerKeybindResource" load_steps=10 format=3 uid="uid://k6hba3rfi6dg"]
+
+[ext_resource type="Script" uid="uid://b14141c0c754r" path="res://Background Data/Resources/Settings/PlayerKeybindResource.gd" id="1_eogcv"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_pt003"]
+device = -1
+keycode = 4194322
+
+[sub_resource type="InputEventKey" id="InputEventKey_jtxbd"]
+device = -1
+physical_keycode = 4194319
+
+[sub_resource type="InputEventKey" id="InputEventKey_56re8"]
+device = -1
+physical_keycode = 4194321
+
+[sub_resource type="InputEventKey" id="InputEventKey_c0s6h"]
+device = -1
+keycode = 4194320
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_2kgj0"]
+button_mask = 2
+position = Vector2(72, 16)
+global_position = Vector2(81, 64)
+button_index = 2
+pressed = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_q1yv3"]
+device = -1
+keycode = 4194325
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_w0rjp"]
+button_mask = 1
+position = Vector2(212, 15)
+global_position = Vector2(221, 63)
+button_index = 1
+pressed = true
+
+[sub_resource type="InputEventKey" id="InputEventKey_2kgj0"]
+device = -1
+keycode = 32
+unicode = 32
+
+[resource]
+script = ExtResource("1_eogcv")
+DEFAULT_SHOOT_KEY = SubResource("InputEventKey_2kgj0")
+DEFAULT_POWER_UP_KEY = SubResource("InputEventKey_q1yv3")
+DEFAULT_MOVE_LEFT_KEY = SubResource("InputEventKey_jtxbd")
+DEFAULT_MOVE_RIGHT_KEY = SubResource("InputEventKey_56re8")
+DEFAULT_MOVE_UP_KEY = SubResource("InputEventKey_c0s6h")
+DEFAULT_MOVE_DOWN_KEY = SubResource("InputEventKey_pt003")
+DEFAULT_SHOOT = SubResource("InputEventMouseButton_w0rjp")
+DEFAULT_POWER_UP = SubResource("InputEventMouseButton_2kgj0")

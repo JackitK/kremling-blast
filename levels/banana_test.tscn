@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxchk37n45s4e"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_jcqhd"]
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="2_u6a65"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="3_j5tt3"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="4_aud5c"]
+
+[node name="LevelTemplate" instance=ExtResource("1_jcqhd")]
+
+[node name="baddy2" parent="baddy group" index="1" instance=ExtResource("2_u6a65")]
+unique_name_in_owner = true
+position = Vector2(488.391, 481.324)
+
+[node name="baddy3" parent="baddy group" index="2" instance=ExtResource("2_u6a65")]
+unique_name_in_owner = true
+position = Vector2(697.695, 460.111)
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("3_j5tt3")]
+position = Vector2(356.869, 444.554)
+
+[node name="Banana" parent="collectables" index="0" instance=ExtResource("4_aud5c")]
+position = Vector2(420.509, 395.057)
+
+[node name="Banana2" parent="collectables" index="1" instance=ExtResource("4_aud5c")]
+position = Vector2(537.889, 359.702)
+
+[node name="Banana3" parent="collectables" index="2" instance=ExtResource("4_aud5c")]
+position = Vector2(741.535, 369.601)
+
+[node name="Banana4" parent="collectables" index="3" instance=ExtResource("4_aud5c")]
+position = Vector2(792.447, 308.79)

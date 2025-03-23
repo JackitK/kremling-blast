@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=3 uid="uid://comjphfowf338"]
+
+[ext_resource type="Script" uid="uid://cq5qdcju2caye" path="res://level objects/Enemies/baddy_template.gd" id="1_gfnbd"]
+[ext_resource type="Script" uid="uid://c21fn48h6wrix" path="res://level objects/Enemies/baddy_collison.gd" id="2_pn267"]
+[ext_resource type="Texture2D" uid="uid://mxrowgefheo6" path="res://sprite/Kritter_animated.png" id="3_g76ik"]
+[ext_resource type="AudioStream" uid="uid://bvm1dgob6io56" path="res://sounds/sound effects/Baddies/KritterHurt_1.wav" id="4_3xvkv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhnte"]
+size = Vector2(25.5, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igo5h"]
+atlas = ExtResource("3_g76ik")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksgpb"]
+atlas = ExtResource("3_g76ik")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7dgu"]
+atlas = ExtResource("3_g76ik")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8m6g"]
+atlas = ExtResource("3_g76ik")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4r8y"]
+atlas = ExtResource("3_g76ik")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtesc"]
+atlas = ExtResource("3_g76ik")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ch5hk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igo5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksgpb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7dgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8m6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4r8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtesc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow2ej"]
+size = Vector2(55, 67)
+
+[node name="baddy" type="CharacterBody2D" groups=["baddies"]]
+collision_layer = 3
+collision_mask = 3
+input_pickable = true
+script = ExtResource("1_gfnbd")
+speed = 100.0
+
+[node name="shoot_area" type="Area2D" parent="."]
+script = ExtResource("2_pn267")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shoot_area"]
+position = Vector2(-0.5, 1.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_lhnte")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, 2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ch5hk")
+autoplay = "default"
+frame_progress = 0.592972
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.75, 1.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_lhnte")
+
+[node name="change_direction_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="baddy_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3xvkv")
+bus = &"Sfx"
+
+[node name="nearby_dector" type="Area2D" parent="." groups=["baddies"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nearby_dector"]
+position = Vector2(-0.5, 1.5)
+shape = SubResource("RectangleShape2D_ow2ej")
+
+[connection signal="mouse_entered" from="shoot_area" to="." method="_on_shoot_area_mouse_entered"]
+[connection signal="mouse_exited" from="shoot_area" to="." method="_on_shoot_area_mouse_exited"]
+[connection signal="timeout" from="change_direction_timer" to="." method="_on_change_direction_timer_timeout"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dytd3l88gpgen"]
+
+[ext_resource type="PackedScene" uid="uid://nue6wivn5aro" path="res://Menus/Options Menu/options_display_button.tscn" id="1_vgxra"]
+[ext_resource type="Script" uid="uid://pk8n02e0mmh1" path="res://Menus/Options Menu/General Buttons/level_select_button.gd" id="2_6ohsy"]
+
+[node name="Level_Select_Button" instance=ExtResource("1_vgxra")]
+script = ExtResource("2_6ohsy")
+
+[node name="HBoxContainer" parent="." index="0"]
+scale = Vector2(0.5, 0.5)
+
+[node name="Label" parent="HBoxContainer" index="0"]
+text = "Select Level"

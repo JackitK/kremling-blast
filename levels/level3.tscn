@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvelaxpkccd0r"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_aaqj5"]
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="2_0fm5q"]
+[ext_resource type="PackedScene" uid="uid://8u5hhvnpx8d2" path="res://levels/level4.tscn" id="2_cpie4"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="3_cpie4"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="4_0fm5q"]
+
+[node name="LevelTemplate" instance=ExtResource("1_aaqj5")]
+next_level = ExtResource("2_cpie4")
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 6
+
+[node name="baddy" parent="baddy group" index="0"]
+position = Vector2(521, 289)
+
+[node name="baddy2" parent="baddy group" index="1" instance=ExtResource("2_0fm5q")]
+unique_name_in_owner = true
+position = Vector2(605, 450)
+
+[node name="baddy3" parent="baddy group" index="2" instance=ExtResource("2_0fm5q")]
+unique_name_in_owner = true
+position = Vector2(435, 452)
+
+[node name="baddy4" parent="baddy group" index="3" instance=ExtResource("2_0fm5q")]
+unique_name_in_owner = true
+position = Vector2(747.182, 490.934)
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("3_cpie4")]
+position = Vector2(524, 374)
+
+[node name="Donkey Kong" parent="kong_group" index="1" instance=ExtResource("4_0fm5q")]
+position = Vector2(756.499, 320.566)
+collision_layer = 3
+collision_mask = 5
