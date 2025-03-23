@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7eos3daqdk4k"
+path="res://.godot/imported/DKhurt_3.wav-385aa696d183edd8272d92a88df49525.sample"
+
+[deps]
+
+source_file="res://sounds/sound effects/Kongs/DKhurt_3.wav"
+dest_files=["res://.godot/imported/DKhurt_3.wav-385aa696d183edd8272d92a88df49525.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

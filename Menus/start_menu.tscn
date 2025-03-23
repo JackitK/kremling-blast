@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddd7h7noxy8qo"]
+
+[ext_resource type="Script" uid="uid://b11mixju3t7b2" path="res://Menus/start_menu.gd" id="1_x8oth"]
+[ext_resource type="AudioStream" uid="uid://b728cgxp203xf" path="res://sounds/music/Monkey Smash.mp3" id="2_omtxr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dlvif"]
+
+[sub_resource type="Theme" id="Theme_1g2q2"]
+Label/colors/font_color = Color(1, 0.87451, 1, 1)
+Label/colors/font_outline_color = Color(0.729412, 0.0509804, 0.0745098, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/outline_size = 2
+Label/font_sizes/font_size = 17
+Label/fonts/font = null
+Label/styles/normal = SubResource("StyleBoxTexture_dlvif")
+
+[node name="StartMenu" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x8oth")
+metadata/_edit_horizontal_guides_ = [47.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="MainMenu" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 2
+
+[node name="Seperator" type="Control" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1g2q2")
+theme_override_font_sizes/font_size = 30
+text = "Kremling Hunting:
+ Remastered"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StartGameButton" type="Button" parent="MainMenu/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Start Game"
+
+[node name="OptionsButton" type="Button" parent="MainMenu/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="MainMenu/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="high_score_label" type="Label" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_1g2q2")
+theme_override_font_sizes/font_size = 30
+text = "High Score: x"
+horizontal_alignment = 1
+
+[node name="music_player" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_omtxr")
+volume_db = -15.0
+bus = &"Music"
