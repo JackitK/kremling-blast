@@ -2,24 +2,25 @@
 
 [ext_resource type="Script" uid="uid://vjxvyxwttatn" path="res://level objects/Good Guys/kong_template.gd" id="1_gfnbd"]
 [ext_resource type="Script" uid="uid://lmagxoxykb0v" path="res://level objects/Good Guys/kong_collison.gd" id="2_yg4hk"]
-[ext_resource type="Texture2D" uid="uid://c6ah14iwiqy88" path="res://sprite/Helper Monkey.png" id="3_413k7"]
+[ext_resource type="Texture2D" uid="uid://c6ah14iwiqy88" path="res://sprite/Kongs/Helper Monkey.png" id="3_413k7"]
 [ext_resource type="AudioStream" uid="uid://dq1j0yvnk5rpx" path="res://sounds/sound effects/monkey.wav" id="4_llcik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhnte"]
 size = Vector2(25.3333, 27.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6s6w"]
-size = Vector2(28, 29)
+size = Vector2(30, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpunk"]
 size = Vector2(25.3333, 27.3333)
 
 [node name="kong" type="CharacterBody2D" groups=["good_guys"]]
-collision_mask = 7
+collision_layer = 3
+collision_mask = 15
 script = ExtResource("1_gfnbd")
-speed = 150.0
 hit_speed = 30.0
 kong_type = "monkey"
+fearful = true
 
 [node name="shoot_area" type="Area2D" parent="."]
 script = ExtResource("2_yg4hk")
@@ -28,21 +29,18 @@ script = ExtResource("2_yg4hk")
 position = Vector2(-2, 2.33333)
 shape = SubResource("RectangleShape2D_lhnte")
 
-[node name="nearby_detector" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="nearby_detector" type="Area2D" parent="." groups=["good_guys"]]
+collision_layer = 8
+collision_mask = 10
 
 [node name="default_area" type="CollisionShape2D" parent="nearby_detector"]
-position = Vector2(-2, 2.5)
+position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_q6s6w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2, 2)
 texture = ExtResource("3_413k7")
 metadata/_edit_lock_ = true
-
-[node name="change_direction_timer" type="Timer" parent="."]
-autostart = true
 
 [node name="default_collision" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 2.33333)
@@ -62,8 +60,18 @@ bus = &"Sfx"
 unique_name_in_owner = true
 stream = ExtResource("4_llcik")
 
+[node name="timers" type="Node" parent="."]
+
+[node name="change_direction_timer" type="Timer" parent="timers"]
+autostart = true
+
+[node name="panic_timer" type="Timer" parent="timers"]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="mouse_entered" from="shoot_area" to="." method="_on_shoot_area_mouse_entered"]
 [connection signal="mouse_exited" from="shoot_area" to="." method="_on_shoot_area_mouse_exited"]
 [connection signal="area_entered" from="nearby_detector" to="." method="_on_nearby_detector_area_entered"]
-[connection signal="timeout" from="change_direction_timer" to="." method="_on_change_direction_timer_timeout"]
+[connection signal="timeout" from="timers/change_direction_timer" to="." method="_on_change_direction_timer_timeout"]
+[connection signal="timeout" from="timers/panic_timer" to="." method="_on_panic_timer_timeout"]

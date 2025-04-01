@@ -1,10 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://d183a8xpgyt22"]
+[gd_scene load_steps=17 format=3 uid="uid://d183a8xpgyt22"]
 
 [ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="1_et42i"]
-[ext_resource type="Texture2D" uid="uid://d4bcmf8ibissx" path="res://sprite/Donkey Kong.png" id="2_7f52k"]
+[ext_resource type="Texture2D" uid="uid://d4bcmf8ibissx" path="res://sprite/Kongs/Donkey Kong.png" id="2_7f52k"]
 [ext_resource type="Script" uid="uid://b8rjwhmcfddms" path="res://level objects/Good Guys/donkey_kong.gd" id="2_s0n4a"]
 [ext_resource type="AudioStream" uid="uid://j1qlu5qc2w1a" path="res://sounds/sound effects/Kongs/DKhurt_1.wav" id="3_7f52k"]
-[ext_resource type="Texture2D" uid="uid://b4jgyg5thrxqs" path="res://Effects/Cookie Sparkle.png" id="4_jxg4a"]
+[ext_resource type="Texture2D" uid="uid://s1x0e2062ul1" path="res://Effects/strong_sparkle.png" id="3_jxg4a"]
 [ext_resource type="AudioStream" uid="uid://bmmectqfn3a8r" path="res://sounds/sound effects/Kongs/DKHappy_2.wav" id="4_s0n4a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxg4a"]
@@ -14,64 +14,50 @@ size = Vector2(64, 63)
 radius = 28.3333
 height = 56.6667
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jxg4a"]
-atlas = ExtResource("4_jxg4a")
-region = Rect2(0, 192, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_eolrc"]
-atlas = ExtResource("4_jxg4a")
-region = Rect2(64, 0, 64, 64)
+atlas = ExtResource("3_jxg4a")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cn5l5"]
-atlas = ExtResource("4_jxg4a")
-region = Rect2(128, 0, 64, 64)
+atlas = ExtResource("3_jxg4a")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brqu0"]
-atlas = ExtResource("4_jxg4a")
-region = Rect2(192, 0, 64, 64)
+atlas = ExtResource("3_jxg4a")
+region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xufb7"]
-atlas = ExtResource("4_jxg4a")
-region = Rect2(0, 64, 64, 64)
+atlas = ExtResource("3_jxg4a")
+region = Rect2(32, 32, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_uw2c2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw7np"]
+atlas = ExtResource("3_jxg4a")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y3ml"]
+atlas = ExtResource("3_jxg4a")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xie62"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxg4a")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eolrc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jxg4a")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_cn5l5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxg4a")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_brqu0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jxg4a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cn5l5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jxg4a")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_xufb7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jxg4a")
+"texture": SubResource("AtlasTexture_mw7np")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cn5l5")
+"texture": SubResource("AtlasTexture_2y3ml")
 }],
 "loop": true,
 "name": &"default",
@@ -83,9 +69,9 @@ size = Vector2(72, 70)
 
 [node name="Donkey Kong" instance=ExtResource("1_et42i")]
 script = ExtResource("2_s0n4a")
-speed = 200.0
 hit_speed = 20.0
 kong_type = "test"
+fearful = false
 
 [node name="collide_area_DK_Area" type="CollisionShape2D" parent="." index="0"]
 position = Vector2(-2, 2.5)
@@ -102,11 +88,11 @@ polygon = PackedVector2Array(8.66667, -16, 4, -21.3333, -0.666667, -26.6667, -7.
 [node name="sparkle effect" type="AnimatedSprite2D" parent="." index="2"]
 visible = false
 z_index = 5
-position = Vector2(-1.33334, 3.66667)
-scale = Vector2(1.04167, 1.01042)
-sprite_frames = SubResource("SpriteFrames_uw2c2")
+position = Vector2(-1.5, 3.82833)
+scale = Vector2(2.15625, 2.09156)
+sprite_frames = SubResource("SpriteFrames_xie62")
 autoplay = "default"
-frame_progress = 0.0161707
+frame_progress = 0.262451
 
 [node name="default_area" parent="nearby_detector" index="0"]
 visible = false
@@ -119,11 +105,11 @@ shape = SubResource("RectangleShape2D_7f52k")
 scale = Vector2(2, 2)
 texture = ExtResource("2_7f52k")
 
+[node name="default_collision" parent="." index="5"]
+visible = false
+
 [node name="strong_kong_timer" type="Timer" parent="." index="6"]
 wait_time = 0.5
-
-[node name="default_collision" parent="." index="7"]
-visible = false
 
 [node name="hurt_cry" parent="sound_effects" index="0"]
 stream = ExtResource("3_7f52k")

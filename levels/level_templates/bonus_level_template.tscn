@@ -84,4 +84,10 @@ stream = ExtResource("4_gswlh")
 [node name="second_ticker" type="Timer" parent="timers" index="2"]
 unique_name_in_owner = true
 
+[node name="intro_timer" type="Timer" parent="timers" index="3"]
+process_mode = 3
+wait_time = 2.4
+one_shot = true
+
 [connection signal="timeout" from="timers/second_ticker" to="." method="_on_second_ticker_timeout"]
+[connection signal="timeout" from="timers/intro_timer" to="." method="_on_intro_timer_timeout"]

@@ -4,6 +4,7 @@ extends Node
 signal on_subtitles_toggled(value : bool)
 signal on_dash_stomp_toggled(value :bool)
 signal on_autofire_toggled(value : bool)
+signal on_autofire_rate_set(value : float)
 # Window options signals
 signal on_window_mode_selected(index : int)
 signal on_resolution_selected(index : int)
@@ -12,6 +13,7 @@ signal on_resolution_selected(index : int)
 signal on_master_sound_set(value: float)
 signal on_music_sound_set(value: float)
 signal on_sfx_sound_set(value: float)
+signal on_gun_sound_set(value: float)
 
 #Set Dicitonary Signal (For settings and level data)
 signal set_settings_dictionary(settings_dict : Dictionary)
@@ -19,7 +21,8 @@ signal load_settings_data(settings_dict : Dictionary)
 signal set_levels_dictionary(levels_dict : Dictionary)
 signal load_levels_data(levels_dict : Dictionary)
 
-
+# Signals tied to dialouge display
+signal display_dialog(text_key)
 
 # Dictionary functions
 #Settings:
@@ -43,6 +46,9 @@ func emit_on_dash_stomp_toggled(value: bool) -> void:
 func emit_on_autofire_toggled(value: bool) -> void:
 	on_autofire_toggled.emit(value)
 	
+func emit_on_autofire_rate_set(value: bool) -> void:
+	on_autofire_rate_set.emit(value)
+	
 # Window options functions
 func emit_on_window_mode_selected(value: int) -> void:
 	on_window_mode_selected.emit(value)
@@ -60,3 +66,5 @@ func emit_on_music_sound_set(value: float) -> void:
 func emit_on_sfx_sound_set(value: float) -> void:
 	on_sfx_sound_set.emit(value)
 	
+func emit_on_gun_sound_set(value: float) -> void:
+	on_gun_sound_set.emit(value)

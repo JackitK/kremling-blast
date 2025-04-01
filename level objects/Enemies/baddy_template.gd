@@ -10,10 +10,12 @@ signal enemy_hit
 @export var max_speed: float = 800.0
 @export var hit_speed: float = 20.0
 @export var shot_value: int = 1
+@export var scary:bool = false
+
 var dir_x : float = 1
 var dir_y : float = 1
 var motion = Vector2(0,0)
-var mouse_inside = false
+var mouse_inside: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,10 +29,13 @@ func _physics_process(delta) -> void:
 	enemy_movement()
 
 func check_for_hit():
+	print("check for hit")
 	if mouse_inside == true:
+		print("inside mouse true")
 		shot_event()
 
 func shot_event():
+	print("Calling shot event")
 	randomly_change_direction()
 	if speed + hit_speed >= max_speed:
 		speed = max_speed

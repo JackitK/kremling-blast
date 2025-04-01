@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctrphixjduwlj"]
 
-[ext_resource type="Texture2D" uid="uid://c6ah14iwiqy88" path="res://sprite/Helper Monkey.png" id="1_qg6pr"]
+[ext_resource type="Texture2D" uid="uid://c6ah14iwiqy88" path="res://sprite/Kongs/Helper Monkey.png" id="1_qg6pr"]
 [ext_resource type="Script" uid="uid://6rvognja0qpx" path="res://Level UI/miss_counter.gd" id="1_s4iso"]
 
 [node name="MissCounter" type="Node2D"]

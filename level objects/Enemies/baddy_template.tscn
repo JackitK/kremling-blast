@@ -2,56 +2,56 @@
 
 [ext_resource type="Script" uid="uid://cq5qdcju2caye" path="res://level objects/Enemies/baddy_template.gd" id="1_gfnbd"]
 [ext_resource type="Script" uid="uid://c21fn48h6wrix" path="res://level objects/Enemies/baddy_collison.gd" id="2_pn267"]
-[ext_resource type="Texture2D" uid="uid://mxrowgefheo6" path="res://sprite/Kritter_animated.png" id="3_g76ik"]
+[ext_resource type="Texture2D" uid="uid://mxrowgefheo6" path="res://sprite/Baddies/Kritter_animated.png" id="3_g76ik"]
 [ext_resource type="AudioStream" uid="uid://bvm1dgob6io56" path="res://sounds/sound effects/Baddies/KritterHurt_1.wav" id="4_3xvkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhnte"]
-size = Vector2(25.5, 31)
+size = Vector2(31.0625, 36.875)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_igo5h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow2ej"]
 atlas = ExtResource("3_g76ik")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 33, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ksgpb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrgcc"]
 atlas = ExtResource("3_g76ik")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(33, 0, 33, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s7dgu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndmql"]
 atlas = ExtResource("3_g76ik")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(0, 33, 33, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x8m6g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw034"]
 atlas = ExtResource("3_g76ik")
-region = Rect2(32, 32, 32, 32)
+region = Rect2(33, 33, 33, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q4r8y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_84d6r"]
 atlas = ExtResource("3_g76ik")
-region = Rect2(0, 64, 32, 32)
+region = Rect2(0, 66, 33, 33)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dtesc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pjqv"]
 atlas = ExtResource("3_g76ik")
-region = Rect2(32, 64, 32, 32)
+region = Rect2(33, 66, 33, 33)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ch5hk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_igo5h")
+"texture": SubResource("AtlasTexture_ow2ej")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ksgpb")
+"texture": SubResource("AtlasTexture_yrgcc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s7dgu")
+"texture": SubResource("AtlasTexture_ndmql")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x8m6g")
+"texture": SubResource("AtlasTexture_cw034")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q4r8y")
+"texture": SubResource("AtlasTexture_84d6r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dtesc")
+"texture": SubResource("AtlasTexture_1pjqv")
 }],
 "loop": true,
 "name": &"default",
@@ -59,7 +59,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ow2ej"]
-size = Vector2(55, 67)
+size = Vector2(66, 77)
 
 [node name="baddy" type="CharacterBody2D" groups=["baddies"]]
 collision_layer = 3
@@ -81,7 +81,7 @@ position = Vector2(-2, 2)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ch5hk")
 autoplay = "default"
-frame_progress = 0.592972
+frame_progress = 0.418431
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

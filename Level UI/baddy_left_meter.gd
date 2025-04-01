@@ -15,10 +15,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot"):
-		print("shoot")
-		update_progress_bar()
 	
 func enemy_shot_event(value: int) -> void:
 	if value == null:
@@ -28,7 +24,7 @@ func enemy_shot_event(value: int) -> void:
 
 func set_progress_bar() -> void:
 	baddy_left_count = baddy_count_max
-	baddy_left_label.text = "Baddies Left: " + str(baddy_left_count)
+	baddy_left_label.text = "Baddies Bonked: " + str(baddy_count_max - baddy_left_count) + "/" + str(baddy_count_max)
 	progress_bar.max_value = baddy_count_max
 	progress_bar.value = baddy_left_count
 	
@@ -39,5 +35,5 @@ func update_progress_bar() -> void:
 		baddy_left_label.text = "Level complete"
 		Events.emit_level_cleared()
 	else:
-		baddy_left_label.text = "Baddies Left: " + str(baddy_left_count)
+		baddy_left_label.text = "Baddies Bonked: " + str(baddy_count_max - baddy_left_count) + "/" + str(baddy_count_max)
 	progress_bar.value = baddy_left_count

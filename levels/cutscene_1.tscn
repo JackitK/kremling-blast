@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk73buwq8fmt2"]
+
+[ext_resource type="PackedScene" uid="uid://3er5iu5rv6x5" path="res://levels/level_templates/cutscene_template.tscn" id="1_oqq6y"]
+[ext_resource type="PackedScene" uid="uid://b7tuftj2atpdh" path="res://levels/level1.tscn" id="2_2w6od"]
+
+[node name="CutsceneTemplate" instance=ExtResource("1_oqq6y")]
+next_level = ExtResource("2_2w6od")
+export_file_path = "res://Dialogue/cutscene_1.txt"

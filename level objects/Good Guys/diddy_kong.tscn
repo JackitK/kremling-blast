@@ -1,17 +1,71 @@
-[gd_scene load_steps=5 format=3 uid="uid://cd4edf32nb4xh"]
+[gd_scene load_steps=16 format=3 uid="uid://cd4edf32nb4xh"]
 
 [ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="1_rb47x"]
 [ext_resource type="Script" uid="uid://ciec87ujo5wrf" path="res://level objects/Good Guys/diddy_kong.gd" id="2_8xug7"]
-[ext_resource type="Texture2D" uid="uid://dre8d2emt1vb5" path="res://sprite/Diddy Kong.png" id="2_sx0xs"]
+[ext_resource type="Texture2D" uid="uid://dre8d2emt1vb5" path="res://sprite/Kongs/Diddy Kong.png" id="2_sx0xs"]
+[ext_resource type="Texture2D" uid="uid://c2ttgcddheukf" path="res://Effects/jetpack_blaze.png" id="3_o2jgb"]
+[ext_resource type="AudioStream" uid="uid://blyfpuy6ha4ib" path="res://sounds/sound effects/Kongs/DiddyHurt_1.wav" id="4_iycj1"]
+[ext_resource type="AudioStream" uid="uid://dkqrhhk3byhm7" path="res://sounds/sound effects/Kongs/DiddyHappy_1.wav" id="5_o2jgb"]
+[ext_resource type="AudioStream" uid="uid://bnl12b21j6ols" path="res://sounds/sound effects/Kongs/fire.mp3" id="7_6tfo6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tfo6"]
+atlas = ExtResource("3_o2jgb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3feot"]
+atlas = ExtResource("3_o2jgb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmq4w"]
+atlas = ExtResource("3_o2jgb")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k6ad"]
+atlas = ExtResource("3_o2jgb")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqrqw"]
+atlas = ExtResource("3_o2jgb")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3ibb"]
+atlas = ExtResource("3_o2jgb")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_65xnw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tfo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3feot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmq4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k6ad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqrqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3ibb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xug7"]
 size = Vector2(31.3333, 32.6667)
 
 [node name="Diddy" instance=ExtResource("1_rb47x")]
 script = ExtResource("2_8xug7")
-speed = 200.0
 hit_speed = 20.0
 kong_type = "test"
+fearful = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="shoot_area" index="0"]
 position = Vector2(-2, 2)
@@ -21,7 +75,16 @@ polygon = PackedVector2Array(3.88889, -12.2222, 5.55556, -6.66667, 8.88889, -6.6
 [node name="CollisionShape2D" parent="shoot_area" index="1"]
 visible = false
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="blaze" type="AnimatedSprite2D" parent="nearby_detector" index="1"]
+visible = false
+z_index = 2
+position = Vector2(-3, 2)
+scale = Vector2(1.40625, 1.40625)
+sprite_frames = SubResource("SpriteFrames_65xnw")
+autoplay = "default"
+frame_progress = 0.0311252
+
+[node name="Sprite2D" parent="." index="2"]
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_sx0xs")
 
@@ -32,3 +95,17 @@ shape = SubResource("RectangleShape2D_8xug7")
 [node name="default_collision" parent="." index="4"]
 unique_name_in_owner = true
 visible = false
+
+[node name="hurt_cry" parent="sound_effects" index="0"]
+stream = ExtResource("4_iycj1")
+
+[node name="power_up" parent="sound_effects" index="1"]
+stream = ExtResource("5_o2jgb")
+
+[node name="blaze" type="AudioStreamPlayer2D" parent="sound_effects" index="2"]
+stream = ExtResource("7_6tfo6")
+volume_db = 2.0
+
+[node name="jetpack_timer" type="Timer" parent="." index="7"]
+
+[connection signal="timeout" from="jetpack_timer" to="." method="_on_jetpack_timer_timeout"]

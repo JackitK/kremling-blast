@@ -32,5 +32,4 @@ position = Vector2(524, 374)
 
 [node name="Donkey Kong" parent="kong_group" index="1" instance=ExtResource("4_0fm5q")]
 position = Vector2(756.499, 320.566)
-collision_layer = 3
 collision_mask = 5

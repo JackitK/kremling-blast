@@ -23,7 +23,6 @@ func on_settings_save(data : Dictionary) -> void:
 	save_settings_data_file.store_line(json_data_string)
 
 func load_settings_data() -> void:
-	print("loading settings data")
 	if not FileAccess.file_exists(SETTINGS_SAVE_PATH):
 		return
 		
@@ -47,7 +46,6 @@ func on_levels_save(data: Dictionary) -> void:
 	data_file.store_line(json_data_string)
 
 func load_levels_data() -> void:
-	print("loading settings data")
 	if not FileAccess.file_exists(LEVELS_SAVE_PATH):
 		return
 		

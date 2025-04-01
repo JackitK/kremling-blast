@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfho0r5lebqw"]
+
+[ext_resource type="PackedScene" uid="uid://b32ogv250j2wt" path="res://levels/level_templates/bonus_level_template.tscn" id="1_jn120"]
+[ext_resource type="PackedScene" uid="uid://dckxsykjevwy2" path="res://level objects/Enemies/kritter.tscn" id="2_xfn5q"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="3_57cwg"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="4_wk2fk"]
+
+[node name="bonusLevel" instance=ExtResource("1_jn120")]
+starting_bonus_time = 45
+
+[node name="bonus_prompt" parent="Bonus_message_container" index="1"]
+text = "Right click Diddy in his
+jetbarrel for extra power."
+
+[node name="baddy" parent="baddy group" index="0"]
+position = Vector2(553, 299)
+
+[node name="baddy2" parent="baddy group" index="1" instance=ExtResource("2_xfn5q")]
+position = Vector2(408, 473)
+
+[node name="baddy3" parent="baddy group" index="2" instance=ExtResource("2_xfn5q")]
+position = Vector2(683, 471)
+
+[node name="Diddy" parent="kong_group" index="0" instance=ExtResource("3_57cwg")]
+position = Vector2(557, 428)
+scale = Vector2(1.5, 1.5)
+
+[node name="Banana" parent="collectables" index="0" instance=ExtResource("4_wk2fk")]
+position = Vector2(687, 341)
+
+[node name="Banana2" parent="collectables" index="1" instance=ExtResource("4_wk2fk")]
+position = Vector2(555, 529)
+
+[node name="Banana3" parent="collectables" index="2" instance=ExtResource("4_wk2fk")]
+position = Vector2(417, 341)
+
+[node name="Banana4" parent="collectables" index="3" instance=ExtResource("4_wk2fk")]
+position = Vector2(821.636, 274.182)
+
+[node name="Banana5" parent="collectables" index="4" instance=ExtResource("4_wk2fk")]
+position = Vector2(268, 281)
+
+[node name="click_spam_timer" type="Timer" parent="timers" index="4"]
+wait_time = 0.1
+
+[connection signal="timeout" from="timers/click_spam_timer" to="." method="_on_click_spam_timer_timeout"]

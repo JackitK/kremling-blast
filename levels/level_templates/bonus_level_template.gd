@@ -20,8 +20,9 @@ func _ready() -> void:
 
 func bonus_stage_intro():
 	bonus_message_container.visible = true
-	get_tree().paused = true
 	intro_timer.start()
+	get_tree().paused = true
+	
 
 func hurt_friend_event(value:int):
 	bonus_level_fail()

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=4 uid="uid://dcddesucdu15j"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_bufqw"]
+[ext_resource type="PackedScene" uid="uid://bnhxe07rjp6ok" path="res://levels/level6.tscn" id="2_bufqw"]
+[ext_resource type="PackedScene" uid="uid://dofuuv43fk0y8" path="res://level objects/Enemies/klump.tscn" id="2_s216a"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="3_bufqw"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="5_vp6pq"]
+
+[node name="LevelTemplate" instance=ExtResource("1_bufqw")]
+next_level = ExtResource("2_bufqw")
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 8
+
+[node name="baddy" parent="baddy group" index="0"]
+position = Vector2(1539, 241)
+
+[node name="baddy2" parent="baddy group" index="1" instance=ExtResource("2_s216a")]
+position = Vector2(532, 514)
+
+[node name="baddy3" parent="baddy group" index="2" instance=ExtResource("2_s216a")]
+position = Vector2(552, 310)
+
+[node name="baddy4" parent="baddy group" index="3" instance=ExtResource("2_s216a")]
+position = Vector2(681, 420)
+
+[node name="baddy5" parent="baddy group" index="4" instance=ExtResource("2_s216a")]
+position = Vector2(329, 345)
+
+[node name="Donkey Kong" parent="kong_group" index="0" instance=ExtResource("3_bufqw")]
+position = Vector2(723, 315)
+
+[node name="Diddy" parent="kong_group" index="1" instance=ExtResource("5_vp6pq")]
+position = Vector2(376, 438)
+scale = Vector2(1.4, 1.4)
+
+[node name="Level Tile Map" parent="." index="6"]
+tile_map_data = PackedByteArray("AAAEAAQAAAAEAAAAAAAEAAUAAAADAAEAAAAEAAYAAAADAAEAAAAEAAcAAAADAAEAAAAEAAgAAAADAAEAAAAEAAkAAAADAAEAAAAEAAoAAAADAAEAAAASAAQAAAAHAAAAAAASAAUAAAADAAEAAAASAAYAAAADAAEAAAASAAcAAAADAAEAAAASAAgAAAADAAEAAAASAAkAAAADAAEAAAASAAoAAAADAAEAAAAEAAwAAAAEAAMAAAAFAAwAAAABAAMAAAAGAAwAAAABAAMAAAAHAAwAAAABAAMAAAAIAAwAAAABAAMAAAAJAAwAAAABAAMAAAAKAAwAAAABAAMAAAALAAwAAAABAAMAAAAMAAwAAAABAAMAAAANAAwAAAABAAMAAAAOAAwAAAABAAMAAAAPAAwAAAABAAMAAAAQAAwAAAABAAMAAAARAAwAAAABAAMAAAASAAwAAAAHAAMAAAASAAsAAAADAAEAAAAEAAsAAAADAAEAAAAFAAQAAAABAAMAAAAGAAQAAAABAAMAAAAHAAQAAAABAAMAAAAIAAQAAAABAAMAAAAJAAQAAAABAAMAAAAKAAQAAAABAAMAAAALAAQAAAABAAMAAAAMAAQAAAABAAMAAAANAAQAAAABAAMAAAAOAAQAAAABAAMAAAAPAAQAAAABAAMAAAAQAAQAAAABAAMAAAARAAQAAAABAAMAAAAeAAMAAAAEAAAAAAAeAAQAAAADAAEAAAAeAAUAAAADAAEAAAAeAAYAAAAEAAMAAAAfAAYAAAABAAMAAAAgAAYAAAABAAMAAAAhAAUAAAADAAEAAAAhAAYAAAAHAAMAAAAhAAQAAAADAAEAAAAhAAMAAAAHAAAAAAAgAAMAAAABAAMAAAAfAAMAAAABAAMAAAA=")

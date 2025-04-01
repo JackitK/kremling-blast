@@ -9,18 +9,15 @@ const BONUS_TIME_BONUS_MAX : int = 15
 var bonus_time_bonus : int = 0
 
 func kong_power():
-	print("Go DK!")
 	if strong_kong_time < base_time_increase:
 		strong_kong_time = base_time_increase
 	else:
 		strong_kong_time = strong_kong_timer.time_left + base_time_increase
 	if strong_kong_time > STRONG_KONG_TIME_MAX + base_time_increase:
 		strong_kong_time = STRONG_KONG_TIME_MAX
-		print("too much time stacked, wait")
 		return
 	else:
 		power_up.play()
-		print(strong_kong_time)
 		strong_kong_timer.start(strong_kong_time)
 		invulnerable = true
 		sparkle_effect.visible = true
@@ -32,7 +29,7 @@ func _on_strong_kong_timer_timeout() -> void:
 	sparkle_effect.visible = false
 	strong_kong_time = 0.0
 
-func bad_guy_collide_event():
+func bad_guy_collide_event(area):
 	if invulnerable:
 		strong_kong_bonus()
 		

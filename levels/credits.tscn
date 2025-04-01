@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://deqv5uxkqpjhx"]
+
+[ext_resource type="PackedScene" uid="uid://3er5iu5rv6x5" path="res://levels/level_templates/cutscene_template.tscn" id="1_i2oue"]
+[ext_resource type="Texture2D" uid="uid://bcwggdo1phkng" path="res://splash_art/DK_wins.jpg" id="2_pohcg"]
+[ext_resource type="AudioStream" uid="uid://ccryfhthek4tt" path="res://sounds/music/Credits.mp3" id="3_pohcg"]
+
+[node name="CutsceneTemplate" instance=ExtResource("1_i2oue")]
+export_file_path = "res://Dialogue/credits.txt"
+is_final_scene = true
+
+[node name="cutscene_image" parent="." index="2"]
+offset_right = 1234.0
+offset_bottom = 654.0
+texture = ExtResource("2_pohcg")
+
+[node name="cutscene_dialouge_box" parent="." index="3"]
+theme_override_font_sizes/font_size = 26
+
+[node name="AudioStreamPlayer2D" parent="." index="6"]
+stream = ExtResource("3_pohcg")

@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://boemhia0fccu4"]
+[gd_scene load_steps=6 format=3 uid="uid://boemhia0fccu4"]
 
 [ext_resource type="PackedScene" uid="uid://b32ogv250j2wt" path="res://levels/level_templates/bonus_level_template.tscn" id="1_lf5s8"]
+[ext_resource type="PackedScene" uid="uid://dcddesucdu15j" path="res://levels/level5.tscn" id="2_xllso"]
 [ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="2_xywe2"]
 [ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="3_xllso"]
 [ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="4_gsdob"]
 
 [node name="bonusLevel" instance=ExtResource("1_lf5s8")]
+next_level = ExtResource("2_xllso")
+
+[node name="Bonus_message_container" parent="." index="0"]
+z_index = 5
 
 [node name="bonus_prompt" parent="Bonus_message_container" index="1"]
 text = "Activate \"Kong Power\"
@@ -34,7 +39,6 @@ position = Vector2(701.351, 339.4)
 
 [node name="Donkey Kong" parent="kong_group" index="0" instance=ExtResource("3_xllso")]
 position = Vector2(458.31, 402.356)
-collision_layer = 3
 collision_mask = 5
 
 [node name="Banana" parent="collectables" index="0" instance=ExtResource("4_gsdob")]
@@ -43,15 +47,8 @@ position = Vector2(613.505, 396.5)
 [node name="Banana2" parent="collectables" index="1" instance=ExtResource("4_gsdob")]
 position = Vector2(344.11, 396.5)
 
-[node name="audio_player" parent="." index="7"]
+[node name="audio_player" parent="." index="8"]
 process_mode = 3
 
 [node name="autofire_timer" parent="timers" index="0"]
 wait_time = 0.5
-
-[node name="intro_timer" type="Timer" parent="timers" index="3"]
-process_mode = 3
-wait_time = 2.4
-one_shot = true
-
-[connection signal="timeout" from="timers/intro_timer" to="." method="_on_intro_timer_timeout"]
