@@ -9,7 +9,7 @@ extends CenterContainer
 
 
 @export var options_menu = preload("res://Menus/Options Menu/Options_Menu.tscn") as PackedScene
-@export var start_level = preload("res://levels/level1.tscn") as PackedScene
+@export var start_level = preload("res://levels/cutscene_1.tscn") as PackedScene
 
 func _process(delta: float) -> void:
 	pass
@@ -19,7 +19,6 @@ func _ready() -> void:
 	start_game_button.grab_focus()
 	handle_connecting_signals()
 	load_opening_data()
-	load_audio_settings_for_start_menu()
 	
 	music_player.play()
 	
@@ -29,7 +28,6 @@ func _ready() -> void:
 	
 func game_start_pressed() -> void:
 	await LevelTransition.fade_to_black()
-	load_level_data()
 	get_tree().change_scene_to_packed(start_level)
 	LevelTransition.fade_from_back()
 	load_audio_settings()
@@ -50,10 +48,7 @@ func handle_connecting_signals() -> void:
 func load_opening_data() -> void:
 	SaveManager.load_settings_data()
 	load_audio_settings()
-
-func load_level_data() -> void:
-	pass
-	#start_level = LevelData.load_level_from_index()
+	load_graphics_settings()
 	
 func load_audio_settings() -> void:
 	var master_vl = linear_to_db(SettingsDataContainer.get_master_sound())
@@ -64,9 +59,27 @@ func load_audio_settings() -> void:
 	AudioServer.set_bus_volume_db(1, music_vl)
 	AudioServer.set_bus_volume_db(2, sfx_vl)
 
-func load_audio_settings_for_start_menu() -> void:
-	pass
-	#var master_vl = linear_to_db(SettingsDataContainer.get_master_sound())
-	#AudioServer.set_bus_volume_db(0, master_vl)
-	#var music_vl = linear_to_db(SettingsDataContainer.get_music_sound())
-	#AudioServer.set_bus_volume_db(1, music_vl)
+func load_graphics_settings() -> void:
+	var window_index : int = SettingsDataContainer.window_mode_index
+	match window_index:
+		0: #window Mode
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		1: #fullscreen
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		2: #Borderless Window Mode
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+		3: #Borderless Fullscreen
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+	
+	const STARTING_RESOLUTION_DICTIONARY : Dictionary = {
+	"1152 x 648" : Vector2i(1152, 648),
+	"1280 x 720" : Vector2i(1280, 720),
+	"1920 x 1080" : Vector2i(1920, 1080)
+	}
+	
+	var resolution_index : int = SettingsDataContainer.resolution_index
+	DisplayServer.window_set_size(STARTING_RESOLUTION_DICTIONARY.values()[resolution_index])

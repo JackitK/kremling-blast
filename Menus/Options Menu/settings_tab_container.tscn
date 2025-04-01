@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4gps7o3bnsab"]
+[gd_scene load_steps=9 format=3 uid="uid://d4gps7o3bnsab"]
 
 [ext_resource type="Script" uid="uid://da0tek8bm5c0e" path="res://Menus/Options Menu/settings_tab_container.gd" id="1_4vbn5"]
-[ext_resource type="PackedScene" uid="uid://db4afm8ddc4mj" path="res://Menus/Options Menu/Input Buttons/input_settings_v2.tscn" id="1_f2yi1"]
 [ext_resource type="PackedScene" uid="uid://bqgn6vb0ertql" path="res://Menus/Options Menu/Audio Buttons/audio_slider_settings.tscn" id="2_r6t11"]
 [ext_resource type="PackedScene" uid="uid://bsblvw4g5l27a" path="res://Menus/Options Menu/Graphics Buttons/window_mode_button.tscn" id="2_tjuj2"]
+[ext_resource type="PackedScene" uid="uid://c6krt4b8h7q0b" path="res://Menus/Options Menu/General Buttons/autofire_slider.tscn" id="3_685rw"]
 [ext_resource type="PackedScene" uid="uid://k1qtjx2tcygi" path="res://Menus/Options Menu/Graphics Buttons/resultion_mode_button.tscn" id="3_gdxlt"]
 [ext_resource type="PackedScene" uid="uid://dtlaiw01exmj3" path="res://Menus/Options Menu/Accessiblity Buttons/auto_fire_toggle_button.tscn" id="9_amb08"]
-[ext_resource type="PackedScene" uid="uid://dytd3l88gpgen" path="res://Menus/Options Menu/General Buttons/level_select_button.tscn" id="11_o02y7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu0fm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -36,10 +35,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 tab_alignment = 1
-current_tab = 3
+current_tab = 0
 
 [node name="General" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 focus_neighbor_right = NodePath("../Sound")
 metadata/_tab_index = 0
@@ -102,13 +100,13 @@ visible = false
 layout_mode = 2
 text = "Test"
 
+[node name="autofire_rate_slider" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_685rw")]
+layout_mode = 2
+
 [node name="Label7" type="Label" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-text = "Test"
-
-[node name="Resultion_Mode_Button" parent="TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("11_o02y7")]
-layout_mode = 2
+text = "Cheats:"
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
 visible = false
@@ -152,10 +150,13 @@ bus_name = "Music"
 layout_mode = 2
 bus_name = "Sfx"
 
+[node name="Audio_Slider_Settings4" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_r6t11")]
+layout_mode = 2
+bus_name = "Gun"
+
 [node name="Graphics" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
-focus_neighbor_right = NodePath("../Controls")
 focus_neighbor_bottom = NodePath("MarginContainer/ScrollContainer/VBoxContainer/Window_Mode_Button")
 metadata/_tab_index = 2
 
@@ -184,41 +185,6 @@ layout_mode = 2
 
 [node name="Resultion_Mode_Button" parent="TabContainer/Graphics/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_gdxlt")]
 layout_mode = 2
-
-[node name="Controls" type="TabBar" parent="TabContainer"]
-layout_mode = 2
-focus_neighbor_bottom = NodePath("MarginContainer/VBoxContainer/InputSettings")
-metadata/_tab_index = 3
-
-[node name="Label" type="Label" parent="TabContainer/Controls"]
-layout_mode = 2
-offset_left = 500.0
-offset_top = 292.0
-offset_right = 632.0
-offset_bottom = 315.0
-text = "Work in progress"
-
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="InputSettings" parent="TabContainer/Controls/MarginContainer/VBoxContainer" instance=ExtResource("1_f2yi1")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = null
 
 [node name="unlock_delay" type="Timer" parent="."]
 unique_name_in_owner = true

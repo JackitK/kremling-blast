@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://lsilrbvu1g2x"]
+[gd_scene load_steps=12 format=4 uid="uid://lsilrbvu1g2x"]
 
 [ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="1_f04ci"]
 [ext_resource type="Script" uid="uid://c5q3ipxde5vs5" path="res://levels/level_templates/level_template.gd" id="1_vqyjd"]
+[ext_resource type="PackedScene" uid="uid://bbnyq81qfb025" path="res://Menus/PauseMenu.tscn" id="2_aj5t6"]
 [ext_resource type="AudioStream" uid="uid://ly63m074sldg" path="res://sounds/sound effects/coconut_gun.ogg" id="3_3vaiy"]
 [ext_resource type="PackedScene" uid="uid://cfss21ky4obv6" path="res://Tiles/Default TileMap.tscn" id="4_iqiwu"]
 [ext_resource type="PackedScene" uid="uid://ce522uxf8f3wr" path="res://Level UI/banana_count.tscn" id="5_5pr7o"]
@@ -14,7 +15,13 @@
 [node name="LevelTemplate" type="Node2D"]
 script = ExtResource("1_vqyjd")
 
-[node name="level_ui" type="Node" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_aj5t6")]
+visible = false
+mouse_filter = 2
+
+[node name="level_ui" type="CanvasLayer" parent="."]
 
 [node name="Score" parent="level_ui" instance=ExtResource("6_t2qq1")]
 unique_name_in_owner = true
@@ -42,6 +49,8 @@ visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 103.0
+offset_right = -337.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
@@ -75,6 +84,7 @@ tile_map_data = PackedByteArray("AAAEAAQAAAAEAAAAAAAEAAUAAAADAAEAAAAEAAYAAAADAAE
 [node name="level_track" type="AudioStreamPlayer2D" parent="audio_player"]
 process_mode = 3
 stream = ExtResource("8_64qpc")
+volume_db = -5.0
 autoplay = true
 bus = &"Music"
 
@@ -88,7 +98,7 @@ bus = &"Music"
 [node name="CoconutGun" type="AudioStreamPlayer" parent="audio_player"]
 unique_name_in_owner = true
 stream = ExtResource("3_3vaiy")
-bus = &"Sfx"
+bus = &"Gun"
 
 [node name="timers" type="Node" parent="."]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cevi6w2dhpmoi"]
+[gd_scene load_steps=4 format=3 uid="uid://cevi6w2dhpmoi"]
 
 [ext_resource type="Script" uid="uid://dptsuuekyag2u" path="res://Menus/Options Menu/options_menu.gd" id="1_qqtks"]
 [ext_resource type="PackedScene" uid="uid://d4gps7o3bnsab" path="res://Menus/Options Menu/settings_tab_container.tscn" id="3_2ervg"]
+[ext_resource type="AudioStream" uid="uid://bugwkuonxy2bo" path="res://sounds/music/Snide's HQ.mp3" id="3_tchll"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -27,15 +28,10 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 50
 text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "(WIP. Requires mouse to fully set up settings)"
-horizontal_alignment = 1
 
 [node name="Settings_Tab_Container" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_2ervg")]
 layout_mode = 2
@@ -46,3 +42,9 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 text = "Exit"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tchll")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"

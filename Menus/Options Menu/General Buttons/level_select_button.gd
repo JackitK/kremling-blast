@@ -20,5 +20,4 @@ func add_level_items() -> void:
 		option_button.add_item(level_size_text)
 	
 func on_level_selected(index: int) -> void:
-	print("set starting level")
 	LevelData.start_level_index = index

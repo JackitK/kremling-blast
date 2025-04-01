@@ -4,7 +4,7 @@ extends Control
 @onready var audio_num_lbl: Label = $HBoxContainer/Audio_Num_Lbl as Label
 @onready var h_slider: HSlider = $HBoxContainer/HSlider as HSlider
 
-@export_enum("Master", "Music", "Sfx") var bus_name :String
+@export_enum("Master", "Music", "Sfx", "Gun") var bus_name :String
 
 var bus_index : int = 0
 
@@ -22,6 +22,8 @@ func load_data() -> void:
 		"Music":
 			on_value_changed(SettingsDataContainer.get_music_sound())
 		"Sfx":
+			on_value_changed(SettingsDataContainer.get_sfx_sound())
+		"Gun":
 			on_value_changed(SettingsDataContainer.get_sfx_sound())
 
 func set_name_label_text() -> void:
@@ -50,3 +52,5 @@ func on_value_changed(value: float) -> void:
 			SettingsSignalBus.emit_on_music_sound_set(value)
 		2:
 			SettingsSignalBus.emit_on_sfx_sound_set(value)
+		3:
+			SettingsSignalBus.emit_on_gun_sound_set(value)

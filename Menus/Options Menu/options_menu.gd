@@ -21,5 +21,4 @@ func on_exit_options_pressed() -> void:
 	SettingsSignalBus.emit_set_levels_dictionary(LevelData.create_level_data_dictionary())
 	await LevelTransition.fade_to_black()
 	get_tree().change_scene_to_file("res://Menus/start_menu.tscn")
-	print("Autofire state " + str(SettingsDataContainer.autofire_state))
 	LevelTransition.fade_from_back()
