@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbnyq81qfb025"]
+[gd_scene load_steps=8 format=3 uid="uid://bbnyq81qfb025"]
 
+[ext_resource type="Theme" uid="uid://0ovll3aolq0b" path="res://Themes/Kong_pop_up_menu.tres" id="1_o0cs5"]
 [ext_resource type="Script" uid="uid://b5xbo6dqb1cn" path="res://Menus/pause_menu.gd" id="1_pkops"]
+[ext_resource type="FontFile" uid="uid://cf1ukv41uov1k" path="res://Font/Jumpman.ttf" id="3_hnfxo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qxbl3"]
 
@@ -135,10 +137,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_o0cs5")
 script = ExtResource("1_pkops")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 modulate = Color(0, 0, 0, 0)
+custom_minimum_size = Vector2(500, 200)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -155,28 +159,37 @@ grow_vertical = 2
 [node name="ColorRect" type="ColorRect" parent="PanelContainer"]
 material = SubResource("ShaderMaterial_qxbl3")
 layout_mode = 2
-color = Color(0, 0.621225, 0.432725, 1)
+color = Color(0.0313726, 0.411765, 0, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 process_mode = 3
 layout_mode = 2
+theme = ExtResource("1_o0cs5")
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("3_hnfxo")
+theme_override_font_sizes/font_size = 50
 text = "Paused:"
 horizontal_alignment = 1
 
 [node name="Resume" type="Button" parent="PanelContainer/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("3_hnfxo")
+theme_override_font_sizes/font_size = 50
 text = "Resume"
+
+[node name="Options" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Options"
 
 [node name="Quit" type="Button" parent="PanelContainer/VBoxContainer"]
 process_mode = 3
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("3_hnfxo")
+theme_override_font_sizes/font_size = 50
 text = "Back to Main Menu"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -184,5 +197,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_5rrm7")
 }
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(0.9, 0.9)
+transform = Transform2D(0.9, 0, 0, 0.9, 0, 0)
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

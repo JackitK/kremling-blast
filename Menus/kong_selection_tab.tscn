@@ -1,0 +1,129 @@
+[gd_scene load_steps=18 format=3 uid="uid://ch0ehjsacv8wb"]
+
+[ext_resource type="Script" uid="uid://gbbus6heo5g6" path="res://Menus/kong_selection_tab.gd" id="1_lricw"]
+[ext_resource type="Theme" uid="uid://0ovll3aolq0b" path="res://Themes/Kong_pop_up_menu.tres" id="1_on0ac"]
+[ext_resource type="Texture2D" uid="uid://d4bcmf8ibissx" path="res://sprite/Kongs/Donkey Kong.png" id="2_f3g1y"]
+[ext_resource type="Texture2D" uid="uid://d1tt7mor7vpcs" path="res://sprite/Kongs/Menu Kongs/DK_highlight.png" id="3_fuank"]
+[ext_resource type="Texture2D" uid="uid://bjg8qsccxtfdu" path="res://sprite/Kongs/Menu Kongs/DK_disabled.png" id="4_o12gg"]
+[ext_resource type="Texture2D" uid="uid://dre8d2emt1vb5" path="res://sprite/Kongs/Diddy Kong.png" id="5_lricw"]
+[ext_resource type="Texture2D" uid="uid://dxlvfauny8klw" path="res://sprite/Kongs/Menu Kongs/Diddy_highlight.png" id="6_d6x8f"]
+[ext_resource type="Texture2D" uid="uid://i5q5qgmqivvp" path="res://sprite/Kongs/Menu Kongs/Diddy_disabled.png" id="7_u8g3o"]
+[ext_resource type="Texture2D" uid="uid://cqaqv215j3xrp" path="res://sprite/Kongs/Lanky Kong.png" id="8_d6x8f"]
+[ext_resource type="Texture2D" uid="uid://c3p5h6ype0s2a" path="res://sprite/Kongs/TinyKong.png" id="9_05gqs"]
+[ext_resource type="Texture2D" uid="uid://dditwsga22s0n" path="res://sprite/Kongs/Menu Kongs/Lanky_highlight.png" id="9_y3ey5"]
+[ext_resource type="Texture2D" uid="uid://dmc31hsxandq4" path="res://sprite/Kongs/Menu Kongs/Lanky_disabled.png" id="10_on0ac"]
+[ext_resource type="Texture2D" uid="uid://tf4dxel7ie24" path="res://sprite/Kongs/Menu Kongs/Tiny_highlight.png" id="12_q37oe"]
+[ext_resource type="Texture2D" uid="uid://3hd07mx6s64o" path="res://sprite/Kongs/Menu Kongs/Tiny_disabled.png" id="13_7y8ux"]
+[ext_resource type="Texture2D" uid="uid://bkg8aiwxiuhv1" path="res://sprite/Kongs/Menu Kongs/Chunky_default.png" id="14_v0fr8"]
+[ext_resource type="Texture2D" uid="uid://d08an642474xg" path="res://sprite/Kongs/Menu Kongs/Chunky_highlight_ver2.png" id="15_54yjw"]
+[ext_resource type="Texture2D" uid="uid://bj3ubf6nqwrl5" path="res://sprite/Kongs/Menu Kongs/Chunky_disabled.png" id="16_7jrgg"]
+
+[node name="Kong selection" type="Control"]
+process_mode = 3
+z_index = 2
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme = ExtResource("1_on0ac")
+script = ExtResource("1_lricw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = -61.0
+offset_right = 102.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.300133, 0.179555, 0.0958637, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -24.5
+offset_right = 87.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Donkey" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("2_f3g1y")
+texture_hover = ExtResource("3_fuank")
+texture_disabled = ExtResource("4_o12gg")
+
+[node name="Diddy" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("5_lricw")
+texture_hover = ExtResource("6_d6x8f")
+texture_disabled = ExtResource("7_u8g3o")
+
+[node name="Lanky" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("8_d6x8f")
+texture_hover = ExtResource("9_y3ey5")
+texture_disabled = ExtResource("10_on0ac")
+
+[node name="Tiny" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("9_05gqs")
+texture_hover = ExtResource("12_q37oe")
+texture_disabled = ExtResource("13_7y8ux")
+
+[node name="Chunky" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("14_v0fr8")
+texture_hover = ExtResource("15_54yjw")
+texture_disabled = ExtResource("16_7jrgg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -103.0
+offset_top = -61.0
+offset_right = 102.0
+offset_bottom = -24.0
+theme_override_colors/font_color = Color(0.923873, 0, 0.12047, 1)
+theme_override_colors/font_outline_color = Color(1, 0.85, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 35
+text = "Which Kong?"
+horizontal_alignment = 1
+
+[node name="cancel_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -32.0
+offset_top = 11.0
+offset_right = 31.0
+offset_bottom = 36.0
+text = "Cancel"
+
+[connection signal="pressed" from="HBoxContainer/Donkey" to="." method="_on_donkey_pressed"]
+[connection signal="pressed" from="HBoxContainer/Diddy" to="." method="_on_diddy_pressed"]
+[connection signal="pressed" from="HBoxContainer/Lanky" to="." method="_on_lanky_pressed"]
+[connection signal="pressed" from="HBoxContainer/Tiny" to="." method="_on_tiny_pressed"]
+[connection signal="pressed" from="HBoxContainer/Chunky" to="." method="_on_chunky_pressed"]
+[connection signal="pressed" from="cancel_button" to="." method="_on_cancel_button_pressed"]
