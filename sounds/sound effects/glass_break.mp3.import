@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3lalp54jklwv"
+path="res://.godot/imported/glass_break.mp3-7616cdb7f4e6895db0fa1f597f9b9f9b.mp3str"
+
+[deps]
+
+source_file="res://sounds/sound effects/glass_break.mp3"
+dest_files=["res://.godot/imported/glass_break.mp3-7616cdb7f4e6895db0fa1f597f9b9f9b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
