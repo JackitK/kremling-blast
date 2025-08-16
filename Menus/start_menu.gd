@@ -24,6 +24,13 @@ var welcome_screen:ConfirmContainer
 func _process(delta: float) -> void:
 	pass
 
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_APPLICATION_FOCUS_OUT:
+			AudioServer.set_bus_mute(0, true)
+		NOTIFICATION_APPLICATION_FOCUS_IN:
+			AudioServer.set_bus_mute(0, false)
+
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	start_game_button.grab_focus()
@@ -35,9 +42,13 @@ func _ready() -> void:
 	
 	var high_score:int = SaveManager.save_data.high_score
 	var chaos_score:int = SaveManager.save_data.endless_score
-	print("chaos score: " + str(chaos_score))
-	high_score_label.text = "High Score: " + str(high_score)
-	endless_score_label.text = "Chaos Score: " + str(chaos_score)
+	if SaveManager.save_data.diff_base == null:
+		SaveManager.save_data.diff_base = ""
+	if SaveManager.save_data.diff_endless == null:
+		SaveManager.save_data.diff_base = ""
+	
+	high_score_label.text = "High Score: " + str(high_score)  + " " + SaveManager.save_data.diff_base
+	endless_score_label.text = "Chaos Score: " + str(chaos_score) + " " + SaveManager.save_data.diff_endless
 	if high_score == 0:
 		high_score_label.visible = false
 	else:
@@ -48,12 +59,15 @@ func _ready() -> void:
 		endless_score_label.visible = true
 	handle_hiding_elements()
 		
+	if OS.has_feature("web"):
+		quit_button.visible = false
+		
 func game_start_pressed() -> void:
 	await LevelTransition.fade_to_black()
 	handle_challenge_modifiers()
 	get_tree().change_scene_to_packed(start_level)
 	LevelTransition.fade_from_back()
-	load_audio_settings()
+	Events.load_audio_settings()
 	
 func on_options_pressed() -> void:
 	await LevelTransition.fade_to_black()
@@ -75,7 +89,7 @@ func load_past_game():
 	await LevelTransition.fade_to_black()
 	get_tree().change_scene_to_packed(start_level)
 	LevelTransition.fade_from_back()
-	load_audio_settings()
+	Events.load_audio_settings()
 	
 func endless_pressed() -> void:
 	await LevelTransition.fade_to_black()
@@ -109,44 +123,9 @@ func handle_hiding_elements() -> void:
 func load_opening_data() -> void:
 	SaveManager.load_settings_data()
 	check_for_mobile()
-	load_audio_settings()
-	load_graphics_settings()
+	Events.load_audio_settings()
+	Events.load_graphics_settings()
 	set_custom_cursor()
-	
-func load_audio_settings() -> void:
-	var master_vl = linear_to_db(SettingsDataContainer.get_master_sound())
-	var music_vl = linear_to_db(SettingsDataContainer.get_music_sound())
-	var sfx_vl = linear_to_db(SettingsDataContainer.get_sfx_sound())
-	
-	AudioServer.set_bus_volume_db(0, master_vl)
-	AudioServer.set_bus_volume_db(1, music_vl)
-	AudioServer.set_bus_volume_db(2, sfx_vl)
-
-func load_graphics_settings() -> void:
-	var window_index : int = SettingsDataContainer.window_mode_index
-	match window_index:
-		0: #window Mode
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-		1: #fullscreen
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-		2: #Borderless Window Mode
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-		3: #Borderless Fullscreen
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-	
-	const STARTING_RESOLUTION_DICTIONARY : Dictionary = {
-	"1152 x 648" : Vector2i(1152, 648),
-	"960 x 540" : Vector2i(960, 540),
-	"1280 x 720" : Vector2i(1280, 720),
-	"1920 x 1080" : Vector2i(1920, 1080)
-	}
-	
-	var resolution_index : int = SettingsDataContainer.resolution_index
-	DisplayServer.window_set_size(STARTING_RESOLUTION_DICTIONARY.values()[resolution_index])
 
 func handle_challenge_modifiers()-> void:
 	var diff:int = SettingsDataContainer.get_difficulty()

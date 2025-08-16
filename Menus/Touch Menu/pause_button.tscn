@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxecmbhtue0ia"]
+
+[ext_resource type="Texture2D" uid="uid://wfjkagj084ya" path="res://sprite/menu_icons/pause_large.png" id="1_eknsh"]
+[ext_resource type="Script" uid="uid://dfeborkmvnnkr" path="res://Menus/Touch Menu/prompt_pause_button.gd" id="1_r2y76"]
+
+[node name="PauseButton" type="TextureButton"]
+texture_normal = ExtResource("1_eknsh")
+script = ExtResource("1_r2y76")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -45,6 +45,9 @@ func _on_options_pressed() -> void:
 	if not mini_options:
 		mini_options = mini_options_template.instantiate()
 		mini_options.mini = true
+		Events.emit_hide_while_in_options()
+		mini_options.z_index = 15
+		mini_options.z_as_relative = true
 		settings_canvas.add_child(mini_options)
 
 #Returns to main menu, instead of quitting the game.

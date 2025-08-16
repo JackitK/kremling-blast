@@ -8,3 +8,10 @@ script = ExtResource("2_gdiu4")
 
 [node name="Label" parent="HBoxContainer" index="0"]
 text = "Window Mode"
+
+[node name="VSeparator" parent="HBoxContainer" index="1"]
+theme_override_constants/separation = 15
+
+[node name="OptionButton" parent="HBoxContainer" index="2"]
+custom_minimum_size = Vector2(350, 50)
+alignment = 1

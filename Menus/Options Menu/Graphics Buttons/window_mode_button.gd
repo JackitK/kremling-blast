@@ -33,9 +33,16 @@ func on_window_mode_selected(index : int ) -> void:
 		1: #fullscreen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			
 		2: #Borderless Window Mode
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
 		3: #Borderless Fullscreen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+			
+	#Send a signal back to the settings tab container to either hide or unhide resolution button:
+	if index == 0 || index == 2:
+		SettingsSignalBus.emit_res_butt_reveal(true)
+	else:
+		SettingsSignalBus.emit_res_butt_reveal(false)

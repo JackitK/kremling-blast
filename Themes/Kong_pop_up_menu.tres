@@ -1,8 +1,8 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bdd2qhmth8d4r"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://0ovll3aolq0b"]
 
-[ext_resource type="StyleBox" uid="uid://bty71amwcfcjo" path="res://UI Textures/black_9_slice.tres" id="1_wh7xb"]
-[ext_resource type="StyleBox" uid="uid://dcrq5kvu5n666" path="res://UI Textures/white_9_slice.tres" id="2_wj31h"]
-[ext_resource type="FontFile" uid="uid://crtrgur4xllmj" path="res://Font/PublicPixel.ttf" id="3_11isl"]
+[ext_resource type="StyleBox" uid="uid://dcrq5kvu5n666" path="res://UI Textures/white_9_slice.tres" id="2_ksm15"]
+[ext_resource type="StyleBox" uid="uid://bty71amwcfcjo" path="res://UI Textures/black_9_slice.tres" id="3_t4qms"]
+[ext_resource type="FontFile" uid="uid://cf1ukv41uov1k" path="res://Font/Jumpman.ttf" id="4_04gq6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bofq"]
 
@@ -23,12 +23,11 @@ Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
-Button/font_sizes/font_size = 6
-Button/fonts/font = ExtResource("3_11isl")
-Button/styles/focus = ExtResource("2_wj31h")
-Button/styles/hover = ExtResource("2_wj31h")
-Button/styles/normal = ExtResource("1_wh7xb")
-Button/styles/pressed = ExtResource("1_wh7xb")
+Button/fonts/font = ExtResource("4_04gq6")
+Button/styles/focus = ExtResource("2_ksm15")
+Button/styles/hover = ExtResource("2_ksm15")
+Button/styles/normal = ExtResource("3_t4qms")
+Button/styles/pressed = ExtResource("3_t4qms")
 CheckBox/colors/font_focus_color = Color(0, 0, 0, 1)
 CheckBox/colors/font_pressed_color = Color(0, 0, 0, 1)
 CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_3bofq")
@@ -38,6 +37,8 @@ CheckBox/styles/pressed_mirrored = SubResource("StyleBoxFlat_4uq87")
 InputButton/base_type = &"Button"
 InputButton/styles/focus = SubResource("StyleBoxFlat_1vmg5")
 InputButton/styles/hover = SubResource("StyleBoxFlat_80efh")
-Label/colors/font_color = Color(0.607993, 0.873025, 0.417462, 1)
-Label/font_sizes/font_size = 6
-Label/fonts/font = ExtResource("3_11isl")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("4_04gq6")
+TabContainer/font_sizes/font_size = 40
+TabContainer/fonts/font = ExtResource("4_04gq6")

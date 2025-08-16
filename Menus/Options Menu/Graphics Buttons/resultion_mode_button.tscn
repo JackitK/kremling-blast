@@ -8,3 +8,10 @@ script = ExtResource("2_g7m1o")
 
 [node name="Label" parent="HBoxContainer" index="0"]
 text = "Resolution"
+
+[node name="VSeparator" parent="HBoxContainer" index="1"]
+theme_override_constants/separation = 35
+
+[node name="OptionButton" parent="HBoxContainer" index="2"]
+custom_minimum_size = Vector2(350, 50)
+alignment = 1
