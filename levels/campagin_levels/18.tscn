@@ -1,0 +1,141 @@
+[gd_scene load_steps=10 format=4 uid="uid://gbxdascq0hjw"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_jpmue"]
+[ext_resource type="PackedScene" uid="uid://cgetccfixd07w" path="res://levels/campagin_levels/19.tscn" id="2_l18hy"]
+[ext_resource type="PackedScene" uid="uid://cxq08m17pbxcj" path="res://level objects/Enemies/krow.tscn" id="3_4nk6b"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="4_7rbx1"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="5_o2tj7"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="6_yhofn"]
+[ext_resource type="PackedScene" uid="uid://datd4j7a0tieu" path="res://level objects/blocks/breakable_block.tscn" id="7_rhtgd"]
+[ext_resource type="Texture2D" uid="uid://bh0pvgpyakywi" path="res://splash_art/level_art/Pirate ship.jpg" id="8_l18hy"]
+[ext_resource type="AudioStream" uid="uid://dlby4jeirck0w" path="res://sounds/music/ship.mp3" id="8_s76ac"]
+
+[node name="LevelTemplate" instance=ExtResource("1_jpmue")]
+next_level = ExtResource("2_l18hy")
+time_bonus = 20
+
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2(0.7, 0.7)
+metadata/_edit_lock_ = true
+
+[node name="krow2" parent="baddy group" index="0" instance=ExtResource("3_4nk6b")]
+position = Vector2(593, 724)
+scale = Vector2(1.8, 1.8)
+
+[node name="krow3" parent="baddy group" index="1" instance=ExtResource("3_4nk6b")]
+position = Vector2(823, 726)
+scale = Vector2(1.8, 1.8)
+
+[node name="krow6" parent="baddy group" index="2" instance=ExtResource("3_4nk6b")]
+position = Vector2(814, 346)
+scale = Vector2(1.8, 1.8)
+
+[node name="krow7" parent="baddy group" index="3" instance=ExtResource("3_4nk6b")]
+position = Vector2(630.5, 338.8)
+scale = Vector2(1.8, 1.8)
+
+[node name="krow8" parent="baddy group" index="4" instance=ExtResource("3_4nk6b")]
+position = Vector2(720, 263)
+scale = Vector2(1.8, 1.8)
+ground_time = 4.0
+air_time = 3.0
+
+[node name="krow4" parent="baddy group" index="5" instance=ExtResource("3_4nk6b")]
+position = Vector2(693, 814)
+scale = Vector2(1.8, 1.8)
+ground_time = 4.0
+air_time = 3.0
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("4_7rbx1")]
+position = Vector2(931, 339)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong2" parent="kong_group" index="1" instance=ExtResource("4_7rbx1")]
+position = Vector2(931, 723)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong3" parent="kong_group" index="2" instance=ExtResource("4_7rbx1")]
+position = Vector2(523, 339)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong4" parent="kong_group" index="3" instance=ExtResource("4_7rbx1")]
+position = Vector2(523, 723)
+scale = Vector2(1.5, 1.5)
+
+[node name="Donkey Kong" parent="kong_group" index="4" instance=ExtResource("5_o2tj7")]
+position = Vector2(724, 333)
+
+[node name="Diddy" parent="kong_group" index="5" instance=ExtResource("6_yhofn")]
+position = Vector2(712, 651)
+scale = Vector2(1.5, 1.5)
+
+[node name="BreakableBlock" parent="collectables" index="0" instance=ExtResource("7_rhtgd")]
+z_index = -1
+position = Vector2(456, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock2" parent="collectables" index="1" instance=ExtResource("7_rhtgd")]
+z_index = -1
+position = Vector2(552, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock3" parent="collectables" index="2" instance=ExtResource("7_rhtgd")]
+z_index = -1
+position = Vector2(648, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock4" parent="collectables" index="3" instance=ExtResource("7_rhtgd")]
+z_index = -1
+position = Vector2(744, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock5" parent="collectables" index="4" instance=ExtResource("7_rhtgd")]
+z_index = -1
+position = Vector2(840, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock6" parent="collectables" index="5" instance=ExtResource("7_rhtgd")]
+z_index = -1
+position = Vector2(936, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock7" parent="collectables" index="6" instance=ExtResource("7_rhtgd")]
+z_index = -1
+position = Vector2(1030, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="Level Tile Map" parent="." index="6"]
+position = Vector2(167, 0)
+tile_map_data = PackedByteArray("AAAEAAQAAAADAAEAAAAEAAUAAAADAAEAAAAEAAYAAAADAAEAAAAEAAcAAAADAAEAAAAEAAgAAAADAAEAAAAEAAkAAAADAAEAAAAEAAoAAAADAAEAAAASAAQAAAADAAEAAAASAAUAAAADAAEAAAASAAYAAAADAAEAAAASAAcAAAADAAEAAAASAAgAAAADAAEAAAASAAkAAAADAAEAAAASAAoAAAADAAEAAAAEAAwAAAADAAEAAAASAAwAAAADAAEAAAASAAsAAAADAAEAAAAEAAsAAAADAAEAAAASAA0AAAADAAEAAAASAA4AAAADAAEAAAASAA8AAAADAAEAAAASABAAAAADAAEAAAAEABAAAAADAAEAAAAEAA8AAAADAAEAAAAEAA4AAAADAAEAAAAEAA0AAAADAAEAAAAFAAMAAAABAAMAAAAEAAMAAAAEAAAAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAABAAMAAAASAAMAAAAHAAAAAAAEABEAAAADAAEAAAAEABIAAAAEAAMAAAASABIAAAAHAAMAAAASABEAAAADAAEAAAAFABIAAAABAAMAAAAGABIAAAABAAMAAAAHABIAAAABAAMAAAAIABIAAAABAAMAAAAJABIAAAABAAMAAAAKABIAAAABAAMAAAALABIAAAABAAMAAAAMABIAAAABAAMAAAANABIAAAABAAMAAAAOABIAAAABAAMAAAAPABIAAAABAAMAAAAQABIAAAABAAMAAAARABIAAAABAAMAAAA=")
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("8_s76ac")
+
+[node name="LevelBackground" parent="." index="9"]
+offset_right = 1658.0
+offset_bottom = 1000.0
+texture = ExtResource("8_l18hy")
+
+[node name="ColorRect" parent="." index="10"]
+visible = false
+offset_left = 397.0
+offset_top = 178.0
+offset_right = 1057.0
+offset_bottom = 888.0
+color = Color(0.411765, 0.298039, 0.243137, 1)
+
+[node name="OutOfBounds2" parent="Walls" index="1"]
+position = Vector2(721, 1002)
+
+[node name="OutOfBounds3" parent="Walls" index="2"]
+position = Vector2(1230, 488)
+
+[node name="OutOfBounds4" parent="Walls" index="3"]
+position = Vector2(98, 509)

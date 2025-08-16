@@ -1,0 +1,124 @@
+[gd_scene load_steps=14 format=4 uid="uid://c3xgsp85yc1ae"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_ins5m"]
+[ext_resource type="PackedScene" uid="uid://dqwovbu4k27ra" path="res://levels/campagin_levels/17.tscn" id="2_5iid7"]
+[ext_resource type="PackedScene" uid="uid://bpj1hhhlpospr" path="res://level objects/Enemies/rekoil.tscn" id="3_orqj2"]
+[ext_resource type="PackedScene" uid="uid://btnj1n1ywtajf" path="res://level objects/Enemies/gnawty.tscn" id="4_5iid7"]
+[ext_resource type="PackedScene" uid="uid://dckxsykjevwy2" path="res://level objects/Enemies/kritter.tscn" id="5_orqj2"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="5_pgyjn"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="7_5iid7"]
+[ext_resource type="PackedScene" uid="uid://datd4j7a0tieu" path="res://level objects/blocks/breakable_block.tscn" id="7_d73qi"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="8_aoldf"]
+[ext_resource type="PackedScene" uid="uid://d1y8sjoldxrjv" path="res://level objects/blocks/no_shoot_zone.tscn" id="9_koccn"]
+[ext_resource type="PackedScene" uid="uid://8m7q062kujnh" path="res://level objects/Collectables/spawner.tscn" id="11_pgyjn"]
+[ext_resource type="Texture2D" uid="uid://bh0pvgpyakywi" path="res://splash_art/level_art/Pirate ship.jpg" id="12_g8trp"]
+[ext_resource type="AudioStream" uid="uid://dlby4jeirck0w" path="res://sounds/music/ship.mp3" id="12_qrutg"]
+
+[node name="LevelTemplate" instance=ExtResource("1_ins5m")]
+next_level = ExtResource("2_5iid7")
+time_bonus = 30
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 40
+
+[node name="help_button" parent="level_ui" index="3"]
+export_file_path = "res://Dialogue/Squawks_hints/anti_shot_screen.txt"
+hint_available = true
+
+[node name="rekoil3" parent="baddy group" index="0" instance=ExtResource("3_orqj2")]
+position = Vector2(224, 368)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+ground_time = 1.0
+weight = "heavy"
+
+[node name="Gnawty" parent="baddy group" index="1" instance=ExtResource("4_5iid7")]
+position = Vector2(608, 248)
+
+[node name="Gnawty3" parent="baddy group" index="2" instance=ExtResource("4_5iid7")]
+position = Vector2(616, 544)
+
+[node name="Kritter" parent="baddy group" index="3" instance=ExtResource("5_orqj2")]
+position = Vector2(144, 232)
+special_trait = "golden"
+has_gold_state = true
+
+[node name="kong2" parent="kong_group" index="0" instance=ExtResource("5_pgyjn")]
+position = Vector2(496, 240)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong3" parent="kong_group" index="1" instance=ExtResource("5_pgyjn")]
+position = Vector2(752, 584)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong4" parent="kong_group" index="2" instance=ExtResource("5_pgyjn")]
+position = Vector2(728, 232)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong6" parent="kong_group" index="3" instance=ExtResource("5_pgyjn")]
+position = Vector2(608, 408)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong5" parent="kong_group" index="4" instance=ExtResource("5_pgyjn")]
+position = Vector2(504, 584)
+scale = Vector2(1.5, 1.5)
+
+[node name="Diddy" parent="kong_group" index="5" instance=ExtResource("7_5iid7")]
+position = Vector2(144, 360)
+scale = Vector2(1.5, 1.5)
+
+[node name="breakable block group" type="Node2D" parent="collectables" index="0"]
+
+[node name="BreakableBlock20" parent="collectables/breakable block group" index="0" instance=ExtResource("7_d73qi")]
+z_index = -1
+position = Vector2(304, 224)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock23" parent="collectables/breakable block group" index="1" instance=ExtResource("7_d73qi")]
+z_index = -1
+position = Vector2(304, 288)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock24" parent="collectables/breakable block group" index="2" instance=ExtResource("7_d73qi")]
+z_index = -1
+position = Vector2(304, 352)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock25" parent="collectables/breakable block group" index="3" instance=ExtResource("7_d73qi")]
+z_index = -1
+position = Vector2(304, 405)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="no shoot zone" parent="collectables" index="1" instance=ExtResource("9_koccn")]
+z_index = 10
+position = Vector2(176, 312)
+scale = Vector2(8.5, 8.5)
+
+[node name="spawner" parent="collectables" index="2" instance=ExtResource("11_pgyjn")]
+position = Vector2(144, 312)
+spawn_value = 3
+spawn_max = 5
+movement_amount = 0.0
+
+[node name="Banana" parent="collectables" index="3" instance=ExtResource("8_aoldf")]
+position = Vector2(1557.22, 430.92)
+
+[node name="Level Tile Map" parent="." index="6"]
+tile_map_data = PackedByteArray("AAAEAAkAAAABAAMAAAAGAAwAAAADAAEAAAAGAA0AAAAEAAMAAAAHAA0AAAABAAMAAAAIAA0AAAABAAMAAAAJAA0AAAABAAMAAAAKAA0AAAABAAMAAAALAA0AAAABAAMAAAAMAA0AAAABAAMAAAANAA0AAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAABAAMAAAASAAMAAAABAAMAAAATAAMAAAAHAAAAAAATAAQAAAADAAEAAAATAAUAAAADAAEAAAATAAYAAAADAAEAAAATAAcAAAADAAEAAAATAAgAAAADAAEAAAAGAAsAAAADAAEAAAAGAAoAAAADAAEAAAAGAAkAAAAHAAAAAAATAAkAAAADAAEAAAATAAoAAAADAAEAAAATAAsAAAADAAEAAAATAAwAAAADAAEAAAATAA0AAAAHAAMAAAASAA0AAAABAAMAAAARAA0AAAABAAMAAAAQAA0AAAABAAMAAAAPAA0AAAABAAMAAAAOAA0AAAABAAMAAAAAAAMAAAAEAAAAAAABAAMAAAABAAMAAAACAAMAAAABAAMAAAADAAMAAAABAAMAAAAEAAMAAAABAAMAAAAFAAMAAAABAAMAAAAFAAkAAAABAAMAAAADAAkAAAABAAMAAAACAAkAAAABAAMAAAABAAkAAAABAAMAAAAAAAkAAAAEAAMAAAAAAAgAAAADAAEAAAAAAAcAAAADAAEAAAAAAAYAAAADAAEAAAAAAAUAAAADAAEAAAAAAAQAAAADAAEAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAA=")
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("12_qrutg")
+
+[node name="LevelBackground" parent="." index="9"]
+offset_left = -227.0
+offset_top = -7.0
+offset_right = 1198.0
+offset_bottom = 852.0
+texture = ExtResource("12_g8trp")
+
+[node name="ColorRect" parent="." index="10"]
+visible = false

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcddesucdu15j"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_a53as"]
+[ext_resource type="PackedScene" uid="uid://bnhxe07rjp6ok" path="res://levels/campagin_levels/07.tscn" id="2_oca8w"]
+[ext_resource type="PackedScene" uid="uid://dofuuv43fk0y8" path="res://level objects/Enemies/klump.tscn" id="3_iocum"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="4_vsn65"]
+
+[node name="LevelTemplate" instance=ExtResource("1_a53as")]
+next_level = ExtResource("2_oca8w")
+time_bonus = 10
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 5
+
+[node name="help_button" parent="level_ui" index="5"]
+export_file_path = "res://Dialogue/Squawks_hints/level5.txt"
+hint_available = false
+
+[node name="baddy2" parent="baddy group" index="0" instance=ExtResource("3_iocum")]
+position = Vector2(557, 513)
+
+[node name="baddy3" parent="baddy group" index="1" instance=ExtResource("3_iocum")]
+position = Vector2(552, 310)
+
+[node name="baddy4" parent="baddy group" index="2" instance=ExtResource("3_iocum")]
+position = Vector2(680, 411)
+
+[node name="baddy5" parent="baddy group" index="3" instance=ExtResource("3_iocum")]
+position = Vector2(437, 411)
+
+[node name="Donkey Kong" parent="kong_group" index="0" instance=ExtResource("4_vsn65")]
+position = Vector2(553, 403)

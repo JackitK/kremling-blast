@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://boemhia0fccu4"]
+
+[ext_resource type="PackedScene" uid="uid://b32ogv250j2wt" path="res://levels/level_templates/bonus_level_template.tscn" id="1_lf5s8"]
+[ext_resource type="PackedScene" uid="uid://h2svtyyut50x" path="res://levels/campagin_levels/06.tscn" id="2_xllso"]
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="2_xywe2"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="3_xllso"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="4_gsdob"]
+[ext_resource type="Texture2D" uid="uid://bfmdelopvevrl" path="res://splash_art/level_art/Jungle_bonus.jpg" id="6_wgwxm"]
+
+[node name="level" instance=ExtResource("1_lf5s8")]
+next_level = ExtResource("2_xllso")
+
+[node name="bonus_message_box" parent="Bonus_message_container" index="0"]
+offset_left = 1.0
+offset_right = 1149.0
+offset_bottom = 655.0
+
+[node name="bonus_prompt" parent="Bonus_message_container" index="1"]
+text = "Activate \"Banana Power\"
+by right-clicking a Kong.
+Bananas required."
+
+[node name="PauseMenu" parent="CanvasLayer" index="0"]
+z_index = 0
+
+[node name="Score" parent="level_ui" index="0"]
+offset_left = 10.0
+offset_top = 0.0
+offset_right = -950.0
+offset_bottom = -544.0
+
+[node name="help_button" parent="level_ui" index="3"]
+export_file_path = "res://Dialogue/Squawks_hints/bonus1.txt"
+hint_available = true
+
+[node name="PauseButton" parent="level_ui" index="6"]
+z_index = 0
+offset_top = 595.0
+offset_bottom = 627.0
+
+[node name="touch_options" parent="Camera2D" index="0"]
+visible = false
+
+[node name="Kong Button" parent="Camera2D/touch_options" index="1"]
+offset_left = 1053.0
+offset_top = 496.0
+offset_right = 1380.45
+offset_bottom = 879.096
+
+[node name="baddy" parent="baddy group" index="0" instance=ExtResource("2_xywe2")]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(520, 289)
+
+[node name="baddy2" parent="baddy group" index="1" instance=ExtResource("2_xywe2")]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(434.884, 493.131)
+
+[node name="baddy3" parent="baddy group" index="2" instance=ExtResource("2_xywe2")]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(708.671, 475.561)
+
+[node name="baddy4" parent="baddy group" index="3" instance=ExtResource("2_xywe2")]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(701.351, 339.4)
+
+[node name="Donkey Kong" parent="kong_group" index="0" instance=ExtResource("3_xllso")]
+position = Vector2(458.31, 402.356)
+collision_mask = 5
+
+[node name="Banana" parent="collectables" index="0" instance=ExtResource("4_gsdob")]
+position = Vector2(613.505, 396.5)
+
+[node name="Banana2" parent="collectables" index="1" instance=ExtResource("4_gsdob")]
+position = Vector2(344.11, 396.5)
+
+[node name="audio_player" parent="." index="9"]
+process_mode = 3
+
+[node name="autofire_timer" parent="timers" index="0"]
+wait_time = 0.5
+
+[node name="LevelBackground" parent="." index="11"]
+offset_left = -17.0
+offset_top = -3.0
+offset_right = 1152.0
+offset_bottom = 702.0
+texture = ExtResource("6_wgwxm")
+
+[node name="ColorRect" parent="." index="12"]
+visible = false
+color = Color(0.580167, 0.59, 0, 1)

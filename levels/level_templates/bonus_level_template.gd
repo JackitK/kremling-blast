@@ -3,12 +3,17 @@ class_name Bonus_Level
 
 @export var starting_bonus_time: int = 15
 @onready var bonus_time_left: int = 15
+@onready var time_label: Label = %time_label
 @onready var level_time_label: Label = %level_time_label
 @onready var second_ticker: Timer = %second_ticker
 @onready var bonus_message_container: Control = %Bonus_message_container
 
 @onready var bonus_message_box: TextureRect = %bonus_message_box
 @onready var intro_timer: Timer = $timers/intro_timer
+@onready var help_button: TextureButton = %help_button
+@onready var pause_button: TextureButton = $level_ui/PauseButton
+
+
 
 func _ready() -> void:
 	super()
@@ -19,7 +24,15 @@ func _ready() -> void:
 	second_ticker.start()
 
 func bonus_stage_intro():
+	pause_menu.set_process(false)
+	score_display.visible = false
+	banana_counter.visible = false
+	time_label.visible = false
+	level_time_label.visible = false
+	touch_options.visible = false
+	pause_button.set_deferred("visible", false)
 	bonus_message_container.visible = true
+	help_button.visible = false
 	intro_timer.start()
 	get_tree().paused = true
 	
@@ -62,4 +75,14 @@ func _on_second_ticker_timeout() -> void:
 
 func _on_intro_timer_timeout() -> void:
 	get_tree().paused = false
+	score_display.visible = true
+	banana_counter.visible = true
+	pause_button.visible = true
+	time_label.visible = true
+	level_time_label.visible = true
+	pause_menu.set_process(true)
 	bonus_message_container.visible = false
+	if help_button.hint_available == true:
+		help_button.visible = true
+	if SettingsDataContainer.mobile_buttons == true:
+		touch_options.visible = true

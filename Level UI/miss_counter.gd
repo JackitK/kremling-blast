@@ -1,10 +1,14 @@
 extends Node2D
+class_name Miss_Counter
 @export var miss_count: int = 3
 @onready var miss_count_label: Label = %miss_count_label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Events.ally_hit.connect(ally_hit)
+	if SettingsDataContainer.lives_type == 1:
+		miss_count = Events.global_lives
+		print(miss_count)
 	update_miss_counter()
 
 

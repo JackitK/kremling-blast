@@ -1,0 +1,146 @@
+[gd_scene load_steps=11 format=4 uid="uid://bbl83f165xc4v"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_ly3ab"]
+[ext_resource type="PackedScene" uid="uid://c3pi5aqygifn5" path="res://levels/cutscene_3_tiny.tscn" id="2_ijvgw"]
+[ext_resource type="PackedScene" uid="uid://dberknacoivmf" path="res://level objects/Enemies/bosses/captain_krow.tscn" id="3_tvrwy"]
+[ext_resource type="PackedScene" uid="uid://8m7q062kujnh" path="res://level objects/Collectables/spawner.tscn" id="4_8n8y4"]
+[ext_resource type="PackedScene" uid="uid://cxq08m17pbxcj" path="res://level objects/Enemies/krow.tscn" id="5_cl2ao"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="6_duvur"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="7_dvbpd"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="8_3ct6b"]
+[ext_resource type="AudioStream" uid="uid://nbgdghaak8nh" path="res://sounds/music/Boss_classic.mp3" id="9_514yp"]
+[ext_resource type="Texture2D" uid="uid://y5xoyve0trni" path="res://splash_art/level_art/Pirate ship_boss.jpg" id="10_ly3ab"]
+
+[node name="level" instance=ExtResource("1_ly3ab")]
+next_level = ExtResource("2_ijvgw")
+time_bonus = 0
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 20
+
+[node name="help_button" parent="level_ui" index="3"]
+offset_top = 456.0
+offset_bottom = 455.976
+export_file_path = "res://Dialogue/Squawks_hints/boss_2.txt"
+hint_available = true
+
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2(0.7, 0.7)
+metadata/_edit_lock_ = true
+
+[node name="Captain_Krow" parent="baddy group" index="0" instance=ExtResource("3_tvrwy")]
+z_index = 5
+position = Vector2(716, 542)
+scale = Vector2(4, 4)
+hit_speed = 20.0
+
+[node name="egg_spawner" parent="baddy group" index="1" instance=ExtResource("4_8n8y4")]
+position = Vector2(320, 576)
+import_path = "res://level objects/Enemies/bosses/egg.tscn"
+spawn_value = 1
+spawn_max = 0
+movement_amount = 0.0
+spawing_active = false
+spawner_type = "baddy"
+spawn_scale = 1.8
+
+[node name="egg_spawner2" parent="baddy group" index="2" instance=ExtResource("4_8n8y4")]
+position = Vector2(1056, 576)
+import_path = "res://level objects/Enemies/bosses/egg.tscn"
+spawn_value = 3
+spawn_max = 0
+movement_amount = 0.0
+spawing_active = false
+spawner_type = "baddy"
+spawn_scale = 1.8
+
+[node name="egg_spawner3" parent="baddy group" index="3" instance=ExtResource("4_8n8y4")]
+position = Vector2(704, 272)
+import_path = "res://level objects/Enemies/bosses/egg.tscn"
+spawn_value = 2
+spawn_max = 0
+movement_amount = 0.0
+spawing_active = false
+spawner_type = "baddy"
+spawn_scale = 1.8
+
+[node name="egg_spawner4" parent="baddy group" index="4" instance=ExtResource("4_8n8y4")]
+position = Vector2(704, 800)
+import_path = "res://level objects/Enemies/bosses/egg.tscn"
+spawn_value = 4
+spawn_max = 0
+movement_amount = 0.0
+spawing_active = false
+spawner_type = "baddy"
+spawn_scale = 1.8
+
+[node name="krow" parent="baddy group" index="5" groups=["followers"] instance=ExtResource("5_cl2ao")]
+position = Vector2(1842, 415)
+scale = Vector2(2.5, 2.5)
+shot_value = 0
+score_value = 0
+
+[node name="krow2" parent="baddy group" index="6" groups=["followers"] instance=ExtResource("5_cl2ao")]
+position = Vector2(1914, 432)
+scale = Vector2(2.5, 2.5)
+shot_value = 0
+score_value = 0
+
+[node name="krow3" parent="baddy group" index="7" groups=["followers"] instance=ExtResource("5_cl2ao")]
+position = Vector2(2027, 428)
+scale = Vector2(2.5, 2.5)
+shot_value = 0
+score_value = 0
+
+[node name="Donkey" parent="kong_group" index="0" instance=ExtResource("6_duvur")]
+position = Vector2(445, 551)
+scale = Vector2(1.5, 1.5)
+
+[node name="Diddy" parent="kong_group" index="1" instance=ExtResource("7_dvbpd")]
+position = Vector2(939, 550)
+scale = Vector2(2, 2)
+
+[node name="kong" parent="kong_group" index="2" instance=ExtResource("8_3ct6b")]
+position = Vector2(1902.12, 808.172)
+scale = Vector2(1.8, 1.8)
+
+[node name="kong2" parent="kong_group" index="3" instance=ExtResource("8_3ct6b")]
+position = Vector2(2042, 766)
+scale = Vector2(1.8, 1.8)
+
+[node name="kong4" parent="kong_group" index="4" instance=ExtResource("8_3ct6b")]
+position = Vector2(2039, 845)
+scale = Vector2(1.8, 1.8)
+
+[node name="kong5" parent="kong_group" index="5" instance=ExtResource("8_3ct6b")]
+position = Vector2(1839, 865)
+scale = Vector2(1.8, 1.8)
+
+[node name="kong3" parent="kong_group" index="6" instance=ExtResource("8_3ct6b")]
+position = Vector2(1980.34, 817.335)
+scale = Vector2(1.8, 1.8)
+
+[node name="Level Tile Map" parent="." index="6"]
+position = Vector2(167, 0)
+tile_map_data = PackedByteArray("AAAEAAMAAAABAAMAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAABAAMAAAASAAMAAAABAAMAAAAEABIAAAABAAMAAAASABIAAAABAAMAAAAFABIAAAABAAMAAAAGABIAAAABAAMAAAAHABIAAAABAAMAAAAIABIAAAABAAMAAAAJABIAAAABAAMAAAAKABIAAAABAAMAAAALABIAAAABAAMAAAAMABIAAAABAAMAAAANABIAAAABAAMAAAAOABIAAAABAAMAAAAPABIAAAABAAMAAAAQABIAAAABAAMAAAARABIAAAABAAMAAAAgAAYAAAAEAAAAAAAhAAYAAAABAAMAAAAiAAYAAAABAAMAAAAjAAYAAAABAAMAAAAkAAYAAAABAAMAAAAlAAYAAAABAAMAAAAmAAYAAAABAAMAAAAmAAsAAAABAAMAAAAlAAsAAAABAAMAAAAkAAsAAAABAAMAAAAjAAsAAAABAAMAAAAiAAsAAAABAAMAAAAhAAsAAAABAAMAAAAgAAsAAAAEAAMAAAAgAAoAAAADAAEAAAAgAAkAAAADAAEAAAAgAAgAAAADAAEAAAAgAAcAAAADAAEAAAAnAAYAAAABAAMAAAAoAAgAAAADAAEAAAAoAAkAAAADAAEAAAAnAAsAAAABAAMAAAAoAAsAAAAHAAMAAAAoAAoAAAADAAEAAAAoAAcAAAADAAEAAAAoAAYAAAAHAAAAAAADAAMAAAABAAMAAAACAAMAAAABAAMAAAABAAMAAAAEAAAAAAABABIAAAAEAAMAAAACABIAAAABAAMAAAADABIAAAABAAMAAAAFAAMAAAABAAMAAAATAAMAAAABAAMAAAAUAAMAAAAHAAAAAAAUAAQAAAADAAEAAAAUAAUAAAADAAEAAAAUAAYAAAADAAEAAAAUAAcAAAADAAEAAAAUAAgAAAADAAEAAAAUAAwAAAADAAEAAAAUAAsAAAADAAEAAAAUAAoAAAADAAEAAAAUAAkAAAADAAEAAAAUAA0AAAADAAEAAAAUAA4AAAADAAEAAAAUAA8AAAADAAEAAAAUABAAAAADAAEAAAAUABEAAAADAAEAAAAUABIAAAAHAAMAAAATABIAAAABAAMAAAABAAQAAAADAAEAAAABAAUAAAADAAEAAAABAAYAAAADAAEAAAABAAgAAAADAAEAAAABAAcAAAADAAEAAAABAA0AAAADAAEAAAABAA4AAAADAAEAAAABAA8AAAADAAEAAAABABAAAAADAAEAAAABABEAAAADAAEAAAABAAkAAAADAAEAAAABAAoAAAADAAEAAAABAAsAAAADAAEAAAABAAwAAAADAAEAAAAhAA4AAAAEAAAAAAAiAA4AAAABAAMAAAAjAA4AAAABAAMAAAAkAA4AAAABAAMAAAAlAA4AAAABAAMAAAAmAA4AAAABAAMAAAAnAA4AAAABAAMAAAAoAA4AAAAHAAAAAAAoAA8AAAADAAEAAAAoABAAAAADAAEAAAAoABEAAAADAAEAAAAoABIAAAADAAEAAAAoABMAAAAHAAMAAAAnABMAAAABAAMAAAAmABMAAAABAAMAAAAlABMAAAABAAMAAAAkABMAAAABAAMAAAAhABIAAAADAAEAAAAhABEAAAADAAEAAAAhABAAAAADAAEAAAAhAA8AAAADAAEAAAAiABMAAAABAAMAAAAjABMAAAABAAMAAAAhABMAAAAEAAMAAAA=")
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("9_514yp")
+
+[node name="LevelBackground" parent="." index="9"]
+offset_left = -25.0
+offset_right = 1647.0
+offset_bottom = 1008.0
+texture = ExtResource("10_ly3ab")
+
+[node name="ColorRect" parent="." index="10"]
+visible = false
+
+[node name="OutOfBounds2" parent="Walls" index="1"]
+position = Vector2(721, 1002)
+
+[node name="OutOfBounds3" parent="Walls" index="2"]
+position = Vector2(1265, 488)
+
+[node name="OutOfBounds4" parent="Walls" index="3"]
+position = Vector2(98, 509)

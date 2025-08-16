@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=4 uid="uid://ba2nls5nkrrpc"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_j1f0n"]
+[ext_resource type="PackedScene" uid="uid://bn7xwtowhw00r" path="res://levels/campagin_levels/10.tscn" id="2_cwd2f"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="3_4m8hb"]
+[ext_resource type="PackedScene" uid="uid://btnj1n1ywtajf" path="res://level objects/Enemies/gnawty.tscn" id="3_c820m"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="4_j1f0n"]
+[ext_resource type="AudioStream" uid="uid://ccl6aocmqcmwf" path="res://sounds/music/jungle.mp3" id="6_hfcxj"]
+
+[node name="LevelTemplate" instance=ExtResource("1_j1f0n")]
+next_level = ExtResource("2_cwd2f")
+time_bonus = 35
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 20
+
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2(0.7, 0.7)
+metadata/_edit_lock_ = true
+
+[node name="Gnawty" parent="baddy group" index="0" instance=ExtResource("3_c820m")]
+position = Vector2(805, 340)
+
+[node name="Gnawty7" parent="baddy group" index="1" instance=ExtResource("3_c820m")]
+position = Vector2(708, 242)
+
+[node name="Gnawty8" parent="baddy group" index="2" instance=ExtResource("3_c820m")]
+position = Vector2(714, 817)
+
+[node name="Gnawty2" parent="baddy group" index="3" instance=ExtResource("3_c820m")]
+position = Vector2(519, 515)
+
+[node name="Gnawty3" parent="baddy group" index="4" instance=ExtResource("3_c820m")]
+position = Vector2(628, 338)
+
+[node name="Gnawty4" parent="baddy group" index="5" instance=ExtResource("3_c820m")]
+position = Vector2(818, 728)
+
+[node name="Gnawty5" parent="baddy group" index="6" instance=ExtResource("3_c820m")]
+position = Vector2(935, 532)
+
+[node name="Gnawty6" parent="baddy group" index="7" instance=ExtResource("3_c820m")]
+position = Vector2(593, 723)
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("4_j1f0n")]
+position = Vector2(931, 339)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong2" parent="kong_group" index="1" instance=ExtResource("4_j1f0n")]
+position = Vector2(931, 723)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong3" parent="kong_group" index="2" instance=ExtResource("4_j1f0n")]
+position = Vector2(523, 339)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong4" parent="kong_group" index="3" instance=ExtResource("4_j1f0n")]
+position = Vector2(523, 723)
+scale = Vector2(1.5, 1.5)
+
+[node name="Donkey Kong" parent="kong_group" index="4" instance=ExtResource("3_4m8hb")]
+position = Vector2(710, 536)
+
+[node name="Level Tile Map" parent="." index="6"]
+position = Vector2(167, 0)
+tile_map_data = PackedByteArray("AAAEAAQAAAADAAEAAAAEAAUAAAADAAEAAAAEAAYAAAADAAEAAAAEAAcAAAADAAEAAAAEAAgAAAADAAEAAAAEAAkAAAADAAEAAAAEAAoAAAADAAEAAAASAAQAAAADAAEAAAASAAUAAAADAAEAAAASAAYAAAADAAEAAAASAAcAAAADAAEAAAASAAgAAAADAAEAAAASAAkAAAADAAEAAAASAAoAAAADAAEAAAAEAAwAAAADAAEAAAASAAwAAAADAAEAAAASAAsAAAADAAEAAAAEAAsAAAADAAEAAAASAA0AAAADAAEAAAASAA4AAAADAAEAAAASAA8AAAADAAEAAAASABAAAAADAAEAAAAEABAAAAADAAEAAAAEAA8AAAADAAEAAAAEAA4AAAADAAEAAAAEAA0AAAADAAEAAAAFAAMAAAABAAMAAAAEAAMAAAAEAAAAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAABAAMAAAASAAMAAAAHAAAAAAAEABEAAAADAAEAAAAEABIAAAAEAAMAAAASABIAAAAHAAMAAAASABEAAAADAAEAAAAFABIAAAABAAMAAAAGABIAAAABAAMAAAAHABIAAAABAAMAAAAIABIAAAABAAMAAAAJABIAAAABAAMAAAAKABIAAAABAAMAAAALABIAAAABAAMAAAAMABIAAAABAAMAAAANABIAAAABAAMAAAAOABIAAAABAAMAAAAPABIAAAABAAMAAAAQABIAAAABAAMAAAARABIAAAABAAMAAAA=")
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("6_hfcxj")
+volume_db = 0.0
+
+[node name="ColorRect" parent="." index="10"]
+offset_left = 366.0
+offset_top = 151.0
+offset_right = 1078.0
+offset_bottom = 900.0
+
+[node name="OutOfBounds2" parent="Walls" index="1"]
+position = Vector2(721, 1002)
+
+[node name="OutOfBounds3" parent="Walls" index="2"]
+position = Vector2(1230, 488)
+
+[node name="OutOfBounds4" parent="Walls" index="3"]
+position = Vector2(98, 509)

@@ -17,12 +17,20 @@ func fill_levels() -> void:
 	print(level_paths)
 	for level_path in level_paths:
 		var button = Button.new()
-		button.text = "Level " + level_path.replace(".tscn", "").lstrip("0")
+		button.text = "Level " + level_path.replace(".tscn", "").lstrip("0").rstrip(".remap.tscn")
 		button.text = update_custom_level_names(button.text)
 		levels_container.add_child(button)
+		# To fix browser exclusive issue.
+		var new_file_path = level_folder_path + level_path
+		if level_path.contains(".remap"):
+			print("Prestrip " + new_file_path)
+			print("Remove web exclusive extensions")
+			new_file_path = new_file_path.rstrip(".remap")
+			#.remap seems to keep coming back, no matter how I attempt to remove it.
+		print(new_file_path)
 		
 		button.pressed.connect(func():
-			get_tree().change_scene_to_file(level_folder_path + level_path)
+			get_tree().change_scene_to_file(new_file_path)
 		)
 
 func update_custom_level_names(old_name:String) -> String:

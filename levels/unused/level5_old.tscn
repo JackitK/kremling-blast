@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=4 uid="uid://8u5hhvnpx8d2"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_4fec4"]
+[ext_resource type="PackedScene" uid="uid://boemhia0fccu4" path="res://levels/campagin_levels/05_b.tscn" id="2_1ebh8"]
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="3_d0xm1"]
+[ext_resource type="PackedScene" uid="uid://dckxsykjevwy2" path="res://level objects/Enemies/kritter.tscn" id="4_qnhho"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="5_ttoa4"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="6_okq8g"]
+
+[node name="LevelTemplate" instance=ExtResource("1_4fec4")]
+next_level = ExtResource("2_1ebh8")
+
+[node name="help_button" parent="level_ui" index="5"]
+visible = false
+offset_left = 1.0
+offset_top = 436.0
+offset_right = -906.0
+offset_bottom = 88.0
+hint_available = false
+
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2(0.7, 0.7)
+metadata/_edit_lock_ = true
+
+[node name="baddy2" parent="baddy group" index="0" instance=ExtResource("3_d0xm1")]
+unique_name_in_owner = true
+position = Vector2(640, 448)
+
+[node name="baddy3" parent="baddy group" index="1" instance=ExtResource("3_d0xm1")]
+unique_name_in_owner = true
+position = Vector2(536, 416)
+
+[node name="baddy4" parent="baddy group" index="2" instance=ExtResource("3_d0xm1")]
+unique_name_in_owner = true
+position = Vector2(680, 544)
+
+[node name="baddy5" parent="baddy group" index="3" instance=ExtResource("3_d0xm1")]
+unique_name_in_owner = true
+position = Vector2(536, 672)
+
+[node name="baddy6" parent="baddy group" index="4" instance=ExtResource("3_d0xm1")]
+unique_name_in_owner = true
+position = Vector2(448.091, 448.182)
+
+[node name="baddy7" parent="baddy group" index="5" instance=ExtResource("3_d0xm1")]
+unique_name_in_owner = true
+position = Vector2(446.273, 641.818)
+
+[node name="baddy8" parent="baddy group" index="6" instance=ExtResource("3_d0xm1")]
+unique_name_in_owner = true
+position = Vector2(640, 648)
+
+[node name="baddy" parent="baddy group" index="7" instance=ExtResource("4_qnhho")]
+position = Vector2(428, 543)
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("5_ttoa4")]
+position = Vector2(752, 336)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong2" parent="kong_group" index="1" instance=ExtResource("5_ttoa4")]
+position = Vector2(752, 720)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong3" parent="kong_group" index="2" instance=ExtResource("5_ttoa4")]
+position = Vector2(344, 336)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong4" parent="kong_group" index="3" instance=ExtResource("5_ttoa4")]
+position = Vector2(344, 720)
+scale = Vector2(1.5, 1.5)
+
+[node name="Diddy" parent="kong_group" index="4" instance=ExtResource("6_okq8g")]
+position = Vector2(549, 544)
+scale = Vector2(2, 2)
+
+[node name="Level Tile Map" parent="." index="6"]
+tile_map_data = PackedByteArray("AAAEAAQAAAADAAEAAAAEAAUAAAADAAEAAAAEAAYAAAADAAEAAAAEAAcAAAADAAEAAAAEAAgAAAADAAEAAAAEAAkAAAADAAEAAAAEAAoAAAADAAEAAAASAAQAAAADAAEAAAASAAUAAAADAAEAAAASAAYAAAADAAEAAAASAAcAAAADAAEAAAASAAgAAAADAAEAAAASAAkAAAADAAEAAAASAAoAAAADAAEAAAAEAAwAAAADAAEAAAASAAwAAAADAAEAAAASAAsAAAADAAEAAAAEAAsAAAADAAEAAAASAA0AAAADAAEAAAASAA4AAAADAAEAAAASAA8AAAADAAEAAAASABAAAAADAAEAAAAEABAAAAADAAEAAAAEAA8AAAADAAEAAAAEAA4AAAADAAEAAAAEAA0AAAADAAEAAAAFAAMAAAABAAMAAAAEAAMAAAAEAAAAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAABAAMAAAASAAMAAAAHAAAAAAAEABEAAAADAAEAAAAEABIAAAAEAAMAAAASABIAAAAHAAMAAAASABEAAAADAAEAAAAFABIAAAABAAMAAAAGABIAAAABAAMAAAAHABIAAAABAAMAAAAIABIAAAABAAMAAAAJABIAAAABAAMAAAAKABIAAAABAAMAAAALABIAAAABAAMAAAAMABIAAAABAAMAAAANABIAAAABAAMAAAAOABIAAAABAAMAAAAPABIAAAABAAMAAAAQABIAAAABAAMAAAARABIAAAABAAMAAAA=")
+
+[node name="OutOfBounds2" parent="Walls" index="1"]
+position = Vector2(532, 997)
+
+[node name="OutOfBounds3" parent="Walls" index="2"]
+position = Vector2(994, 465)
+
+[node name="OutOfBounds4" parent="Walls" index="3"]
+position = Vector2(119, 491)

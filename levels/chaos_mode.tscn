@@ -1,0 +1,282 @@
+[gd_scene load_steps=21 format=4 uid="uid://b7kf088mvgvel"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_83tyy"]
+[ext_resource type="Script" uid="uid://cdjccma6w43fp" path="res://levels/one_off_level_template.gd" id="2_awxog"]
+[ext_resource type="Texture2D" uid="uid://cum0x72wm36i3" path="res://splash_art/bonus_bashbaddies.jpg" id="3_f0vbe"]
+[ext_resource type="FontFile" uid="uid://crtrgur4xllmj" path="res://Font/PublicPixel.ttf" id="4_kiuuc"]
+[ext_resource type="PackedScene" uid="uid://dckxsykjevwy2" path="res://level objects/Enemies/kritter.tscn" id="5_gdfn8"]
+[ext_resource type="PackedScene" uid="uid://dofuuv43fk0y8" path="res://level objects/Enemies/klump.tscn" id="6_ra4if"]
+[ext_resource type="PackedScene" uid="uid://qa4j13hd8trp" path="res://level objects/Enemies/klap_trap.tscn" id="7_vtwvm"]
+[ext_resource type="PackedScene" uid="uid://b4q610oln4m8y" path="res://level objects/Enemies/ghost_kritter.tscn" id="8_5xrvj"]
+[ext_resource type="PackedScene" uid="uid://bpj1hhhlpospr" path="res://level objects/Enemies/rekoil.tscn" id="9_desee"]
+[ext_resource type="PackedScene" uid="uid://8m7q062kujnh" path="res://level objects/Collectables/spawner.tscn" id="10_h568a"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="11_n46a6"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="12_wyd3k"]
+[ext_resource type="PackedScene" uid="uid://cya1uq7515xyo" path="res://level objects/Good Guys/lanky_kong.tscn" id="13_ehdc1"]
+[ext_resource type="PackedScene" uid="uid://cna8lglf1ruf" path="res://level objects/Good Guys/tiny_kong.tscn" id="14_31jr6"]
+[ext_resource type="PackedScene" uid="uid://32m04ix5jtyp" path="res://level objects/Good Guys/chunky_kong.tscn" id="15_algga"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="16_ghdtx"]
+[ext_resource type="AudioStream" uid="uid://oatiwkpbl6f3" path="res://sounds/music/endless_theme.mp3" id="17_75oke"]
+[ext_resource type="PackedScene" uid="uid://dajvrkvvonxqt" path="res://level objects/Collectables/special_event_trigger.tscn" id="17_f0vbe"]
+[ext_resource type="AudioStream" uid="uid://cukv5t8nt73m3" path="res://sounds/sound effects/bonus_victory.wav" id="18_gbt4r"]
+[ext_resource type="PackedScene" uid="uid://bsd3e0cglbace" path="res://level objects/blocks/out_of_bounds.tscn" id="19_awxog"]
+
+[node name="level" instance=ExtResource("1_83tyy")]
+script = ExtResource("2_awxog")
+starting_bonus_time = 100
+
+[node name="Bonus_message_container" type="Control" parent="." index="0"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+
+[node name="bonus_message_box" type="TextureRect" parent="Bonus_message_container" index="0"]
+unique_name_in_owner = true
+z_index = 20
+layout_mode = 2
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 1153.0
+offset_bottom = 644.0
+texture = ExtResource("3_f0vbe")
+
+[node name="bonus_prompt" type="Label" parent="Bonus_message_container" index="1"]
+unique_name_in_owner = true
+z_index = 21
+layout_mode = 2
+offset_left = 8.0
+offset_top = 122.0
+offset_right = 972.0
+offset_bottom = 225.0
+theme_override_colors/font_color = Color(0.78296, 0.134192, 0.174956, 1)
+theme_override_colors/font_shadow_color = Color(0.952941, 0.94902, 0.533333, 1)
+theme_override_colors/font_outline_color = Color(0.952941, 0.94902, 0.533333, 1)
+theme_override_fonts/font = ExtResource("4_kiuuc")
+theme_override_font_sizes/font_size = 30
+text = "Get as high of a score as you
+can in 100 seconds...
+But 1 miss and it's Game Over!"
+horizontal_alignment = 1
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 0
+
+[node name="help_button" parent="level_ui" index="3"]
+anchor_top = 0.222
+anchor_right = 0.125
+anchor_bottom = 0.519
+offset_left = -16.0
+offset_top = -7.85602
+offset_right = 85.0
+offset_bottom = 99.688
+
+[node name="time_label" type="Label" parent="level_ui" index="4"]
+unique_name_in_owner = true
+offset_left = 809.0
+offset_top = 1.0
+offset_right = 968.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 60
+text = "Time:"
+
+[node name="level_time_label" type="Label" parent="level_ui" index="5"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 943.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = -537.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "xxxxx"
+horizontal_alignment = 1
+
+[node name="Kritter" parent="baddy group" index="0" instance=ExtResource("5_gdfn8")]
+z_index = 0
+position = Vector2(288, 400)
+has_gold_state = true
+
+[node name="Kritter3" parent="baddy group" index="1" instance=ExtResource("5_gdfn8")]
+z_index = 0
+position = Vector2(520, 232)
+has_gold_state = true
+
+[node name="Kritter4" parent="baddy group" index="2" instance=ExtResource("5_gdfn8")]
+z_index = 0
+position = Vector2(520, 608)
+has_gold_state = true
+
+[node name="Kritter2" parent="baddy group" index="3" instance=ExtResource("5_gdfn8")]
+z_index = 0
+position = Vector2(736, 416)
+has_gold_state = true
+
+[node name="Klump" parent="baddy group" index="4" instance=ExtResource("6_ra4if")]
+z_index = 0
+position = Vector2(720, 248)
+
+[node name="Klump2" parent="baddy group" index="5" instance=ExtResource("6_ra4if")]
+z_index = 0
+position = Vector2(368, 248)
+
+[node name="KlapTrap" parent="baddy group" index="6" instance=ExtResource("7_vtwvm")]
+z_index = 0
+position = Vector2(720, 592)
+
+[node name="KlapTrap2" parent="baddy group" index="7" instance=ExtResource("7_vtwvm")]
+z_index = 0
+position = Vector2(336, 592)
+
+[node name="GhostKritter" parent="baddy group" index="8" instance=ExtResource("8_5xrvj")]
+z_index = 0
+position = Vector2(32, 416)
+
+[node name="GhostKritter2" parent="baddy group" index="9" instance=ExtResource("8_5xrvj")]
+z_index = 0
+position = Vector2(1120, 408)
+
+[node name="rekoil" parent="baddy group" index="10" instance=ExtResource("9_desee")]
+z_index = 0
+position = Vector2(40, 592)
+
+[node name="rekoil2" parent="baddy group" index="11" instance=ExtResource("9_desee")]
+z_index = 0
+position = Vector2(1112, 600)
+
+[node name="bristle_spawner_1" parent="baddy group" index="12" instance=ExtResource("10_h568a")]
+position = Vector2(512, 104)
+import_path = "res://level objects/Enemies/bristle.tscn"
+spawn_value = 50
+spawn_max = 10
+spawn_by = "score"
+spawner_type = "baddy"
+is_endless_mode = true
+movement_type = "shift_down"
+
+[node name="Donkey" parent="kong_group" index="0" instance=ExtResource("11_n46a6")]
+z_index = 0
+position = Vector2(520, 408)
+collision_layer = 3
+collision_mask = 15
+max_points_earned = 200
+
+[node name="Diddy" parent="kong_group" index="1" instance=ExtResource("12_wyd3k")]
+z_index = 0
+position = Vector2(608, 408)
+scale = Vector2(1.5, 1.5)
+collision_layer = 3
+collision_mask = 15
+max_points_earned = 200
+
+[node name="Lanky" parent="kong_group" index="2" instance=ExtResource("13_ehdc1")]
+z_index = 0
+position = Vector2(520, 320)
+scale = Vector2(1.5, 1.5)
+collision_layer = 3
+collision_mask = 15
+max_points_earned = 200
+
+[node name="Tiny" parent="kong_group" index="3" instance=ExtResource("14_31jr6")]
+z_index = 0
+position = Vector2(408, 408)
+scale = Vector2(1.5, 1.5)
+collision_layer = 3
+collision_mask = 15
+max_points_earned = 200
+
+[node name="Chunky" parent="kong_group" index="4" instance=ExtResource("15_algga")]
+z_index = 0
+position = Vector2(528, 496)
+scale = Vector2(2, 2)
+collision_layer = 3
+collision_mask = 15
+max_points_earned = 200
+
+[node name="monkey_spawner" parent="kong_group" index="5" instance=ExtResource("10_h568a")]
+position = Vector2(923.013, 379.757)
+import_path = "res://level objects/Good Guys/kong_template.tscn"
+spawn_value = 20
+spawn_max = 5
+spawn_by = "time"
+spawner_type = "ally"
+is_endless_mode = true
+
+[node name="monkey_spawner2" parent="kong_group" index="6" instance=ExtResource("10_h568a")]
+position = Vector2(152, 392)
+import_path = "res://level objects/Good Guys/kong_template.tscn"
+spawn_value = 20
+spawn_max = 5
+spawn_by = "time"
+spawner_type = "ally"
+is_endless_mode = true
+
+[node name="BananaSpawner" parent="collectables" index="0" instance=ExtResource("10_h568a")]
+position = Vector2(516.403, 358.923)
+import_path = "res://level objects/Collectables/banana.tscn"
+spawn_max = 0
+movement_amount = 100.0
+is_endless_mode = true
+movement_type = "shift_right"
+
+[node name="Banana" parent="collectables" index="1" instance=ExtResource("16_ghdtx")]
+position = Vector2(1517.37, 549.241)
+
+[node name="event_trigger" parent="collectables" index="2" instance=ExtResource("17_f0vbe")]
+position = Vector2(1504.26, 452.167)
+events = "make gold"
+range = "one_by_one"
+spawn_by = "score"
+trigger_value = 100
+
+[node name="Level Tile Map" parent="." index="7"]
+visible = false
+tile_map_data = PackedByteArray("AAAYAAQAAAADAAEAAAAYAAUAAAADAAEAAAAYAAYAAAADAAEAAAAYAAcAAAADAAEAAAAYAAgAAAADAAEAAAAYAAkAAAADAAEAAAAYAAoAAAADAAEAAAAYAAsAAAADAAEAAAAYAAwAAAADAAEAAAAYAA0AAAADAAEAAAAYAA4AAAAHAAMAAAAXAA4AAAABAAMAAAAWAA4AAAABAAMAAAAVAA4AAAABAAMAAAAUAA4AAAABAAMAAAATAA4AAAABAAMAAAASAA4AAAABAAMAAAARAA4AAAABAAMAAAAQAA4AAAABAAMAAAAPAA4AAAABAAMAAAAOAA4AAAABAAMAAAANAA4AAAABAAMAAAAMAA4AAAABAAMAAAALAA4AAAABAAMAAAAKAA4AAAABAAMAAAAJAA4AAAABAAMAAAAIAA4AAAABAAMAAAAHAA4AAAABAAMAAAAGAA4AAAABAAMAAAAFAA4AAAABAAMAAAAEAA4AAAABAAMAAAADAA4AAAABAAMAAAACAA4AAAABAAMAAAABAA4AAAABAAMAAAAAAA4AAAABAAMAAAD//w4AAAAEAAMAAAD//w0AAAADAAEAAAD//wwAAAADAAEAAAD//wsAAAADAAEAAAD//woAAAADAAEAAAD//wkAAAADAAEAAAD//wgAAAADAAEAAAD//wcAAAADAAEAAAD//wYAAAADAAEAAAD//wUAAAADAAEAAAD//wQAAAADAAEAAAD//wMAAAAEAAAAAAAAAAMAAAABAAMAAAACAAMAAAABAAMAAAABAAMAAAABAAMAAAADAAMAAAABAAMAAAARAAMAAAABAAMAAAASAAMAAAABAAMAAAATAAMAAAABAAMAAAAUAAMAAAABAAMAAAAVAAMAAAABAAMAAAAWAAMAAAABAAMAAAAXAAMAAAABAAMAAAAYAAMAAAAHAAAAAAAQAAMAAAAEAAMAAAAQAAIAAAADAAEAAAAQAAEAAAADAAEAAAAQAAAAAAAHAAAAAAAEAAAAAAAEAAAAAAAEAAEAAAADAAEAAAAEAAIAAAADAAEAAAAEAAMAAAAHAAMAAAAPAAAAAAABAAMAAAAOAAAAAAABAAMAAAANAAAAAAABAAMAAAAMAAAAAAABAAMAAAALAAAAAAABAAMAAAAKAAAAAAABAAMAAAAJAAAAAAABAAMAAAAIAAAAAAABAAMAAAAHAAAAAAABAAMAAAAGAAAAAAABAAMAAAAFAAAAAAABAAMAAAA=")
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("17_75oke")
+
+[node name="victory_theme" parent="audio_player" index="1"]
+stream = ExtResource("18_gbt4r")
+
+[node name="second_ticker" type="Timer" parent="timers" index="2"]
+unique_name_in_owner = true
+
+[node name="intro_timer" type="Timer" parent="timers" index="3"]
+process_mode = 3
+wait_time = 2.4
+one_shot = true
+
+[node name="ColorRect" parent="." index="11"]
+offset_left = -160.0
+offset_top = -72.0
+offset_right = 1784.0
+offset_bottom = 1200.0
+color = Color(0.58, 0.556413, 0.2262, 1)
+
+[node name="OutOfBounds" parent="Walls" index="0"]
+position = Vector2(616, -96)
+
+[node name="OutOfBounds5" parent="Walls" index="1" instance=ExtResource("19_awxog")]
+position = Vector2(-600, 56)
+scale = Vector2(80, 10)
+metadata/_edit_lock_ = true
+
+[node name="OutOfBounds6" parent="Walls" index="2" instance=ExtResource("19_awxog")]
+position = Vector2(1608, 80)
+scale = Vector2(80, 10)
+metadata/_edit_lock_ = true
+
+[node name="OutOfBounds2" parent="Walls" index="3"]
+position = Vector2(560, 824)
+
+[node name="OutOfBounds3" parent="Walls" index="4"]
+position = Vector2(1304, 392)
+
+[node name="OutOfBounds4" parent="Walls" index="5"]
+position = Vector2(-152, 408)
+
+[connection signal="timeout" from="timers/second_ticker" to="." method="_on_second_ticker_timeout"]
+[connection signal="timeout" from="timers/intro_timer" to="." method="_on_intro_timer_timeout"]

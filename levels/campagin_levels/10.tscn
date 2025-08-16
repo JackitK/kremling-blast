@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=4 uid="uid://bn7xwtowhw00r"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_kkfmn"]
+[ext_resource type="PackedScene" uid="uid://vtwdgl42khku" path="res://levels/cutscene_2_diddy.tscn" id="2_kkfmn"]
+[ext_resource type="PackedScene" uid="uid://ckxgd8d3nkpwm" path="res://level objects/Enemies/bosses/very_gnawty.tscn" id="3_sghmq"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="4_aio5h"]
+[ext_resource type="AudioStream" uid="uid://nbgdghaak8nh" path="res://sounds/music/Boss_classic.mp3" id="4_sghmq"]
+[ext_resource type="Texture2D" uid="uid://62aods3bvql5" path="res://splash_art/level_art/Jungle_boss.jpg" id="6_4innt"]
+
+[node name="level" instance=ExtResource("1_kkfmn")]
+next_level = ExtResource("2_kkfmn")
+time_bonus = 0
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 20
+
+[node name="MissCounter" parent="level_ui" index="2"]
+miss_count = 5
+
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2(0.7, 0.7)
+metadata/_edit_lock_ = true
+
+[node name="Very_Gnawty" parent="baddy group" index="0" instance=ExtResource("3_sghmq")]
+z_index = 5
+position = Vector2(717.573, 506.849)
+scale = Vector2(5, 5)
+collision_layer = 0
+collision_mask = 1
+scary = false
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("4_aio5h")]
+position = Vector2(931, 339)
+scale = Vector2(2, 2)
+base_speed = 500.0
+hit_speed = 100.0
+
+[node name="kong2" parent="kong_group" index="1" instance=ExtResource("4_aio5h")]
+position = Vector2(931, 723)
+scale = Vector2(2, 2)
+base_speed = 500.0
+hit_speed = 100.0
+
+[node name="kong3" parent="kong_group" index="2" instance=ExtResource("4_aio5h")]
+position = Vector2(523, 339)
+scale = Vector2(2, 2)
+base_speed = 500.0
+hit_speed = 100.0
+
+[node name="kong4" parent="kong_group" index="3" instance=ExtResource("4_aio5h")]
+position = Vector2(523, 723)
+scale = Vector2(2, 2)
+base_speed = 500.0
+hit_speed = 100.0
+
+[node name="Level Tile Map" parent="." index="6"]
+position = Vector2(167, 0)
+tile_map_data = PackedByteArray("AAAEAAQAAAADAAEAAAAEAAUAAAADAAEAAAAEAAYAAAADAAEAAAAEAAcAAAADAAEAAAAEAAgAAAADAAEAAAAEAAkAAAADAAEAAAAEAAoAAAADAAEAAAASAAQAAAADAAEAAAASAAUAAAADAAEAAAASAAYAAAADAAEAAAASAAcAAAADAAEAAAASAAgAAAADAAEAAAASAAkAAAADAAEAAAASAAoAAAADAAEAAAAEAAwAAAADAAEAAAASAAwAAAADAAEAAAASAAsAAAADAAEAAAAEAAsAAAADAAEAAAASAA0AAAADAAEAAAASAA4AAAADAAEAAAASAA8AAAADAAEAAAASABAAAAADAAEAAAAEABAAAAADAAEAAAAEAA8AAAADAAEAAAAEAA4AAAADAAEAAAAEAA0AAAADAAEAAAAFAAMAAAABAAMAAAAEAAMAAAAEAAAAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAABAAMAAAASAAMAAAAHAAAAAAAEABEAAAADAAEAAAAEABIAAAAEAAMAAAASABIAAAAHAAMAAAASABEAAAADAAEAAAAFABIAAAABAAMAAAAGABIAAAABAAMAAAAHABIAAAABAAMAAAAIABIAAAABAAMAAAAJABIAAAABAAMAAAAKABIAAAABAAMAAAALABIAAAABAAMAAAAMABIAAAABAAMAAAANABIAAAABAAMAAAAOABIAAAABAAMAAAAPABIAAAABAAMAAAAQABIAAAABAAMAAAARABIAAAABAAMAAAA=")
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("4_sghmq")
+
+[node name="LevelBackground" parent="." index="9"]
+texture = ExtResource("6_4innt")
+
+[node name="ColorRect" parent="." index="10"]
+offset_left = 370.0
+offset_top = 150.0
+offset_right = 1061.0
+offset_bottom = 889.0
+
+[node name="OutOfBounds2" parent="Walls" index="1"]
+position = Vector2(721, 1002)
+
+[node name="OutOfBounds3" parent="Walls" index="2"]
+position = Vector2(1230, 488)
+
+[node name="OutOfBounds4" parent="Walls" index="3"]
+position = Vector2(98, 509)

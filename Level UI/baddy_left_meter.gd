@@ -10,10 +10,14 @@ signal shot_interaction
 func _ready() -> void:
 	set_progress_bar()
 	Events.enemy_hit.connect(enemy_shot_event)
+	call_deferred('emit_hits_to_win_signal')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func emit_hits_to_win_signal():
+	Events.emit_hits_to_win(baddy_count_max)
 	
 	
 func enemy_shot_event(value: int) -> void:

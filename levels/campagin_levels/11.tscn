@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://3t7u1plp5e0e"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_h2jjv"]
+[ext_resource type="PackedScene" uid="uid://cpa7ms3uoehh3" path="res://levels/campagin_levels/12.tscn" id="2_2745j"]
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="3_b5aoi"]
+[ext_resource type="PackedScene" uid="uid://dckxsykjevwy2" path="res://level objects/Enemies/kritter.tscn" id="4_5xwrw"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="5_7yobf"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="6_c8cbh"]
+[ext_resource type="Texture2D" uid="uid://bh0pvgpyakywi" path="res://splash_art/level_art/Pirate ship.jpg" id="7_2745j"]
+[ext_resource type="AudioStream" uid="uid://dlby4jeirck0w" path="res://sounds/music/ship.mp3" id="7_b5aoi"]
+
+[node name="LevelTemplate" instance=ExtResource("1_h2jjv")]
+next_level = ExtResource("2_2745j")
+time_bonus = 25
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 20
+
+[node name="help_button" parent="level_ui" index="3"]
+export_file_path = "res://Dialogue/Squawks_hints/hint_diddy.txt"
+hint_available = true
+
+[node name="VBoxContainer" parent="level_ui/prompt_box" index="0"]
+offset_top = 0.0
+offset_bottom = 179.0
+
+[node name="baddy" parent="baddy group" index="0" instance=ExtResource("3_b5aoi")]
+unique_name_in_owner = true
+z_index = 10
+position = Vector2(541, 299)
+special_trait = "pirate"
+
+[node name="baddy2" parent="baddy group" index="1" instance=ExtResource("4_5xwrw")]
+position = Vector2(366, 486)
+special_trait = "pirate"
+
+[node name="baddy3" parent="baddy group" index="2" instance=ExtResource("4_5xwrw")]
+position = Vector2(721, 490)
+special_trait = "pirate"
+
+[node name="Diddy" parent="kong_group" index="0" instance=ExtResource("5_7yobf")]
+position = Vector2(542, 436)
+scale = Vector2(1.5, 1.5)
+
+[node name="Banana" parent="collectables" index="0" instance=ExtResource("6_c8cbh")]
+position = Vector2(687, 341)
+
+[node name="Banana2" parent="collectables" index="1" instance=ExtResource("6_c8cbh")]
+position = Vector2(555, 529)
+
+[node name="Banana3" parent="collectables" index="2" instance=ExtResource("6_c8cbh")]
+position = Vector2(417, 341)
+
+[node name="Banana4" parent="collectables" index="3" instance=ExtResource("6_c8cbh")]
+position = Vector2(821.636, 274.182)
+
+[node name="Banana5" parent="collectables" index="4" instance=ExtResource("6_c8cbh")]
+position = Vector2(268, 281)
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("7_b5aoi")
+volume_db = 0.0
+
+[node name="LevelBackground" parent="." index="9"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1153.0
+offset_bottom = 649.0
+texture = ExtResource("7_2745j")
+
+[node name="ColorRect" parent="." index="10"]
+visible = false
+color = Color(0.411765, 0.298039, 0.243137, 1)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsgc8n6n7yaea"]
+[gd_scene load_steps=3 format=3 uid="uid://bsgc8n6n7yaea"]
 
 [ext_resource type="Script" uid="uid://lpsf11skr7ux" path="res://Level UI/score_display.gd" id="1_l1717"]
+[ext_resource type="FontFile" uid="uid://cf1ukv41uov1k" path="res://Font/Jumpman.ttf" id="2_vkco4"]
 
 [node name="Score" type="Control"]
 layout_mode = 3
@@ -15,11 +16,20 @@ offset_bottom = 40.0
 [node name="score_label" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vkco4")
 theme_override_font_sizes/font_size = 30
 text = "Score:"
 
 [node name="score_count" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vkco4")
 theme_override_font_sizes/font_size = 30
 text = "0"
+
+[node name="bonus_time_label" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vkco4")
+theme_override_font_sizes/font_size = 30
+text = "Bonus: xxx"

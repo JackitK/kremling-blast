@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cva40k76la7gn"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_ej15m"]
+[ext_resource type="PackedScene" uid="uid://h2svtyyut50x" path="res://levels/campagin_levels/06.tscn" id="2_bhkdu"]
+[ext_resource type="PackedScene" uid="uid://btnj1n1ywtajf" path="res://level objects/Enemies/gnawty.tscn" id="3_rmwf0"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="4_d58ql"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="5_syebt"]
+
+[node name="LevelTemplate" instance=ExtResource("1_ej15m")]
+next_level = ExtResource("2_bhkdu")
+time_bonus = 15
+
+[node name="help_button" parent="level_ui" index="5"]
+hint_available = false
+
+[node name="Gnawty" parent="baddy group" index="0" instance=ExtResource("3_rmwf0")]
+position = Vector2(371, 528)
+
+[node name="Gnawty2" parent="baddy group" index="1" instance=ExtResource("3_rmwf0")]
+position = Vector2(508, 338)
+
+[node name="Gnawty4" parent="baddy group" index="2" instance=ExtResource("3_rmwf0")]
+position = Vector2(651, 515)
+
+[node name="Donkey Kong" parent="kong_group" index="0" instance=ExtResource("4_d58ql")]
+position = Vector2(509, 513)
+
+[node name="monkey" parent="kong_group" index="1" instance=ExtResource("5_syebt")]
+position = Vector2(412, 331)
+scale = Vector2(1.3, 1.3)
+
+[node name="monkey2" parent="kong_group" index="2" instance=ExtResource("5_syebt")]
+position = Vector2(619, 339)
+scale = Vector2(1.3, 1.3)

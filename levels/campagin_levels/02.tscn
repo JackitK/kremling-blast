@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch65f5ssf0nv6"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_11ob0"]
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="2_mc86v"]
+[ext_resource type="PackedScene" uid="uid://cvelaxpkccd0r" path="res://levels/campagin_levels/03.tscn" id="2_py88r"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="3_xqcfu"]
+[ext_resource type="AudioStream" uid="uid://ccl6aocmqcmwf" path="res://sounds/music/jungle.mp3" id="5_uwwnr"]
+
+[node name="LevelTemplate" instance=ExtResource("1_11ob0")]
+next_level = ExtResource("2_py88r")
+time_bonus = 12
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 5
+
+[node name="help_button" parent="level_ui" index="3"]
+export_file_path = "res://Dialogue/Squawks_hints/level2.txt"
+hint_available = true
+
+[node name="baddy2" parent="baddy group" index="0" instance=ExtResource("2_mc86v")]
+unique_name_in_owner = true
+position = Vector2(605, 450)
+
+[node name="baddy3" parent="baddy group" index="1" instance=ExtResource("2_mc86v")]
+unique_name_in_owner = true
+position = Vector2(435, 452)
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("3_xqcfu")]
+position = Vector2(524, 374)
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("5_uwwnr")
+volume_db = 0.0

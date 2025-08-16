@@ -1,0 +1,153 @@
+[gd_scene load_steps=16 format=3 uid="uid://cbxcf76hamx8t"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_5oij3"]
+[ext_resource type="PackedScene" uid="uid://dofuuv43fk0y8" path="res://level objects/Enemies/klump.tscn" id="2_4stuv"]
+[ext_resource type="PackedScene" uid="uid://qa4j13hd8trp" path="res://level objects/Enemies/klap_trap.tscn" id="3_o37i7"]
+[ext_resource type="PackedScene" uid="uid://32m04ix5jtyp" path="res://level objects/Good Guys/chunky_kong.tscn" id="3_q8rfi"]
+[ext_resource type="PackedScene" uid="uid://bpj1hhhlpospr" path="res://level objects/Enemies/rekoil.tscn" id="4_dxpih"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="5_47rho"]
+[ext_resource type="PackedScene" uid="uid://cxq08m17pbxcj" path="res://level objects/Enemies/krow.tscn" id="5_eo6av"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="6_5oij3"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="7_4stuv"]
+[ext_resource type="PackedScene" uid="uid://cya1uq7515xyo" path="res://level objects/Good Guys/lanky_kong.tscn" id="8_o37i7"]
+[ext_resource type="PackedScene" uid="uid://cna8lglf1ruf" path="res://level objects/Good Guys/tiny_kong.tscn" id="9_dxpih"]
+[ext_resource type="PackedScene" uid="uid://datd4j7a0tieu" path="res://level objects/blocks/breakable_block.tscn" id="9_w7use"]
+[ext_resource type="PackedScene" uid="uid://bsd3e0cglbace" path="res://level objects/blocks/out_of_bounds.tscn" id="10_ccd31"]
+[ext_resource type="PackedScene" uid="uid://8m7q062kujnh" path="res://level objects/Collectables/spawner.tscn" id="11_dxpih"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="12_o37i7"]
+
+[node name="LevelTemplate" instance=ExtResource("1_5oij3")]
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 100
+
+[node name="MissCounter" parent="level_ui" index="2"]
+miss_count = 10
+
+[node name="VBoxContainer" parent="level_ui/prompt_box" index="0"]
+offset_top = 0.0
+offset_bottom = 179.0
+
+[node name="Kong Button" parent="Camera2D/touch_options" index="1"]
+offset_left = 1068.0
+offset_top = 544.0
+offset_right = 1395.45
+offset_bottom = 927.096
+
+[node name="Klump" parent="baddy group" index="0" instance=ExtResource("2_4stuv")]
+z_index = 0
+position = Vector2(1541, 571)
+special_trait = "golden"
+
+[node name="KlapTrap" parent="baddy group" index="1" instance=ExtResource("3_o37i7")]
+z_index = 0
+position = Vector2(1188, 363)
+collision_layer = 2
+
+[node name="KlapTrap2" parent="baddy group" index="2" instance=ExtResource("3_o37i7")]
+z_index = 0
+position = Vector2(-44, 466)
+collision_layer = 2
+
+[node name="rekoil" parent="baddy group" index="3" instance=ExtResource("4_dxpih")]
+position = Vector2(445, 298)
+ground_time = 1.0
+air_time = 3.0
+
+[node name="rekoil2" parent="baddy group" index="4" instance=ExtResource("4_dxpih")]
+position = Vector2(368, 481)
+ground_time = 1.0
+air_time = 5.0
+
+[node name="krow" parent="baddy group" index="5" instance=ExtResource("5_eo6av")]
+position = Vector2(623.009, 307.763)
+
+[node name="krow2" parent="baddy group" index="6" instance=ExtResource("5_eo6av")]
+position = Vector2(763.563, 318.011)
+
+[node name="Chunky" parent="kong_group" index="0" instance=ExtResource("3_q8rfi")]
+z_index = 0
+position = Vector2(1305, 548)
+scale = Vector2(1.8, 1.8)
+collision_layer = 3
+collision_mask = 15
+
+[node name="kong" parent="kong_group" index="1" instance=ExtResource("5_47rho")]
+position = Vector2(732.877, 396.174)
+
+[node name="Donkey" parent="kong_group" index="2" instance=ExtResource("6_5oij3")]
+position = Vector2(637, 384)
+
+[node name="Diddy" parent="kong_group" index="3" instance=ExtResource("7_4stuv")]
+position = Vector2(602, 529)
+scale = Vector2(1.5, 1.5)
+
+[node name="Lanky" parent="kong_group" index="4" instance=ExtResource("8_o37i7")]
+position = Vector2(1302, 450)
+scale = Vector2(1.5, 1.5)
+
+[node name="Tiny" parent="kong_group" index="5" instance=ExtResource("9_dxpih")]
+position = Vector2(726, 496)
+scale = Vector2(1.3, 1.3)
+
+[node name="BreakableBlock" parent="collectables" index="0" instance=ExtResource("9_w7use")]
+position = Vector2(1215, 420)
+wall_type = "wood"
+
+[node name="BreakableBlock2" parent="collectables" index="1" instance=ExtResource("9_w7use")]
+position = Vector2(496, 373)
+wall_type = "wood"
+
+[node name="BreakableBlock5" parent="collectables" index="2" instance=ExtResource("9_w7use")]
+position = Vector2(373.985, 371.697)
+wall_type = "wood"
+
+[node name="BreakableBlock6" parent="collectables" index="3" instance=ExtResource("9_w7use")]
+position = Vector2(456, 372)
+wall_type = "wood"
+
+[node name="BreakableBlock3" parent="collectables" index="4" instance=ExtResource("9_w7use")]
+position = Vector2(415, 370)
+wall_type = "wood"
+
+[node name="BreakableBlock4" parent="collectables" index="5" instance=ExtResource("9_w7use")]
+position = Vector2(1179, 299)
+
+[node name="spawner" parent="collectables" index="6" instance=ExtResource("11_dxpih")]
+position = Vector2(1476, 277)
+spawn_value = 1
+spawn_max = 0
+
+[node name="spawner2" parent="collectables" index="7" instance=ExtResource("11_dxpih")]
+position = Vector2(1150, 231)
+import_path = "res://level objects/Enemies/rekoil.tscn"
+spawn_max = 5
+movement_amount = 200.0
+spawn_by = "score"
+spawner_type = "baddy"
+movement_type = "shift_down"
+
+[node name="Banana" parent="collectables" index="8" instance=ExtResource("12_o37i7")]
+position = Vector2(484, 479)
+collision_layer = 0
+
+[node name="spawner" parent="." index="11" instance=ExtResource("11_dxpih")]
+position = Vector2(585, 432)
+
+[node name="OutOfBounds" parent="Walls" index="0"]
+position = Vector2(681, 92)
+
+[node name="OutOfBounds2" parent="Walls" index="1"]
+position = Vector2(555, 717)
+
+[node name="OutOfBounds3" parent="Walls" index="2"]
+position = Vector2(998, 427)
+
+[node name="OutOfBounds4" parent="Walls" index="3"]
+position = Vector2(101, 419)
+
+[node name="OutOfBounds5" parent="Walls" index="4" instance=ExtResource("10_ccd31")]
+position = Vector2(1301, 339)
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="Camera2D/touch_options/Kong Button" to="." method="_on_kong_button_pressed"]

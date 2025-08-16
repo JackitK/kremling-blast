@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=4 uid="uid://b8hxedj0oeyf2"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_lawlv"]
+[ext_resource type="PackedScene" uid="uid://5rxs6otiq402" path="res://levels/campagin_levels/14.tscn" id="2_m2vi5"]
+[ext_resource type="PackedScene" uid="uid://dofuuv43fk0y8" path="res://level objects/Enemies/klump.tscn" id="4_nf7o6"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="5_4500m"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="6_j1e20"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="7_cbi5p"]
+[ext_resource type="Texture2D" uid="uid://bh0pvgpyakywi" path="res://splash_art/level_art/Pirate ship.jpg" id="8_f4q3y"]
+[ext_resource type="PackedScene" uid="uid://datd4j7a0tieu" path="res://level objects/blocks/breakable_block.tscn" id="8_nkhxg"]
+[ext_resource type="AudioStream" uid="uid://dlby4jeirck0w" path="res://sounds/music/ship.mp3" id="8_sgeql"]
+
+[node name="LevelTemplate" instance=ExtResource("1_lawlv")]
+next_level = ExtResource("2_m2vi5")
+time_bonus = 25
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 30
+
+[node name="help_button" parent="level_ui" index="3"]
+export_file_path = "res://Dialogue/Squawks_hints/hint_diddy_2.txt"
+hint_available = true
+
+[node name="baddy3" parent="baddy group" index="0" instance=ExtResource("4_nf7o6")]
+position = Vector2(416, 424)
+special_trait = "pirate"
+
+[node name="baddy5" parent="baddy group" index="1" instance=ExtResource("4_nf7o6")]
+position = Vector2(672, 424)
+special_trait = "pirate"
+
+[node name="Diddy" parent="kong_group" index="0" instance=ExtResource("5_4500m")]
+position = Vector2(528, 544)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong" parent="kong_group" index="1" instance=ExtResource("6_j1e20")]
+position = Vector2(656, 272)
+
+[node name="kong2" parent="kong_group" index="2" instance=ExtResource("6_j1e20")]
+position = Vector2(656, 560)
+
+[node name="kong3" parent="kong_group" index="3" instance=ExtResource("6_j1e20")]
+position = Vector2(400, 272)
+
+[node name="kong4" parent="kong_group" index="4" instance=ExtResource("6_j1e20")]
+position = Vector2(400, 552)
+
+[node name="Banana" parent="collectables" index="0" instance=ExtResource("7_cbi5p")]
+position = Vector2(522, 421)
+
+[node name="Banana2" parent="collectables" index="1" instance=ExtResource("7_cbi5p")]
+position = Vector2(534, 421)
+
+[node name="breakable block group" type="Node2D" parent="collectables" index="2"]
+
+[node name="BreakableBlock3" parent="collectables/breakable block group" index="0" instance=ExtResource("8_nkhxg")]
+position = Vector2(528, 400)
+wall_type = "target"
+
+[node name="BreakableBlock7" parent="collectables/breakable block group" index="1" instance=ExtResource("8_nkhxg")]
+position = Vector2(528, 440)
+wall_type = "target"
+
+[node name="Level Tile Map" parent="." index="6"]
+tile_map_data = PackedByteArray("AAAEAAQAAAADAAEAAAAEAAUAAAADAAEAAAAEAAYAAAADAAEAAAAEAAcAAAADAAEAAAAEAAgAAAADAAEAAAAEAAkAAAADAAEAAAAEAAoAAAADAAEAAAAEAAwAAAADAAEAAAARAAwAAAADAAEAAAAEAAsAAAADAAEAAAARAAQAAAADAAEAAAAEAA0AAAAEAAMAAAAFAA0AAAABAAMAAAAGAA0AAAABAAMAAAAHAA0AAAABAAMAAAAIAA0AAAABAAMAAAAJAA0AAAABAAMAAAAKAA0AAAABAAMAAAALAA0AAAABAAMAAAAMAA0AAAABAAMAAAANAA0AAAABAAMAAAAOAA0AAAABAAMAAAAPAA0AAAABAAMAAAAQAA0AAAABAAMAAAARAA0AAAAHAAMAAAAEAAMAAAAEAAAAAAAFAAMAAAABAAMAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAAHAAAAAAARAAsAAAADAAEAAAARAAoAAAADAAEAAAARAAkAAAADAAEAAAARAAgAAAADAAEAAAARAAcAAAADAAEAAAARAAYAAAADAAEAAAARAAUAAAADAAEAAAA=")
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("8_sgeql")
+
+[node name="LevelBackground" parent="." index="9"]
+offset_left = 2.0
+offset_top = -6.0
+offset_right = 1171.0
+offset_bottom = 699.0
+texture = ExtResource("8_f4q3y")
+
+[node name="ColorRect" parent="." index="10"]
+visible = false
+offset_right = 843.0
+color = Color(0.411765, 0.298039, 0.243137, 1)

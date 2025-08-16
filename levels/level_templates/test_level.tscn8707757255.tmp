@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://cbxcf76hamx8t"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_x25rp"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="2_gmgay"]
+[ext_resource type="PackedScene" uid="uid://dckxsykjevwy2" path="res://level objects/Enemies/kritter.tscn" id="2_p877v"]
+[ext_resource type="PackedScene" uid="uid://32m04ix5jtyp" path="res://level objects/Good Guys/chunky_kong.tscn" id="4_w41qh"]
+[ext_resource type="PackedScene" uid="uid://cna8lglf1ruf" path="res://level objects/Good Guys/tiny_kong.tscn" id="4_xhlcr"]
+[ext_resource type="PackedScene" uid="uid://cya1uq7515xyo" path="res://level objects/Good Guys/lanky_kong.tscn" id="5_nkj1e"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="5_p877v"]
+[ext_resource type="PackedScene" uid="uid://datd4j7a0tieu" path="res://level objects/breakable_block.tscn" id="6_p877v"]
+
+[node name="LevelTemplate" instance=ExtResource("1_x25rp")]
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 99
+
+[node name="baddy" parent="baddy group" index="0"]
+position = Vector2(316, 452)
+
+[node name="baddy3" parent="baddy group" index="1" instance=ExtResource("2_p877v")]
+position = Vector2(383, 330)
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("2_gmgay")]
+position = Vector2(1033, 419)
+scale = Vector2(2, 2)
+
+[node name="kong2" parent="kong_group" index="1" instance=ExtResource("2_gmgay")]
+position = Vector2(819, 338)
+scale = Vector2(2, 2)
+
+[node name="Chunky Kong" parent="kong_group" index="2" instance=ExtResource("4_w41qh")]
+position = Vector2(626, 533)
+scale = Vector2(1.5, 1.5)
+base_speed = 200.0
+max_speed = 800.0
+hit_speed = 20.0
+shot_value = 1
+
+[node name="tiny_kong" parent="kong_group" index="3" instance=ExtResource("4_xhlcr")]
+position = Vector2(1073.72, 527.535)
+scale = Vector2(1.5, 1.5)
+
+[node name="Lanky Kong" parent="kong_group" index="4" instance=ExtResource("5_nkj1e")]
+position = Vector2(573.94, 378.91)
+scale = Vector2(1.5, 1.5)
+
+[node name="Banana" parent="collectables" index="0" instance=ExtResource("5_p877v")]
+position = Vector2(306.7, 322.34)
+
+[node name="Banana2" parent="collectables" index="1" instance=ExtResource("5_p877v")]
+position = Vector2(465.21, 391.31)
+
+[node name="Banana3" parent="collectables" index="2" instance=ExtResource("5_p877v")]
+position = Vector2(592.26, 491.74)
+
+[node name="BreakableBlock" parent="collectables" index="3" instance=ExtResource("6_p877v")]
+position = Vector2(478, 502)
+
+[node name="BreakableBlock2" parent="collectables" index="4" instance=ExtResource("6_p877v")]
+position = Vector2(426, 504)
+
+[node name="BreakableBlock3" parent="collectables" index="5" instance=ExtResource("6_p877v")]
+position = Vector2(782, 516)
+
+[node name="BreakableBlock4" parent="collectables" index="6" instance=ExtResource("6_p877v")]
+position = Vector2(695, 320)

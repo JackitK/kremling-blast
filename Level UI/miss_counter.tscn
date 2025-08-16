@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctrphixjduwlj"]
+[gd_scene load_steps=4 format=3 uid="uid://ctrphixjduwlj"]
 
 [ext_resource type="Texture2D" uid="uid://c6ah14iwiqy88" path="res://sprite/Kongs/Helper Monkey.png" id="1_qg6pr"]
 [ext_resource type="Script" uid="uid://6rvognja0qpx" path="res://Level UI/miss_counter.gd" id="1_s4iso"]
+[ext_resource type="FontFile" uid="uid://cf1ukv41uov1k" path="res://Font/Jumpman.ttf" id="3_6j3hn"]
 
 [node name="MissCounter" type="Node2D"]
 script = ExtResource("1_s4iso")
@@ -13,6 +14,8 @@ texture = ExtResource("1_qg6pr")
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("3_6j3hn")
+theme_override_font_sizes/font_size = 20
 text = "Miss:"
 metadata/_edit_use_anchors_ = true
 

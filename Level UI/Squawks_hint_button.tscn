@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://bux0vm8s401pb"]
+
+[ext_resource type="Texture2D" uid="uid://crrlvt2iturjs" path="res://splash_art/Squawks Art.png" id="1_mal25"]
+[ext_resource type="Texture2D" uid="uid://dlgrhw5rx1h1g" path="res://splash_art/Squawks Art_talking.png" id="2_w32tp"]
+[ext_resource type="Texture2D" uid="uid://b2salo5nfern6" path="res://splash_art/Squawks Art_disabled.png" id="3_w32tp"]
+[ext_resource type="Script" uid="uid://cn55vrr7e2ua0" path="res://Level UI/squawks_hint_button.gd" id="4_w32tp"]
+[ext_resource type="AudioStream" uid="uid://dnq8ow8sisu0c" path="res://sounds/sound effects/Kongs/Squawks.wav" id="5_vc8ch"]
+[ext_resource type="FontFile" uid="uid://cf1ukv41uov1k" path="res://Font/Jumpman.ttf" id="5_woras"]
+
+[node name="help_button" type="TextureButton"]
+process_mode = 3
+z_index = 10
+z_as_relative = false
+anchors_preset = -1
+anchor_right = 0.213
+anchor_bottom = 0.463
+offset_right = -0.376022
+offset_bottom = -0.0240173
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_mal25")
+texture_pressed = ExtResource("2_w32tp")
+texture_hover = ExtResource("2_w32tp")
+texture_disabled = ExtResource("3_w32tp")
+script = ExtResource("4_w32tp")
+
+[node name="click_prompt_label" type="Label" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 0
+offset_left = 11.0
+offset_top = 223.0
+offset_right = 179.0
+offset_bottom = 266.0
+theme_override_fonts/font = ExtResource("5_woras")
+theme_override_font_sizes/font_size = 24
+text = "Click me for help!"
+
+[node name="hint_label" type="Label" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 0
+offset_left = 28.0
+offset_top = 173.0
+offset_right = 171.0
+offset_bottom = 288.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "[insert help here]
+blah blah
+blah blah"
+
+[node name="squawk_sound" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("5_vc8ch")
+bus = &"Sfx"
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

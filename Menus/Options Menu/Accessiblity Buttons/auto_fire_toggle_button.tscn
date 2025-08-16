@@ -19,18 +19,21 @@ offset_bottom = 40.0
 [node name="Name_Label" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Autofire"
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 67
 
 [node name="CheckButton" type="CheckButton" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
 [node name="VSeparator2" type="VSeparator" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_constants/separation = 30
 
@@ -41,11 +44,11 @@ theme_override_font_sizes/font_size = 30
 text = "Off"
 
 [node name="VSeparator3" type="VSeparator" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 theme_override_constants/separation = 30
 
 [node name="Name_Label2" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
 text = "Hold down the mouse
 button to constantly fire."

@@ -1,16 +1,21 @@
-[gd_scene load_steps=12 format=4 uid="uid://lsilrbvu1g2x"]
+[gd_scene load_steps=17 format=4 uid="uid://lsilrbvu1g2x"]
 
-[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="1_f04ci"]
 [ext_resource type="Script" uid="uid://c5q3ipxde5vs5" path="res://levels/level_templates/level_template.gd" id="1_vqyjd"]
 [ext_resource type="PackedScene" uid="uid://bbnyq81qfb025" path="res://Menus/PauseMenu.tscn" id="2_aj5t6"]
 [ext_resource type="AudioStream" uid="uid://ly63m074sldg" path="res://sounds/sound effects/coconut_gun.ogg" id="3_3vaiy"]
 [ext_resource type="PackedScene" uid="uid://cfss21ky4obv6" path="res://Tiles/Default TileMap.tscn" id="4_iqiwu"]
 [ext_resource type="PackedScene" uid="uid://ce522uxf8f3wr" path="res://Level UI/banana_count.tscn" id="5_5pr7o"]
 [ext_resource type="PackedScene" uid="uid://bsgc8n6n7yaea" path="res://Level UI/score.tscn" id="6_t2qq1"]
+[ext_resource type="FontFile" uid="uid://cf1ukv41uov1k" path="res://Font/Jumpman.ttf" id="6_vj564"]
 [ext_resource type="PackedScene" uid="uid://7hlyfhpltale" path="res://Level UI/baddy_left_meter.tscn" id="7_21ha5"]
+[ext_resource type="PackedScene" uid="uid://bux0vm8s401pb" path="res://Level UI/Squawks_hint_button.tscn" id="7_bfyon"]
 [ext_resource type="AudioStream" uid="uid://b728cgxp203xf" path="res://sounds/music/Monkey Smash.mp3" id="8_64qpc"]
 [ext_resource type="PackedScene" uid="uid://ctrphixjduwlj" path="res://Level UI/miss_counter.tscn" id="8_o30lq"]
+[ext_resource type="PackedScene" uid="uid://dxecmbhtue0ia" path="res://Menus/Touch Menu/pause_button.tscn" id="9_7mrxs"]
 [ext_resource type="AudioStream" uid="uid://bhls71g1tmiix" path="res://sounds/sound effects/win.wav" id="9_u2643"]
+[ext_resource type="PackedScene" uid="uid://blxf1lx4woov2" path="res://Level UI/kong_button.tscn" id="10_f3c6f"]
+[ext_resource type="PackedScene" uid="uid://bsd3e0cglbace" path="res://level objects/blocks/out_of_bounds.tscn" id="12_bfyon"]
+[ext_resource type="Texture2D" uid="uid://cxf87p0jd0pup" path="res://splash_art/menu art/jungle_full.jpg" id="13_7mrxs"]
 
 [node name="LevelTemplate" type="Node2D"]
 script = ExtResource("1_vqyjd")
@@ -19,6 +24,7 @@ script = ExtResource("1_vqyjd")
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_aj5t6")]
 visible = false
+z_index = 15
 mouse_filter = 2
 
 [node name="level_ui" type="CanvasLayer" parent="."]
@@ -28,9 +34,10 @@ unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_right = -950.0
-offset_bottom = -544.0
+offset_left = 14.0
+offset_top = 5.0
+offset_right = -946.0
+offset_bottom = -539.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -43,33 +50,86 @@ position = Vector2(819, 11)
 unique_name_in_owner = true
 position = Vector2(824, 72)
 
-[node name="pop_up_message" type="Label" parent="level_ui"]
+[node name="help_button" parent="level_ui" instance=ExtResource("7_bfyon")]
+unique_name_in_owner = true
+offset_left = -1.0
+offset_top = 439.0
+offset_right = -1.37602
+offset_bottom = 438.976
+scale = Vector2(0.7, 0.7)
+hint_available = false
+
+[node name="prompt_box" type="ColorRect" parent="level_ui"]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 103.0
-offset_right = -337.0
-grow_horizontal = 2
-grow_vertical = 2
+z_index = 10
+offset_left = 150.0
+offset_top = -2.0
+offset_right = 811.0
+offset_bottom = 184.0
+color = Color(0, 0, 0, 0.501961)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="level_ui/prompt_box"]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 655.0
+offset_bottom = 186.0
+theme_override_constants/separation = 0
+
+[node name="pop_up_message" type="Label" parent="level_ui/prompt_box/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_vj564")
 theme_override_font_sizes/font_size = 80
 text = "Game State Here"
+horizontal_alignment = 1
+
+[node name="bonus_time_message" type="Label" parent="level_ui/prompt_box/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_vj564")
+theme_override_font_sizes/font_size = 50
+text = "Bonus Time here:"
 horizontal_alignment = 1
 
 [node name="banana_count" parent="level_ui" instance=ExtResource("5_5pr7o")]
 unique_name_in_owner = true
 position = Vector2(896, 72)
 
+[node name="PauseButton" parent="level_ui" instance=ExtResource("9_7mrxs")]
+z_index = 5
+offset_left = 1072.0
+offset_top = 584.0
+offset_right = 1104.0
+offset_bottom = 616.0
+scale = Vector2(1.5, 1.5)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="baddy group" type="Node" parent="."]
-
-[node name="baddy" parent="baddy group" instance=ExtResource("1_f04ci")]
+[node name="touch_options" type="CanvasLayer" parent="Camera2D"]
 unique_name_in_owner = true
-z_index = 10
-position = Vector2(520, 289)
+
+[node name="prompt_pause Button" type="Button" parent="Camera2D/touch_options"]
+unique_name_in_owner = true
+visible = false
+offset_left = 1000.0
+offset_top = 496.0
+offset_right = 1153.0
+offset_bottom = 573.0
+theme_override_font_sizes/font_size = 50
+text = "Pause"
+metadata/_edit_use_anchors_ = true
+
+[node name="Kong Button" parent="Camera2D/touch_options" instance=ExtResource("10_f3c6f")]
+unique_name_in_owner = true
+offset_left = 1052.0
+offset_top = 472.0
+offset_right = 1379.45
+offset_bottom = 855.096
+
+[node name="baddy group" type="Node" parent="."]
 
 [node name="kong_group" type="Node" parent="."]
 
@@ -111,13 +171,49 @@ unique_name_in_owner = true
 process_mode = 3
 wait_time = 20.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -10
-offset_right = 1680.0
-offset_bottom = 1024.0
-mouse_filter = 2
-color = Color(0.380392, 0.443137, 0.188235, 1)
+[node name="time_bonus_ticker" type="Timer" parent="timers"]
+autostart = true
+
+[node name="LevelBackground" type="TextureRect" parent="."]
+z_index = -50
+offset_right = 1685.0
+offset_bottom = 1016.0
+texture = ExtResource("13_7mrxs")
 metadata/_edit_lock_ = true
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+offset_left = 200.0
+offset_top = 191.0
+offset_right = 912.0
+offset_bottom = 623.0
+mouse_filter = 2
+color = Color(0.0313726, 0.411765, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="OutOfBounds" parent="Walls" instance=ExtResource("12_bfyon")]
+position = Vector2(713, 69)
+scale = Vector2(80, 10)
+metadata/_edit_lock_ = true
+
+[node name="OutOfBounds2" parent="Walls" instance=ExtResource("12_bfyon")]
+position = Vector2(555, 751)
+scale = Vector2(80, 10)
+metadata/_edit_lock_ = true
+
+[node name="OutOfBounds3" parent="Walls" instance=ExtResource("12_bfyon")]
+position = Vector2(1224, 397)
+scale = Vector2(10, 50)
+metadata/_edit_lock_ = true
+
+[node name="OutOfBounds4" parent="Walls" instance=ExtResource("12_bfyon")]
+position = Vector2(-76, 405)
+scale = Vector2(10, 50)
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="Camera2D/touch_options/prompt_pause Button" to="." method="_on_prompt_pause_button_pressed"]
 [connection signal="finished" from="audio_player/victory_theme" to="." method="_on_victory_theme_finished"]
 [connection signal="timeout" from="timers/autofire_timer" to="." method="_on_autofire_timeout"]
+[connection signal="timeout" from="timers/time_bonus_ticker" to="." method="_on_time_bonus_ticker_timeout"]

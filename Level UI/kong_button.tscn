@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://blxf1lx4woov2"]
+
+[ext_resource type="Texture2D" uid="uid://bt31sl1tl5jfh" path="res://splash_art/menu art/DKBarrel_beta.png" id="1_6cnmj"]
+[ext_resource type="Script" uid="uid://dy74appvflrnp" path="res://Level UI/kong_button.gd" id="2_8hhh3"]
+[ext_resource type="FontFile" uid="uid://b78damunkxgsq" path="res://Font/impact.ttf" id="2_duqfb"]
+
+[node name="Kong Button" type="TextureButton"]
+anchors_preset = -1
+anchor_right = 0.076
+anchor_bottom = 0.148
+offset_right = 327.448
+offset_bottom = 383.096
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+size_flags_horizontal = 0
+texture_normal = ExtResource("1_6cnmj")
+script = ExtResource("2_8hhh3")
+
+[node name="banana_disclaimer" type="Label" parent="."]
+visible = false
+z_index = 5
+layout_mode = 0
+offset_left = -80.0
+offset_top = -320.0
+offset_right = 466.0
+offset_bottom = 81.0001
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_duqfb")
+theme_override_font_sizes/font_size = 80
+text = "Collect 
+bananas 
+to activate 
+Kong power"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="banana_disclaimer"]
+z_index = -1
+layout_mode = 0
+offset_left = 40.0
+offset_right = 520.0
+offset_bottom = 440.0
+
+[node name="display_timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="display_timer" to="." method="_on_display_timer_timeout"]

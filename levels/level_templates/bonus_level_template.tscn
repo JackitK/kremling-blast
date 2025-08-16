@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b32ogv250j2wt"]
+[gd_scene load_steps=8 format=3 uid="uid://b32ogv250j2wt"]
 
 [ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_s7tla"]
 [ext_resource type="Script" uid="uid://bovjeo6niboij" path="res://levels/level_templates/bonus_level_template.gd" id="2_7fvg4"]
@@ -6,13 +6,17 @@
 [ext_resource type="AudioStream" uid="uid://dvfss8i5tfa6y" path="res://sounds/music/bonus_theme.mp3" id="3_kg2n1"]
 [ext_resource type="AudioStream" uid="uid://cukv5t8nt73m3" path="res://sounds/sound effects/bonus_victory.wav" id="4_gswlh"]
 [ext_resource type="FontFile" uid="uid://crtrgur4xllmj" path="res://Font/PublicPixel.ttf" id="4_tayes"]
+[ext_resource type="FontFile" uid="uid://cf1ukv41uov1k" path="res://Font/Jumpman.ttf" id="5_udmw8"]
 
-[node name="bonusLevel" instance=ExtResource("1_s7tla")]
+[node name="level" instance=ExtResource("1_s7tla")]
 script = ExtResource("2_7fvg4")
 starting_bonus_time = 30
+time_bonus = 0
 
 [node name="Bonus_message_container" type="Control" parent="." index="0"]
 unique_name_in_owner = true
+visible = false
+z_index = 5
 layout_mode = 3
 anchors_preset = 0
 
@@ -44,35 +48,27 @@ Then right click a Kong
 to use a \"Kong Power\""
 horizontal_alignment = 1
 
-[node name="BaddyLeftMeter" parent="level_ui" index="1"]
-baddy_count_max = 0
+[node name="bonus_info_container" type="Node" parent="." index="4"]
 
-[node name="pop_up_message" parent="level_ui" index="3"]
-offset_left = 97.0
-offset_right = -342.0
-offset_bottom = -538.0
-
-[node name="Label" type="Label" parent="level_ui" index="4"]
-offset_left = 809.0
-offset_top = 1.0
-offset_right = 968.0
-offset_bottom = 84.0
+[node name="time_label" type="Label" parent="bonus_info_container" index="0"]
+unique_name_in_owner = true
+offset_left = 888.0
+offset_top = 8.0
+offset_right = 997.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("5_udmw8")
 theme_override_font_sizes/font_size = 60
 text = "Time:"
 
-[node name="level_time_label" type="Label" parent="level_ui" index="5"]
+[node name="level_time_label" type="Label" parent="bonus_info_container" index="1"]
 unique_name_in_owner = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 943.0
-offset_top = 1.0
-offset_right = 11.0
-offset_bottom = -537.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 992.0
+offset_top = 8.0
+offset_right = 1101.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("5_udmw8")
 theme_override_font_sizes/font_size = 60
-text = "xxxxx"
+text = "xx"
 horizontal_alignment = 1
 
 [node name="level_track" parent="audio_player" index="0"]

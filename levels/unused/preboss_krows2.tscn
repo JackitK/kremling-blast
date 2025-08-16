@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=4 uid="uid://csslfwojm1rn0"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_5jfn5"]
+[ext_resource type="PackedScene" uid="uid://bn7xwtowhw00r" path="res://levels/campagin_levels/10.tscn" id="2_u4je5"]
+[ext_resource type="PackedScene" uid="uid://cxq08m17pbxcj" path="res://level objects/Enemies/krow.tscn" id="3_bjbox"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="4_438hw"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="5_ak322"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="6_ox0oh"]
+[ext_resource type="PackedScene" uid="uid://datd4j7a0tieu" path="res://level objects/blocks/breakable_block.tscn" id="7_fng47"]
+
+[node name="LevelTemplate" instance=ExtResource("1_5jfn5")]
+next_level = ExtResource("2_u4je5")
+time_bonus = 35
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 20
+
+[node name="help_button" parent="level_ui" index="5"]
+visible = false
+offset_left = 1.0
+offset_top = 436.0
+offset_right = -906.0
+offset_bottom = 88.0
+hint_available = false
+
+[node name="Camera2D" parent="." index="2"]
+zoom = Vector2(0.7, 0.7)
+metadata/_edit_lock_ = true
+
+[node name="krow2" parent="baddy group" index="0" instance=ExtResource("3_bjbox")]
+position = Vector2(593, 724)
+scale = Vector2(1.8, 1.8)
+
+[node name="krow3" parent="baddy group" index="1" instance=ExtResource("3_bjbox")]
+position = Vector2(823, 726)
+scale = Vector2(1.8, 1.8)
+
+[node name="krow6" parent="baddy group" index="2" instance=ExtResource("3_bjbox")]
+position = Vector2(814, 346)
+scale = Vector2(1.8, 1.8)
+
+[node name="krow7" parent="baddy group" index="3" instance=ExtResource("3_bjbox")]
+position = Vector2(630.5, 338.8)
+scale = Vector2(1.8, 1.8)
+
+[node name="krow8" parent="baddy group" index="4" instance=ExtResource("3_bjbox")]
+position = Vector2(720, 263)
+scale = Vector2(1.8, 1.8)
+ground_time = 4.0
+air_time = 3.0
+
+[node name="krow4" parent="baddy group" index="5" instance=ExtResource("3_bjbox")]
+position = Vector2(693, 814)
+scale = Vector2(1.8, 1.8)
+ground_time = 4.0
+air_time = 3.0
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("4_438hw")]
+position = Vector2(931, 339)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong2" parent="kong_group" index="1" instance=ExtResource("4_438hw")]
+position = Vector2(931, 723)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong3" parent="kong_group" index="2" instance=ExtResource("4_438hw")]
+position = Vector2(523, 339)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong4" parent="kong_group" index="3" instance=ExtResource("4_438hw")]
+position = Vector2(523, 723)
+scale = Vector2(1.5, 1.5)
+
+[node name="Donkey Kong" parent="kong_group" index="4" instance=ExtResource("5_ak322")]
+position = Vector2(724, 333)
+
+[node name="Diddy" parent="kong_group" index="5" instance=ExtResource("6_ox0oh")]
+position = Vector2(712, 651)
+scale = Vector2(1.5, 1.5)
+
+[node name="BreakableBlock" parent="collectables" index="0" instance=ExtResource("7_fng47")]
+z_index = -1
+position = Vector2(456, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock2" parent="collectables" index="1" instance=ExtResource("7_fng47")]
+z_index = -1
+position = Vector2(552, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock3" parent="collectables" index="2" instance=ExtResource("7_fng47")]
+z_index = -1
+position = Vector2(648, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock4" parent="collectables" index="3" instance=ExtResource("7_fng47")]
+z_index = -1
+position = Vector2(744, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock5" parent="collectables" index="4" instance=ExtResource("7_fng47")]
+z_index = -1
+position = Vector2(840, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock6" parent="collectables" index="5" instance=ExtResource("7_fng47")]
+z_index = -1
+position = Vector2(936, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock7" parent="collectables" index="6" instance=ExtResource("7_fng47")]
+z_index = -1
+position = Vector2(1030, 552)
+scale = Vector2(3, 3)
+wall_type = "wood"
+
+[node name="Level Tile Map" parent="." index="6"]
+position = Vector2(167, 0)
+tile_map_data = PackedByteArray("AAAEAAQAAAADAAEAAAAEAAUAAAADAAEAAAAEAAYAAAADAAEAAAAEAAcAAAADAAEAAAAEAAgAAAADAAEAAAAEAAkAAAADAAEAAAAEAAoAAAADAAEAAAASAAQAAAADAAEAAAASAAUAAAADAAEAAAASAAYAAAADAAEAAAASAAcAAAADAAEAAAASAAgAAAADAAEAAAASAAkAAAADAAEAAAASAAoAAAADAAEAAAAEAAwAAAADAAEAAAASAAwAAAADAAEAAAASAAsAAAADAAEAAAAEAAsAAAADAAEAAAASAA0AAAADAAEAAAASAA4AAAADAAEAAAASAA8AAAADAAEAAAASABAAAAADAAEAAAAEABAAAAADAAEAAAAEAA8AAAADAAEAAAAEAA4AAAADAAEAAAAEAA0AAAADAAEAAAAFAAMAAAABAAMAAAAEAAMAAAAEAAAAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAABAAMAAAASAAMAAAAHAAAAAAAEABEAAAADAAEAAAAEABIAAAAEAAMAAAASABIAAAAHAAMAAAASABEAAAADAAEAAAAFABIAAAABAAMAAAAGABIAAAABAAMAAAAHABIAAAABAAMAAAAIABIAAAABAAMAAAAJABIAAAABAAMAAAAKABIAAAABAAMAAAALABIAAAABAAMAAAAMABIAAAABAAMAAAANABIAAAABAAMAAAAOABIAAAABAAMAAAAPABIAAAABAAMAAAAQABIAAAABAAMAAAARABIAAAABAAMAAAA=")
+
+[node name="OutOfBounds2" parent="Walls" index="1"]
+position = Vector2(721, 1002)
+
+[node name="OutOfBounds3" parent="Walls" index="2"]
+position = Vector2(1230, 488)
+
+[node name="OutOfBounds4" parent="Walls" index="3"]
+position = Vector2(98, 509)

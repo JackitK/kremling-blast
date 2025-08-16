@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://cn714pxxshvbe"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_8s3b3"]
+[ext_resource type="PackedScene" uid="uid://ct3oi1j8jekw0" path="res://levels/campagin_levels/05.tscn" id="2_8s3b3"]
+[ext_resource type="PackedScene" uid="uid://dckxsykjevwy2" path="res://level objects/Enemies/kritter.tscn" id="4_mdw0g"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="5_naavy"]
+[ext_resource type="PackedScene" uid="uid://datd4j7a0tieu" path="res://level objects/blocks/breakable_block.tscn" id="6_cc5tm"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="6_gh4cy"]
+[ext_resource type="AudioStream" uid="uid://ccl6aocmqcmwf" path="res://sounds/music/jungle.mp3" id="7_yhk8f"]
+
+[node name="LevelTemplate" instance=ExtResource("1_8s3b3")]
+next_level = ExtResource("2_8s3b3")
+time_bonus = 20
+
+[node name="help_button" parent="level_ui" index="3"]
+export_file_path = "res://Dialogue/Squawks_hints/tiles_glass.txt"
+hint_available = true
+
+[node name="baddy" parent="baddy group" index="0" instance=ExtResource("4_mdw0g")]
+position = Vector2(784, 496)
+
+[node name="baddy3" parent="baddy group" index="1" instance=ExtResource("4_mdw0g")]
+position = Vector2(784, 384)
+
+[node name="baddy4" parent="baddy group" index="2" instance=ExtResource("4_mdw0g")]
+position = Vector2(784, 288)
+
+[node name="Donkey Kong" parent="kong_group" index="0" instance=ExtResource("6_gh4cy")]
+position = Vector2(352, 416)
+
+[node name="monkey3" parent="kong_group" index="1" instance=ExtResource("5_naavy")]
+position = Vector2(472, 440)
+scale = Vector2(1.3, 1.3)
+
+[node name="monkey4" parent="kong_group" index="2" instance=ExtResource("5_naavy")]
+position = Vector2(472, 536)
+scale = Vector2(1.3, 1.3)
+
+[node name="monkey2" parent="kong_group" index="3" instance=ExtResource("5_naavy")]
+position = Vector2(472, 328)
+scale = Vector2(1.3, 1.3)
+
+[node name="block_group" type="Node" parent="collectables" index="0"]
+
+[node name="BreakableBlock" parent="collectables/block_group" index="0" instance=ExtResource("6_cc5tm")]
+position = Vector2(528, 384)
+wall_type = "glass"
+
+[node name="BreakableBlock6" parent="collectables/block_group" index="1" instance=ExtResource("6_cc5tm")]
+position = Vector2(528, 416)
+wall_type = "glass"
+
+[node name="BreakableBlock7" parent="collectables/block_group" index="2" instance=ExtResource("6_cc5tm")]
+position = Vector2(528, 448)
+wall_type = "glass"
+
+[node name="BreakableBlock8" parent="collectables/block_group" index="3" instance=ExtResource("6_cc5tm")]
+position = Vector2(528, 480)
+wall_type = "glass"
+
+[node name="BreakableBlock9" parent="collectables/block_group" index="4" instance=ExtResource("6_cc5tm")]
+position = Vector2(528, 512)
+wall_type = "glass"
+
+[node name="BreakableBlock10" parent="collectables/block_group" index="5" instance=ExtResource("6_cc5tm")]
+position = Vector2(528, 544)
+wall_type = "glass"
+
+[node name="BreakableBlock11" parent="collectables/block_group" index="6" instance=ExtResource("6_cc5tm")]
+z_index = -1
+position = Vector2(528, 576)
+wall_type = "glass"
+
+[node name="BreakableBlock2" parent="collectables/block_group" index="7" instance=ExtResource("6_cc5tm")]
+position = Vector2(528, 288)
+wall_type = "glass"
+
+[node name="BreakableBlock3" parent="collectables/block_group" index="8" instance=ExtResource("6_cc5tm")]
+position = Vector2(528, 352)
+wall_type = "glass"
+
+[node name="BreakableBlock4" parent="collectables/block_group" index="9" instance=ExtResource("6_cc5tm")]
+z_index = -1
+position = Vector2(528, 256)
+wall_type = "glass"
+
+[node name="BreakableBlock5" parent="collectables/block_group" index="10" instance=ExtResource("6_cc5tm")]
+position = Vector2(528, 320)
+wall_type = "glass"
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("7_yhk8f")
+volume_db = 0.0

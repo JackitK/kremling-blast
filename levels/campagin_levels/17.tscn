@@ -1,0 +1,209 @@
+[gd_scene load_steps=12 format=4 uid="uid://dqwovbu4k27ra"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_3q8q8"]
+[ext_resource type="PackedScene" uid="uid://gbxdascq0hjw" path="res://levels/campagin_levels/18.tscn" id="2_cqtf4"]
+[ext_resource type="PackedScene" uid="uid://bpj1hhhlpospr" path="res://level objects/Enemies/rekoil.tscn" id="3_n0uwq"]
+[ext_resource type="PackedScene" uid="uid://btnj1n1ywtajf" path="res://level objects/Enemies/gnawty.tscn" id="4_6qku1"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="5_6rejd"]
+[ext_resource type="PackedScene" uid="uid://d183a8xpgyt22" path="res://level objects/Good Guys/donkey_kong.tscn" id="6_sv8e6"]
+[ext_resource type="PackedScene" uid="uid://datd4j7a0tieu" path="res://level objects/blocks/breakable_block.tscn" id="7_h2p3t"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="8_0wce5"]
+[ext_resource type="PackedScene" uid="uid://d1y8sjoldxrjv" path="res://level objects/blocks/no_shoot_zone.tscn" id="9_54tav"]
+[ext_resource type="Texture2D" uid="uid://bh0pvgpyakywi" path="res://splash_art/level_art/Pirate ship.jpg" id="10_cqtf4"]
+[ext_resource type="AudioStream" uid="uid://dlby4jeirck0w" path="res://sounds/music/ship.mp3" id="10_n0uwq"]
+
+[node name="LevelTemplate" instance=ExtResource("1_3q8q8")]
+next_level = ExtResource("2_cqtf4")
+time_bonus = 20
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 25
+
+[node name="help_button" parent="level_ui" index="3"]
+export_file_path = "res://Dialogue/Squawks_hints/reinforce_glass.txt"
+hint_available = true
+
+[node name="rekoil3" parent="baddy group" index="0" instance=ExtResource("3_n0uwq")]
+position = Vector2(640, 421)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+ground_time = 1.0
+air_time = 0.8
+weight = "heavy"
+
+[node name="Gnawty" parent="baddy group" index="1" instance=ExtResource("4_6qku1")]
+position = Vector2(200, 232)
+
+[node name="Gnawty2" parent="baddy group" index="2" instance=ExtResource("4_6qku1")]
+position = Vector2(288, 320)
+
+[node name="Gnawty3" parent="baddy group" index="3" instance=ExtResource("4_6qku1")]
+position = Vector2(104, 320)
+
+[node name="Gnawty4" parent="baddy group" index="4" instance=ExtResource("4_6qku1")]
+position = Vector2(208, 392)
+
+[node name="kong" parent="kong_group" index="0" instance=ExtResource("5_6rejd")]
+position = Vector2(480, 344)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong2" parent="kong_group" index="1" instance=ExtResource("5_6rejd")]
+position = Vector2(576, 232)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong3" parent="kong_group" index="2" instance=ExtResource("5_6rejd")]
+position = Vector2(760, 544)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong4" parent="kong_group" index="3" instance=ExtResource("5_6rejd")]
+position = Vector2(824, 328)
+scale = Vector2(1.5, 1.5)
+
+[node name="kong5" parent="kong_group" index="4" instance=ExtResource("5_6rejd")]
+position = Vector2(496, 496)
+scale = Vector2(1.5, 1.5)
+
+[node name="Donkey" parent="kong_group" index="5" instance=ExtResource("6_sv8e6")]
+position = Vector2(208, 312)
+
+[node name="breakable block group" type="Node2D" parent="collectables" index="0"]
+
+[node name="BreakableBlock2" parent="collectables/breakable block group" index="0" instance=ExtResource("7_h2p3t")]
+z_index = -1
+position = Vector2(688, 360)
+scale = Vector2(3, 1)
+wall_type = "wood"
+
+[node name="BreakableBlock4" parent="collectables/breakable block group" index="1" instance=ExtResource("7_h2p3t")]
+z_index = -1
+position = Vector2(593, 360)
+scale = Vector2(3, 1)
+wall_type = "wood"
+
+[node name="BreakableBlock6" parent="collectables/breakable block group" index="2" instance=ExtResource("7_h2p3t")]
+z_index = -1
+position = Vector2(592, 484)
+scale = Vector2(3, 1)
+wall_type = "wood"
+
+[node name="BreakableBlock7" parent="collectables/breakable block group" index="3" instance=ExtResource("7_h2p3t")]
+z_index = -1
+position = Vector2(688, 484)
+scale = Vector2(3, 1)
+wall_type = "wood"
+
+[node name="BreakableBlock3" parent="collectables/breakable block group" index="4" instance=ExtResource("7_h2p3t")]
+z_index = -2
+position = Vector2(560, 424)
+scale = Vector2(1, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock5" parent="collectables/breakable block group" index="5" instance=ExtResource("7_h2p3t")]
+z_index = -2
+position = Vector2(719, 421)
+scale = Vector2(1, 3)
+wall_type = "wood"
+
+[node name="BreakableBlock13" parent="collectables/breakable block group" index="6" instance=ExtResource("7_h2p3t")]
+z_index = 1
+position = Vector2(832, 432)
+scale = Vector2(1.5, 1.5)
+wall_type = "re_glass"
+
+[node name="BreakableBlock17" parent="collectables/breakable block group" index="7" instance=ExtResource("7_h2p3t")]
+z_index = 1
+position = Vector2(480, 424)
+scale = Vector2(1.5, 1.5)
+wall_type = "re_glass"
+
+[node name="BreakableBlock18" parent="collectables/breakable block group" index="8" instance=ExtResource("7_h2p3t")]
+z_index = 1
+position = Vector2(1620, 1420)
+scale = Vector2(2.25, 2.25)
+wall_type = "re_glass"
+
+[node name="BreakableBlock15" parent="collectables/breakable block group" index="9" instance=ExtResource("7_h2p3t")]
+z_index = 1
+position = Vector2(648, 568)
+scale = Vector2(1.5, 1.5)
+wall_type = "re_glass"
+
+[node name="BreakableBlock16" parent="collectables/breakable block group" index="10" instance=ExtResource("7_h2p3t")]
+z_index = 1
+position = Vector2(640, 280)
+scale = Vector2(1.5, 1.5)
+wall_type = "re_glass"
+
+[node name="BreakableBlock19" parent="collectables/breakable block group" index="11" instance=ExtResource("7_h2p3t")]
+z_index = 1
+position = Vector2(824, 253)
+scale = Vector2(1.5, 1.5)
+wall_type = "re_glass"
+
+[node name="BreakableBlock20" parent="collectables/breakable block group" index="12" instance=ExtResource("7_h2p3t")]
+z_index = 1
+position = Vector2(483, 272)
+scale = Vector2(1.5, 1.5)
+wall_type = "re_glass"
+
+[node name="BreakableBlock21" parent="collectables/breakable block group" index="13" instance=ExtResource("7_h2p3t")]
+z_index = 1
+position = Vector2(507, 567)
+scale = Vector2(1.5, 1.5)
+wall_type = "re_glass"
+
+[node name="BreakableBlock22" parent="collectables/breakable block group" index="14" instance=ExtResource("7_h2p3t")]
+z_index = 1
+position = Vector2(825, 565)
+scale = Vector2(1.5, 1.5)
+wall_type = "re_glass"
+
+[node name="Banana" parent="collectables" index="1" instance=ExtResource("8_0wce5")]
+position = Vector2(640, 280)
+
+[node name="Banana5" parent="collectables" index="2" instance=ExtResource("8_0wce5")]
+position = Vector2(824, 253)
+
+[node name="Banana6" parent="collectables" index="3" instance=ExtResource("8_0wce5")]
+position = Vector2(483, 272)
+
+[node name="Banana7" parent="collectables" index="4" instance=ExtResource("8_0wce5")]
+position = Vector2(507, 567)
+
+[node name="Banana8" parent="collectables" index="5" instance=ExtResource("8_0wce5")]
+position = Vector2(825, 565)
+
+[node name="Banana2" parent="collectables" index="6" instance=ExtResource("8_0wce5")]
+position = Vector2(648, 568)
+
+[node name="Banana3" parent="collectables" index="7" instance=ExtResource("8_0wce5")]
+position = Vector2(480, 424)
+
+[node name="Banana4" parent="collectables" index="8" instance=ExtResource("8_0wce5")]
+position = Vector2(832, 432)
+
+[node name="no shoot zone" parent="collectables" index="9" instance=ExtResource("9_54tav")]
+z_index = 10
+position = Vector2(192, 312)
+scale = Vector2(9, 9)
+
+[node name="no shoot zone2" parent="collectables" index="10" instance=ExtResource("9_54tav")]
+z_index = 10
+position = Vector2(640, 424)
+scale = Vector2(3, 3)
+
+[node name="Level Tile Map" parent="." index="6"]
+tile_map_data = PackedByteArray("AAAEAAkAAAABAAMAAAAGAAwAAAADAAEAAAAHAAQAAAADAAEAAAAGAA0AAAAEAAMAAAAHAA0AAAABAAMAAAAIAA0AAAABAAMAAAAJAA0AAAABAAMAAAAKAA0AAAABAAMAAAALAA0AAAABAAMAAAAMAA0AAAABAAMAAAANAA0AAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAABAAMAAAASAAMAAAABAAMAAAATAAMAAAAHAAAAAAATAAQAAAADAAEAAAATAAUAAAADAAEAAAATAAYAAAADAAEAAAATAAcAAAADAAEAAAATAAgAAAADAAEAAAAGAAsAAAADAAEAAAAGAAoAAAADAAEAAAAGAAkAAAAIAAAAAAAHAAYAAAADAAEAAAAHAAcAAAADAAEAAAATAAkAAAADAAEAAAATAAoAAAADAAEAAAATAAsAAAADAAEAAAATAAwAAAADAAEAAAATAA0AAAAHAAMAAAASAA0AAAABAAMAAAARAA0AAAABAAMAAAAQAA0AAAABAAMAAAAPAA0AAAABAAMAAAAOAA0AAAABAAMAAAAAAAMAAAAEAAAAAAABAAMAAAABAAMAAAACAAMAAAABAAMAAAADAAMAAAABAAMAAAAEAAMAAAABAAMAAAAFAAMAAAABAAMAAAAFAAkAAAABAAMAAAADAAkAAAABAAMAAAACAAkAAAABAAMAAAABAAkAAAABAAMAAAAAAAkAAAAEAAMAAAAAAAgAAAADAAEAAAAAAAcAAAADAAEAAAAAAAYAAAADAAEAAAAAAAUAAAADAAEAAAAAAAQAAAADAAEAAAAGAAMAAAABAAMAAAAHAAMAAAAIAAAAAAAHAAUAAAADAAEAAAAHAAgAAAADAAEAAAAHAAkAAAAHAAMAAAA=")
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("10_n0uwq")
+
+[node name="LevelBackground" parent="." index="9"]
+offset_left = -176.0
+offset_top = -16.0
+offset_right = 1204.0
+offset_bottom = 816.0
+texture = ExtResource("10_cqtf4")
+
+[node name="ColorRect" parent="." index="10"]
+visible = false

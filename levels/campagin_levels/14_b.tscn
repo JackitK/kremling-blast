@@ -1,0 +1,289 @@
+[gd_scene load_steps=10 format=4 uid="uid://cfho0r5lebqw"]
+
+[ext_resource type="PackedScene" uid="uid://b32ogv250j2wt" path="res://levels/level_templates/bonus_level_template.tscn" id="1_gt7g8"]
+[ext_resource type="PackedScene" uid="uid://5aoo8k3s2ioo" path="res://levels/campagin_levels/15.tscn" id="2_8syy8"]
+[ext_resource type="PackedScene" uid="uid://dckxsykjevwy2" path="res://level objects/Enemies/kritter.tscn" id="2_dt5jm"]
+[ext_resource type="PackedScene" uid="uid://cd4edf32nb4xh" path="res://level objects/Good Guys/diddy_kong.tscn" id="3_8syy8"]
+[ext_resource type="PackedScene" uid="uid://8m7q062kujnh" path="res://level objects/Collectables/spawner.tscn" id="4_uugvu"]
+[ext_resource type="PackedScene" uid="uid://bjlgbq7oj3ua7" path="res://level objects/Collectables/banana.tscn" id="5_07m4q"]
+[ext_resource type="PackedScene" uid="uid://datd4j7a0tieu" path="res://level objects/blocks/breakable_block.tscn" id="6_fng4w"]
+[ext_resource type="PackedScene" uid="uid://dajvrkvvonxqt" path="res://level objects/Collectables/special_event_trigger.tscn" id="7_a6ai8"]
+[ext_resource type="Texture2D" uid="uid://d1hexmeos5gk7" path="res://splash_art/level_art/bonus room_diddy.jpg" id="9_8syy8"]
+
+[node name="level" instance=ExtResource("1_gt7g8")]
+starting_bonus_time = 50
+next_level = ExtResource("2_8syy8")
+
+[node name="Bonus_message_container" parent="." index="0"]
+z_index = 10
+
+[node name="bonus_message_box" parent="Bonus_message_container" index="0"]
+offset_left = -197.0
+offset_top = -7.0
+offset_right = 1436.0
+offset_bottom = 1081.0
+
+[node name="bonus_prompt" parent="Bonus_message_container" index="1"]
+visible = false
+text = "Right click Diddy in his
+jetbarrel for extra power."
+
+[node name="PauseMenu" parent="CanvasLayer" index="0"]
+z_index = 20
+
+[node name="Score" parent="level_ui" index="0"]
+offset_left = 10.0
+offset_top = 0.0
+offset_right = -950.0
+offset_bottom = -544.0
+
+[node name="help_button" parent="level_ui" index="3"]
+visible = false
+z_index = 1
+offset_top = 310.0
+offset_bottom = 309.976
+export_file_path = "res://Dialogue/Squawks_hints/hint_diddy_3.txt"
+hint_available = true
+
+[node name="PauseButton" parent="level_ui" index="6"]
+z_index = 0
+offset_left = 1080.0
+offset_top = 592.0
+offset_right = 1112.0
+offset_bottom = 624.0
+
+[node name="Camera2D" parent="." index="3"]
+zoom = Vector2(1, 0.6)
+
+[node name="prompt_pause Button" parent="Camera2D/touch_options" index="0"]
+offset_left = 996.0
+offset_top = 348.0
+offset_right = 1149.0
+offset_bottom = 425.0
+
+[node name="Kong Button" parent="Camera2D/touch_options" index="1"]
+anchor_left = 0.917
+anchor_top = 0.753
+anchor_right = 0.986
+anchor_bottom = 0.889
+offset_left = -0.384033
+offset_top = 0.0559692
+offset_right = 335.13
+offset_bottom = 390.928
+metadata/_edit_use_anchors_ = true
+
+[node name="Kritter" parent="baddy group" index="0" instance=ExtResource("2_dt5jm")]
+position = Vector2(223, 995)
+collision_layer = 2
+has_gold_state = true
+
+[node name="Kritter2" parent="baddy group" index="1" instance=ExtResource("2_dt5jm")]
+position = Vector2(908, 976)
+collision_layer = 2
+has_gold_state = true
+
+[node name="Kritter3" parent="baddy group" index="2" instance=ExtResource("2_dt5jm")]
+position = Vector2(912, 526)
+collision_layer = 2
+has_gold_state = true
+
+[node name="Kritter4" parent="baddy group" index="3" instance=ExtResource("2_dt5jm")]
+position = Vector2(568, 288)
+collision_layer = 2
+has_gold_state = true
+
+[node name="Kritter5" parent="baddy group" index="4" instance=ExtResource("2_dt5jm")]
+position = Vector2(211, 515)
+collision_layer = 2
+has_gold_state = true
+
+[node name="Diddy" parent="kong_group" index="0" instance=ExtResource("3_8syy8")]
+position = Vector2(584, 536)
+scale = Vector2(2, 2)
+max_points_earned = 150
+
+[node name="spawner" parent="collectables" index="0" instance=ExtResource("4_uugvu")]
+position = Vector2(576, 480)
+scale = Vector2(2, 2)
+import_path = "res://level objects/Collectables/banana.tscn"
+spawn_value = 5
+spawn_max = 5
+movement_amount = 100.0
+spawn_scale = 2.0
+
+[node name="Banana2" parent="collectables" index="1" instance=ExtResource("5_07m4q")]
+position = Vector2(288, 944)
+scale = Vector2(2, 2)
+
+[node name="Banana3" parent="collectables" index="2" instance=ExtResource("5_07m4q")]
+position = Vector2(872, 944)
+scale = Vector2(2, 2)
+
+[node name="Banana4" parent="collectables" index="3" instance=ExtResource("5_07m4q")]
+position = Vector2(968, 520)
+scale = Vector2(2, 2)
+
+[node name="Banana7" parent="collectables" index="4" instance=ExtResource("5_07m4q")]
+position = Vector2(576, 616)
+scale = Vector2(2, 2)
+
+[node name="Banana5" parent="collectables" index="5" instance=ExtResource("5_07m4q")]
+position = Vector2(568, 272)
+scale = Vector2(2, 2)
+
+[node name="Banana6" parent="collectables" index="6" instance=ExtResource("5_07m4q")]
+position = Vector2(200, 512)
+scale = Vector2(2, 2)
+
+[node name="wall" type="Node" parent="collectables" index="7"]
+
+[node name="BreakableBlock" parent="collectables/wall" index="0" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(320, 416)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock2" parent="collectables/wall" index="1" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(536, 416)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock3" parent="collectables/wall" index="2" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(464, 416)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock5" parent="collectables/wall" index="3" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(680, 416)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock6" parent="collectables/wall" index="4" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(752, 416)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock19" parent="collectables/wall" index="5" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(824, 416)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock7" parent="collectables/wall" index="6" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(680, 489)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock8" parent="collectables/wall" index="7" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(680, 560)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock9" parent="collectables/wall" index="8" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(680, 631)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock11" parent="collectables/wall" index="9" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(680, 704)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock12" parent="collectables/wall" index="10" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(608, 704)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock13" parent="collectables/wall" index="11" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(536, 704)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock14" parent="collectables/wall" index="12" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(464, 704)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock15" parent="collectables/wall" index="13" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(464, 632)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock16" parent="collectables/wall" index="14" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(464, 560)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock17" parent="collectables/wall" index="15" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(464, 488)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock18" parent="collectables/wall" index="16" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(608, 416)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="BreakableBlock4" parent="collectables/wall" index="17" instance=ExtResource("6_fng4w")]
+z_index = -1
+position = Vector2(392, 416)
+scale = Vector2(2, 2)
+wall_type = "wood"
+
+[node name="event_trigger" parent="collectables" index="8" instance=ExtResource("7_a6ai8")]
+position = Vector2(1421.74, 475.378)
+events = "make gold"
+range = "only_once"
+spawn_by = "score"
+trigger_value = 100
+
+[node name="Level Tile Map" parent="." index="8"]
+tile_map_data = PackedByteArray("AAAEAAgAAAABAAMAAAASAAgAAAABAAMAAAAIAAQAAAAEAAAAAAAJAAQAAAAHAAMAAAANAAQAAAAEAAMAAAAOAAQAAAAHAAAAAAAFAAgAAAAHAAMAAAADAAgAAAABAAMAAAACAAgAAAABAAMAAAAJABQAAAAHAAMAAAAIABUAAAADAAEAAAAXAAsAAAAHAAMAAAAXAAkAAAADAAEAAAAXAAoAAAADAAEAAAABAAgAAAABAAMAAAAAAAgAAAAEAAAAAAAAAAkAAAADAAEAAAAAAAoAAAADAAEAAAANAAMAAAADAAEAAAAOAAUAAAAEAAMAAAAPAAUAAAAHAAAAAAAPAAYAAAAEAAMAAAAQAAYAAAAHAAAAAAAQAAcAAAAEAAMAAAARAAcAAAAHAAAAAAARAAgAAAAEAAMAAAAEAA8AAAADAAEAAAAEABAAAAADAAEAAAAEABEAAAAHAAMAAAADABEAAAABAAMAAAACABIAAAAHAAMAAAACABYAAAABAAMAAAADABYAAAABAAMAAAAEABYAAAABAAMAAAAFABYAAAABAAMAAAAGABYAAAABAAMAAAAHABYAAAABAAMAAAAIABQAAAAEAAAAAAAJABMAAAAEAAAAAAAKABMAAAAHAAMAAAAKABIAAAAEAAAAAAALABIAAAAGAAMAAAALABEAAAAAAAAAAAAPABQAAAAHAAAAAAAPABUAAAAEAAMAAAAQABUAAAAHAAAAAAARABYAAAABAAMAAAASABYAAAABAAMAAAATABYAAAABAAMAAAAUABYAAAABAAMAAAAVABYAAAABAAMAAAAWABYAAAABAAMAAAAQABYAAAAEAAMAAAAOABQAAAAEAAMAAAAWABMAAAAEAAMAAAAVABIAAAAEAAMAAAAUABEAAAAEAAMAAAAUABAAAAADAAAAAAATAA8AAAADAAIAAAATAAgAAAABAAMAAAAUAAgAAAABAAMAAAAVAAgAAAABAAMAAAAWAAgAAAABAAMAAAAXAAgAAAAHAAAAAAAWAAsAAAAEAAAAAAAWAAwAAAAHAAMAAAAVAAwAAAAEAAAAAAAVAA0AAAAHAAMAAAAUAA0AAAAEAAAAAAAUAA4AAAAHAAMAAAATAA4AAAAEAAAAAAAAAAsAAAAEAAMAAAABAAwAAAAEAAMAAAACAA0AAAAEAAMAAAADAA4AAAAEAAMAAAABAAsAAAAHAAAAAAACAAwAAAAHAAAAAAADAA0AAAAHAAAAAAAEAA4AAAAHAAAAAAAMAAIAAAAFAAMAAAAMAAEAAAACAAAAAAANAAIAAAAHAAAAAAALAAEAAAAAAAAAAAALAAIAAAAGAAMAAAAKAAMAAAAHAAMAAAAKAAIAAAAEAAAAAAAJAAMAAAAEAAAAAAAIAAUAAAAHAAMAAAAHAAUAAAAEAAAAAAAHAAYAAAAHAAMAAAAGAAYAAAAEAAAAAAAGAAcAAAAHAAMAAAAFAAcAAAAEAAAAAAAMABEAAAACAAAAAAAMABIAAAAFAAMAAAANABIAAAAHAAAAAAANABMAAAAEAAMAAAAOABMAAAAHAAAAAAAAABYAAAAEAAMAAAAAABUAAAADAAEAAAAAABQAAAADAAEAAAABABMAAAAHAAMAAAABABYAAAABAAMAAAAAABMAAAAEAAAAAAAXABQAAAADAAEAAAAXABUAAAADAAEAAAAXABYAAAAHAAMAAAAXABMAAAAHAAAAAAAIABYAAAAHAAMAAAABABIAAAAEAAAAAAACABEAAAAEAAAAAAAWABIAAAAHAAAAAAAVABEAAAAHAAAAAAA=")
+metadata/_edit_lock_ = true
+
+[node name="click_spam_timer" type="Timer" parent="timers" index="4"]
+wait_time = 0.1
+
+[node name="LevelBackground" parent="." index="11"]
+offset_left = -120.0
+offset_top = -24.0
+offset_right = 1248.0
+offset_bottom = 1120.0
+texture = ExtResource("9_8syy8")
+
+[node name="ColorRect" parent="." index="12"]
+visible = false
+offset_left = -212.0
+offset_top = -19.0
+offset_right = 1698.0
+offset_bottom = 1169.0
+color = Color(0.710759, 0.204897, 0.186488, 1)
+
+[node name="OutOfBounds" parent="Walls" index="0"]
+position = Vector2(583, 33)
+
+[node name="OutOfBounds2" parent="Walls" index="1"]
+position = Vector2(647, 1182)
+
+[node name="OutOfBounds3" parent="Walls" index="2"]
+position = Vector2(1254, 601)
+
+[node name="OutOfBounds4" parent="Walls" index="3"]
+position = Vector2(-101, 620)
+
+[connection signal="timeout" from="timers/click_spam_timer" to="." method="_on_click_spam_timer_timeout"]

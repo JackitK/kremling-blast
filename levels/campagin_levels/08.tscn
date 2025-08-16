@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://nsffg6wsqig7"]
+
+[ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_8cf2o"]
+[ext_resource type="PackedScene" uid="uid://ba2nls5nkrrpc" path="res://levels/campagin_levels/09.tscn" id="2_thltt"]
+[ext_resource type="PackedScene" uid="uid://dofuuv43fk0y8" path="res://level objects/Enemies/klump.tscn" id="3_1eeqx"]
+[ext_resource type="PackedScene" uid="uid://btnj1n1ywtajf" path="res://level objects/Enemies/gnawty.tscn" id="4_1eeqx"]
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="5_1eeqx"]
+[ext_resource type="PackedScene" uid="uid://datd4j7a0tieu" path="res://level objects/blocks/breakable_block.tscn" id="6_1eeqx"]
+[ext_resource type="AudioStream" uid="uid://ccl6aocmqcmwf" path="res://sounds/music/jungle.mp3" id="7_ibyri"]
+
+[node name="LevelTemplate" instance=ExtResource("1_8cf2o")]
+next_level = ExtResource("2_thltt")
+time_bonus = 20
+
+[node name="BaddyLeftMeter" parent="level_ui" index="1"]
+baddy_count_max = 25
+
+[node name="klump still 1" parent="baddy group" index="0" instance=ExtResource("3_1eeqx")]
+position = Vector2(712, 472)
+base_speed = 250.0
+hit_speed = 50.0
+shot_value = 2
+score_value = 2
+start_still = true
+
+[node name="klump still 2" parent="baddy group" index="1" instance=ExtResource("3_1eeqx")]
+position = Vector2(712, 312)
+base_speed = 250.0
+hit_speed = 50.0
+score_value = 2
+start_still = true
+
+[node name="Gnawty" parent="baddy group" index="2" instance=ExtResource("4_1eeqx")]
+position = Vector2(288, 448)
+
+[node name="Gnawty2" parent="baddy group" index="3" instance=ExtResource("4_1eeqx")]
+position = Vector2(440, 456)
+
+[node name="Gnawty3" parent="baddy group" index="4" instance=ExtResource("4_1eeqx")]
+position = Vector2(360, 384)
+
+[node name="kong2" parent="kong_group" index="0" instance=ExtResource("5_1eeqx")]
+position = Vector2(816, 296)
+scale = Vector2(1.3, 1.3)
+base_speed = 500.0
+start_still = true
+
+[node name="kong4" parent="kong_group" index="1" instance=ExtResource("5_1eeqx")]
+position = Vector2(624, 296)
+scale = Vector2(1.3, 1.3)
+base_speed = 500.0
+start_still = true
+
+[node name="kong7" parent="kong_group" index="2" instance=ExtResource("5_1eeqx")]
+position = Vector2(440, 296)
+scale = Vector2(1.3, 1.3)
+
+[node name="kong6" parent="kong_group" index="3" instance=ExtResource("5_1eeqx")]
+position = Vector2(280, 296)
+scale = Vector2(1.3, 1.3)
+
+[node name="kong5" parent="kong_group" index="4" instance=ExtResource("5_1eeqx")]
+position = Vector2(822, 543)
+scale = Vector2(1.3, 1.3)
+base_speed = 500.0
+start_still = true
+
+[node name="kong3" parent="kong_group" index="5" instance=ExtResource("5_1eeqx")]
+position = Vector2(616, 536)
+scale = Vector2(1.3, 1.3)
+base_speed = 500.0
+start_still = true
+
+[node name="wall" type="Node" parent="collectables" index="0"]
+
+[node name="BreakableBlock" parent="collectables/wall" index="0" instance=ExtResource("6_1eeqx")]
+z_index = -1
+position = Vector2(531, 416)
+scale = Vector2(2, 10)
+wall_type = "target"
+
+[node name="level_track" parent="audio_player" index="0"]
+stream = ExtResource("7_ibyri")
+volume_db = 0.0
+
+[node name="Gnawty3" parent="." index="11" instance=ExtResource("4_1eeqx")]
+position = Vector2(360, 536)
+
+[node name="OutOfBounds3" parent="Walls" index="2"]
+position = Vector2(1050, 390)
+
+[node name="OutOfBounds4" parent="Walls" index="3"]
+position = Vector2(103, 419)

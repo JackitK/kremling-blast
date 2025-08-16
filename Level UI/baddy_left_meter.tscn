@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://7hlyfhpltale"]
+[gd_scene load_steps=3 format=3 uid="uid://7hlyfhpltale"]
 
 [ext_resource type="Script" uid="uid://el6ehftqv44j" path="res://Level UI/baddy_left_meter.gd" id="1_4ux8l"]
+[ext_resource type="FontFile" uid="uid://cf1ukv41uov1k" path="res://Font/Jumpman.ttf" id="2_vvqnu"]
 
 [node name="BaddyLeftMeter" type="Node2D"]
 script = ExtResource("1_4ux8l")
@@ -18,5 +19,6 @@ show_percentage = false
 unique_name_in_owner = true
 offset_right = 196.0
 offset_bottom = 34.0
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("2_vvqnu")
+theme_override_font_sizes/font_size = 30
 text = "Baddies Bonked: xxx"

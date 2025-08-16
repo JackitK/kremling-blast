@@ -3,6 +3,8 @@ extends Control
 @onready var audio_name_lbl: Label = $HBoxContainer/Audio_Name_Lbl as Label
 @onready var audio_num_lbl: Label = $HBoxContainer/Audio_Num_Lbl as Label
 @onready var h_slider: HSlider = $HBoxContainer/HSlider as HSlider
+@onready var test_button: Button = $HBoxContainer/test_button
+@onready var test_sound: AudioStreamPlayer2D = $test_sound
 
 @export_enum("Master", "Music", "Sfx", "Gun") var bus_name :String
 
@@ -14,6 +16,7 @@ func _ready():
 	load_data()
 	set_name_label_text()
 	set_slider_value()
+	set_up_test_button()
 	
 func load_data() -> void:
 	match bus_name:
@@ -54,3 +57,20 @@ func on_value_changed(value: float) -> void:
 			SettingsSignalBus.emit_on_sfx_sound_set(value)
 		3:
 			SettingsSignalBus.emit_on_gun_sound_set(value)
+
+func set_up_test_button() -> void:
+	match bus_name:
+		"Master", "Music":
+			test_button.visible = false
+		"Sfx":
+			test_sound.stream = load("res://sounds/sound effects/Baddies/KritterHurt_1.wav")
+			test_button.icon = load("res://sprite/Baddies/Kritter.png")
+		"Gun":
+			test_sound.stream = load("res://sounds/sound effects/coconut_gun_2.wav")
+			test_sound.bus = "Gun"
+			test_button.icon = load("res://sprite/crosshairs.png")
+	if test_button.visible == true:	
+		test_button.pressed.connect(test_button_pressed)
+			
+func test_button_pressed() -> void:
+	test_sound.play()

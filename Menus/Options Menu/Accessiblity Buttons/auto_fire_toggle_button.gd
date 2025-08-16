@@ -8,7 +8,6 @@ extends Node
 func _ready() -> void:
 	check_button.toggled.connect(on_autofire_toggled)
 	load_data()
-	print("autofire state" + str(SettingsDataContainer.autofire_state))
 	if SettingsDataContainer.autofire_state == true:
 		check_button.set_pressed_no_signal(true)
 	elif SettingsDataContainer.autofire_state == false:
@@ -17,9 +16,6 @@ func _ready() -> void:
 
 func load_data() -> void:
 	on_autofire_toggled(SettingsDataContainer.autofire_state)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 	
 func set_label_text(button_pressed: bool) -> void:
 	if button_pressed != true:
