@@ -15,3 +15,4 @@ const DEFAULT_GUN_VOLUME_INDEX : float = 1.0
 const DEFAULT_SUBTITLES_SET: bool = false
 const DEFAULT_AUTOFIRE_SET: bool = false
 const DEFAULT_AUTOFIRE_RATE: float = 0.5
+const DEFAULT_SIMPLIFY_KONG_SET: bool = false

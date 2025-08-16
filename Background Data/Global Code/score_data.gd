@@ -1,6 +1,9 @@
 class_name SaveData extends Resource
 
 @export var high_score : int = 0
+@export var endless_score : int = 0
+@export var diff_base : String = ""
+@export var diff_endless : String = ""
 
 const SAVE_PATH:String = "user://score_data.tres"
 

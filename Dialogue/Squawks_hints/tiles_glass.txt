@@ -1,0 +1,4 @@
+Glass tiles will break
+if something bumps into
+it with enough weight.
+You can also shoot them.

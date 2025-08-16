@@ -15,9 +15,6 @@ var level_cookie_list
 
 # Dictonary that stores each level:
 const LEVEL_DICTIONARY : Dictionary = {
-	# 320 x 180 is old default resolution, attempting to change default resolution to 1152 x 648
-	"Level 1": preload("res://levels/level1.tscn") as PackedScene,
-	"Level 2": preload("res://levels/level2.tscn")
 }
 var start_level_index: int = 0
 
@@ -58,7 +55,7 @@ func on_level_data_loaded(data: Dictionary) -> void:
 	on_start_level_selected(loaded_data.start_level_index)
 	
 func load_level_from_index() -> PackedScene:
-	var level : PackedScene = preload("res://levels/level1.tscn") as PackedScene
+	var level : PackedScene = preload("res://levels/campagin_levels/01.tscn") as PackedScene
 	if LEVEL_DICTIONARY.values()[start_level_index] is PackedScene:
 		level = LEVEL_DICTIONARY.values()[start_level_index]
 	return level

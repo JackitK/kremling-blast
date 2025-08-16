@@ -1,0 +1,4 @@
+Shooting the monkeys
+counts as a miss.
+Shoot too many and
+it's Game Over!

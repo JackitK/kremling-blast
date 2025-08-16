@@ -1,0 +1,4 @@
+Shoot eggs to hit foes high
+in the sky. But if they
+land on a Kong, it'll
+count as a hit...

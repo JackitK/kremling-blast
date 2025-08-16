@@ -1,0 +1,5 @@
+You can't shoot through
+the anti-shot screen.
+But other abilities,
+like Kong Powers, will
+still work.

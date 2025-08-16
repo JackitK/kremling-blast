@@ -1,0 +1,9 @@
+Hmph! I could have gotten myself out
+of that barrel. I didn't need any
+help...->[prop]You? Not needing help? Ha!->You sounded so distressed up there, I was
+going to call the Nintendo Tip Line for ya!->[prop]Can it old man!->[hide_all_props]I guess I owe you one...THIS TIME!
+So, let me return the favor!->My Kong Power will help us avoid danger
+by shrinking down to a size so small,
+nothing can hurt us!->I hope you find that useful, because
+I'm tagging along! Like it or not!->What are we waiting for?
+Let's go kick some croc-butt!->
