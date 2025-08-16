@@ -1,9 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://comjphfowf338"]
+[gd_scene load_steps=35 format=3 uid="uid://comjphfowf338"]
 
 [ext_resource type="Script" uid="uid://cq5qdcju2caye" path="res://level objects/Enemies/baddy_template.gd" id="1_gfnbd"]
 [ext_resource type="Script" uid="uid://c21fn48h6wrix" path="res://level objects/Enemies/baddy_collison.gd" id="2_pn267"]
 [ext_resource type="Texture2D" uid="uid://mxrowgefheo6" path="res://sprite/Baddies/Kritter_animated.png" id="3_g76ik"]
 [ext_resource type="AudioStream" uid="uid://bvm1dgob6io56" path="res://sounds/sound effects/Baddies/KritterHurt_1.wav" id="4_3xvkv"]
+[ext_resource type="Texture2D" uid="uid://dldl56xoiqp81" path="res://sprite/Baddies/Kritter_animated_gold.png" id="4_ndmql"]
+[ext_resource type="Texture2D" uid="uid://c6hygw1oxw1wp" path="res://sprite/Baddies/Kritter_pirate.png" id="5_84d6r"]
+[ext_resource type="Texture2D" uid="uid://bt52r0j2gi8e3" path="res://sprite/Baddies/Kritter_robot.png" id="5_cw034"]
+[ext_resource type="Texture2D" uid="uid://c2wtvnci8h7p8" path="res://sprite/Baddies/boss_attacks/egg_splat.png" id="8_84d6r"]
+[ext_resource type="Texture2D" uid="uid://dymgw8u1rcveg" path="res://sprite/effects/shock_sign.png" id="8_yihqb"]
+[ext_resource type="Texture2D" uid="uid://caph8sh5tfrjd" path="res://sprite/effects/shock_wave.png" id="9_0km5q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhnte"]
 size = Vector2(31.0625, 36.875)
@@ -32,7 +38,55 @@ region = Rect2(0, 66, 33, 33)
 atlas = ExtResource("3_g76ik")
 region = Rect2(33, 66, 33, 33)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ch5hk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yihqb"]
+atlas = ExtResource("4_ndmql")
+region = Rect2(0, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0km5q"]
+atlas = ExtResource("4_ndmql")
+region = Rect2(33, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n311b"]
+atlas = ExtResource("4_ndmql")
+region = Rect2(0, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldwk1"]
+atlas = ExtResource("4_ndmql")
+region = Rect2(33, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpbxe"]
+atlas = ExtResource("4_ndmql")
+region = Rect2(0, 66, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b38wx"]
+atlas = ExtResource("4_ndmql")
+region = Rect2(33, 66, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk5u5"]
+atlas = ExtResource("5_84d6r")
+region = Rect2(0, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np8ol"]
+atlas = ExtResource("5_84d6r")
+region = Rect2(33, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfsh5"]
+atlas = ExtResource("5_84d6r")
+region = Rect2(0, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kne8e"]
+atlas = ExtResource("5_84d6r")
+region = Rect2(33, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etsjf"]
+atlas = ExtResource("5_84d6r")
+region = Rect2(0, 66, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6xq8"]
+atlas = ExtResource("5_84d6r")
+region = Rect2(33, 66, 33, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ndmql"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -56,17 +110,108 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yihqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0km5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n311b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldwk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpbxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b38wx")
+}],
+"loop": true,
+"name": &"gold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk5u5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np8ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfsh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kne8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etsjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6xq8")
+}],
+"loop": true,
+"name": &"pirate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_cw034")
+}],
+"loop": true,
+"name": &"robot",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ow2ej"]
 size = Vector2(66, 77)
 
+[sub_resource type="Animation" id="Animation_n311b"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("egg_sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ldwk1"]
+resource_name = "egged"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("egg_sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpbxe"]
+_data = {
+&"RESET": SubResource("Animation_n311b"),
+&"egged": SubResource("Animation_ldwk1")
+}
+
 [node name="baddy" type="CharacterBody2D" groups=["baddies"]]
+z_index = 1
 collision_layer = 3
 collision_mask = 3
 input_pickable = true
 script = ExtResource("1_gfnbd")
-speed = 100.0
 
 [node name="shoot_area" type="Area2D" parent="."]
 script = ExtResource("2_pn267")
@@ -76,34 +221,71 @@ position = Vector2(-0.5, 1.5)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_lhnte")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2, 2)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_ch5hk")
-autoplay = "default"
-frame_progress = 0.418431
-metadata/_edit_lock_ = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.75, 1.5)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_lhnte")
 
-[node name="change_direction_timer" type="Timer" parent="."]
-autostart = true
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, 2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ndmql")
+autoplay = "default"
+frame_progress = 0.756848
 
 [node name="baddy_sound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("4_3xvkv")
 bus = &"Sfx"
 
 [node name="nearby_dector" type="Area2D" parent="." groups=["baddies"]]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="nearby_dector"]
 position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_ow2ej")
 
+[node name="Timers" type="Node" parent="."]
+
+[node name="change_direction_timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+autostart = true
+
+[node name="stun_timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_lpbxe")
+}
+
+[node name="shocked_point" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(2, -38)
+scale = Vector2(1.3475, 1.3475)
+texture = ExtResource("8_yihqb")
+
+[node name="hit_flash" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(2, 1)
+scale = Vector2(0.95025, 0.95025)
+texture = ExtResource("9_0km5q")
+
+[node name="egg_sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, -13)
+scale = Vector2(1.3125, 1.3125)
+texture = ExtResource("8_84d6r")
+
 [connection signal="mouse_entered" from="shoot_area" to="." method="_on_shoot_area_mouse_entered"]
 [connection signal="mouse_exited" from="shoot_area" to="." method="_on_shoot_area_mouse_exited"]
-[connection signal="timeout" from="change_direction_timer" to="." method="_on_change_direction_timer_timeout"]
+[connection signal="area_entered" from="nearby_dector" to="." method="_on_nearby_dector_area_entered"]
+[connection signal="timeout" from="Timers/change_direction_timer" to="." method="_on_change_direction_timer_timeout"]
+[connection signal="timeout" from="Timers/stun_timer" to="." method="_on_stun_timer_timeout"]

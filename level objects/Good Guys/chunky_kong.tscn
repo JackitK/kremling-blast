@@ -1,0 +1,231 @@
+[gd_scene load_steps=19 format=3 uid="uid://32m04ix5jtyp"]
+
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="1_cq38u"]
+[ext_resource type="Texture2D" uid="uid://e41cauuachqe" path="res://sprite/Kongs/Chunky Kong.png" id="2_e41lr"]
+[ext_resource type="Script" uid="uid://bxgy3el0rvh0m" path="res://level objects/Good Guys/chunky_kong.gd" id="2_mevga"]
+[ext_resource type="Texture2D" uid="uid://b37qh1h8e5igd" path="res://sprite/Kongs/Chunky Kong_scared.png" id="4_8ain5"]
+[ext_resource type="AudioStream" uid="uid://dgo4y2tvqt3vc" path="res://sounds/sound effects/Kongs/ChunkyHurt1.wav" id="4_sab7s"]
+[ext_resource type="AudioStream" uid="uid://y7irrghd15t2" path="res://sounds/sound effects/Kongs/ChunkyScared.wav" id="5_8ain5"]
+[ext_resource type="Texture2D" uid="uid://dymgw8u1rcveg" path="res://sprite/effects/shock_sign.png" id="5_bxwyb"]
+[ext_resource type="Texture2D" uid="uid://caph8sh5tfrjd" path="res://sprite/effects/shock_wave.png" id="6_73k0d"]
+[ext_resource type="AudioStream" uid="uid://blhn0kkhii7nq" path="res://sounds/sound effects/Kongs/ChunkyPower1.wav" id="6_kuqyj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cq38u"]
+size = Vector2(34, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e41lr"]
+size = Vector2(37, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mevga"]
+atlas = ExtResource("2_e41lr")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8vc1q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mevga")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_8ain5")
+}],
+"loop": true,
+"name": &"pancking",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_q4yu4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Chunky_Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+
+[sub_resource type="Animation" id="Animation_eb4md"]
+resource_name = "hit"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Chunky_Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"pancking", &"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Chunky_Sprite/shocked_point:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Chunky_Sprite/hit_flash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_bxwyb"]
+resource_name = "egged"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Chunky_Sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"pancking", &"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Chunky_Sprite/shocked_point:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Chunky_Sprite/hit_flash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../egg_sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.49997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g0p0s"]
+_data = {
+&"RESET": SubResource("Animation_q4yu4"),
+&"egged": SubResource("Animation_bxwyb"),
+&"hit": SubResource("Animation_eb4md")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mevga"]
+size = Vector2(35, 38)
+
+[node name="Chunky" instance=ExtResource("1_cq38u")]
+script = ExtResource("2_mevga")
+base_power_time = 5.0
+hit_speed = 20.0
+weight = "heavy"
+is_default_kong = false
+
+[node name="default_shoot_area" parent="shoot_area" index="0"]
+visible = false
+
+[node name="chunky_shoot_area" type="CollisionShape2D" parent="shoot_area" index="1"]
+position = Vector2(-2, 5.5)
+shape = SubResource("RectangleShape2D_cq38u")
+
+[node name="default_nearby" parent="nearby_detector" index="0"]
+visible = false
+
+[node name="Chunky_nearby" type="CollisionShape2D" parent="nearby_detector" index="1"]
+position = Vector2(-2.5, 4.5)
+shape = SubResource("RectangleShape2D_e41lr")
+
+[node name="Chunky_Sprite" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(-2, 2)
+sprite_frames = SubResource("SpriteFrames_8vc1q")
+metadata/_edit_lock_ = true
+
+[node name="shocked_point" type="Sprite2D" parent="Chunky_Sprite" index="0"]
+visible = false
+z_index = -1
+position = Vector2(-8, -25)
+scale = Vector2(1.3475, 1.3475)
+texture = ExtResource("5_bxwyb")
+
+[node name="hit_flash" type="Sprite2D" parent="Chunky_Sprite" index="1"]
+visible = false
+z_index = -1
+position = Vector2(1.5, 0.500001)
+scale = Vector2(0.734375, 0.765625)
+texture = ExtResource("6_73k0d")
+
+[node name="Chunky_animation_player" type="AnimationPlayer" parent="Chunky_Sprite" index="2"]
+unique_name_in_owner = true
+root_node = NodePath("../../display")
+libraries = {
+&"": SubResource("AnimationLibrary_g0p0s")
+}
+
+[node name="monkey_sprite" parent="." index="3"]
+visible = false
+
+[node name="Chunky_collision" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(-2.5, 4)
+shape = SubResource("RectangleShape2D_mevga")
+
+[node name="default_collision" parent="." index="6"]
+visible = false
+
+[node name="hurt_cry" parent="sound_effects" index="0"]
+stream = ExtResource("4_sab7s")
+
+[node name="scared" parent="sound_effects" index="1"]
+stream = ExtResource("5_8ain5")
+
+[node name="power_up" parent="sound_effects" index="2"]
+stream = ExtResource("6_kuqyj")
+
+[node name="grow_timer" type="Timer" parent="timers" index="2"]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="timers/grow_timer" to="." method="_on_grow_timer_timeout"]

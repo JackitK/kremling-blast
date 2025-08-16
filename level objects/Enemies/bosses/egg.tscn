@@ -1,0 +1,154 @@
+[gd_scene load_steps=15 format=3 uid="uid://ctk8a4fmqrdp8"]
+
+[ext_resource type="Script" uid="uid://bcikhuvkuo2xh" path="res://level objects/Enemies/bosses/egg.gd" id="1_pwlao"]
+[ext_resource type="Script" uid="uid://c21fn48h6wrix" path="res://level objects/Enemies/baddy_collison.gd" id="2_ntgsi"]
+[ext_resource type="Texture2D" uid="uid://bw8ox7n4r2qg5" path="res://sprite/Baddies/boss_attacks/egg.png" id="3_vihw5"]
+[ext_resource type="Texture2D" uid="uid://bimgnnqbe66y4" path="res://sprite/Baddies/boss_attacks/egg_shadow.png" id="4_6nw2i"]
+[ext_resource type="Texture2D" uid="uid://c2wtvnci8h7p8" path="res://sprite/Baddies/boss_attacks/egg_splat.png" id="5_hbbaw"]
+[ext_resource type="AudioStream" uid="uid://bvm1dgob6io56" path="res://sounds/sound effects/Baddies/KritterHurt_1.wav" id="6_jsi82"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhnte"]
+size = Vector2(28.5, 32.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_18eik"]
+radius = 11.875
+height = 31.5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abmhu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vihw5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6nw2i")
+}],
+"loop": true,
+"name": &"in_air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hbbaw")
+}],
+"loop": true,
+"name": &"splat",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0b53w"]
+radius = 25.5
+height = 65.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p007p"]
+radius = 26.5
+height = 65.0
+
+[sub_resource type="Animation" id="Animation_0b53w"]
+resource_name = "Egged"
+
+[sub_resource type="Animation" id="Animation_18eik"]
+resource_name = "RESET"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p007p"]
+_data = {
+&"Egged": SubResource("Animation_0b53w"),
+&"RESET": SubResource("Animation_18eik")
+}
+
+[node name="egg" type="CharacterBody2D" groups=["baddies"]]
+z_index = 1
+collision_layer = 4
+collision_mask = 10
+input_pickable = true
+script = ExtResource("1_pwlao")
+shot_value = 0
+score_value = 5
+weight = "light"
+start_still = true
+
+[node name="shoot_area" type="Area2D" parent="."]
+script = ExtResource("2_ntgsi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shoot_area"]
+position = Vector2(-0.5, -0.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_lhnte")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.75, -0.5)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_18eik")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.5, -0.5)
+scale = Vector2(1.96875, 1.96875)
+sprite_frames = SubResource("SpriteFrames_abmhu")
+
+[node name="baddy_sound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_jsi82")
+bus = &"Sfx"
+
+[node name="crash_dector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crash_dector"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("CapsuleShape2D_0b53w")
+
+[node name="nearby_dector" type="Area2D" parent="." groups=["baddies"]]
+collision_layer = 2
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nearby_dector"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("CapsuleShape2D_p007p")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="change_direction_timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+
+[node name="stun_timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="fling_timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+
+[node name="despawn_timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 2.0
+
+[node name="crash_timer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_p007p")
+}
+
+[connection signal="mouse_entered" from="shoot_area" to="." method="_on_shoot_area_mouse_entered"]
+[connection signal="mouse_exited" from="shoot_area" to="." method="_on_shoot_area_mouse_exited"]
+[connection signal="animation_changed" from="sprite" to="." method="_on_sprite_animation_changed"]
+[connection signal="area_entered" from="crash_dector" to="." method="_on_crash_dector_area_entered"]
+[connection signal="area_entered" from="nearby_dector" to="." method="_on_nearby_dector_area_entered"]
+[connection signal="timeout" from="Timers/change_direction_timer" to="." method="_on_change_direction_timer_timeout"]
+[connection signal="timeout" from="Timers/stun_timer" to="." method="_on_stun_timer_timeout"]
+[connection signal="timeout" from="Timers/fling_timer" to="." method="_on_fling_timer_timeout"]
+[connection signal="timeout" from="Timers/despawn_timer" to="." method="_on_despawn_timer_timeout"]
+[connection signal="timeout" from="Timers/crash_timer" to="." method="_on_crash_timer_timeout"]

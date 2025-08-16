@@ -1,0 +1,221 @@
+[gd_scene load_steps=16 format=3 uid="uid://cna8lglf1ruf"]
+
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="1_woeqh"]
+[ext_resource type="Script" uid="uid://c1bvu8q4yf5dc" path="res://level objects/Good Guys/tiny_kong.gd" id="2_m8xuh"]
+[ext_resource type="Texture2D" uid="uid://c3p5h6ype0s2a" path="res://sprite/Kongs/TinyKong.png" id="2_m22ch"]
+[ext_resource type="Texture2D" uid="uid://dymgw8u1rcveg" path="res://sprite/effects/shock_sign.png" id="4_058gb"]
+[ext_resource type="Texture2D" uid="uid://dxwncmvl5v5m4" path="res://sprite/Kongs/TinyKong_mad.png" id="4_71ng7"]
+[ext_resource type="AudioStream" uid="uid://b5sj1vgxuue2n" path="res://sounds/sound effects/Kongs/TinyHurt.wav" id="4_uodyf"]
+[ext_resource type="AudioStream" uid="uid://b4rwmhq5ud75l" path="res://sounds/sound effects/Kongs/TinyPower2.wav" id="5_01uhe"]
+[ext_resource type="Texture2D" uid="uid://caph8sh5tfrjd" path="res://sprite/effects/shock_wave.png" id="5_71ng7"]
+[ext_resource type="AudioStream" uid="uid://j378ffmag8pv" path="res://sounds/sound effects/Kongs/TinyScare.wav" id="5_g2jkw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cr33"]
+atlas = ExtResource("2_m22ch")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t4d14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cr33")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_71ng7")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_dubxy"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shocked_point:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_flash:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_058gb"]
+resource_name = "hit"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shocked_point:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hit_flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hurt", &"default"]
+}
+
+[sub_resource type="Animation" id="Animation_71ng7"]
+resource_name = "egged"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shocked_point:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hit_flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hurt", &"default"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../egg_sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.49997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3dcs6"]
+_data = {
+&"RESET": SubResource("Animation_dubxy"),
+&"egged": SubResource("Animation_71ng7"),
+&"hit": SubResource("Animation_058gb")
+}
+
+[node name="Tiny" instance=ExtResource("1_woeqh")]
+script = ExtResource("2_m8xuh")
+base_power_time = 5.0
+hit_speed = 20.0
+fearful = false
+is_default_kong = false
+
+[node name="Tiny_sprite" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(-2, 2)
+sprite_frames = SubResource("SpriteFrames_t4d14")
+
+[node name="shocked_point" type="Sprite2D" parent="Tiny_sprite" index="0"]
+visible = false
+z_index = -1
+position = Vector2(0, -23)
+scale = Vector2(1.3475, 1.3475)
+texture = ExtResource("4_058gb")
+
+[node name="hit_flash" type="Sprite2D" parent="Tiny_sprite" index="1"]
+visible = false
+z_index = -1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_71ng7")
+
+[node name="tiny_AnimationPlayer" type="AnimationPlayer" parent="Tiny_sprite" index="2"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_3dcs6")
+}
+
+[node name="monkey_sprite" parent="." index="3"]
+visible = false
+
+[node name="hurt_cry" parent="sound_effects" index="0"]
+stream = ExtResource("4_uodyf")
+
+[node name="scared" parent="sound_effects" index="1"]
+stream = ExtResource("5_g2jkw")
+
+[node name="power_up" parent="sound_effects" index="2"]
+stream = ExtResource("5_01uhe")
+
+[node name="shrink_timer" type="Timer" parent="timers" index="2"]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="timers/shrink_timer" to="." method="_on_shrink_timer_timeout"]

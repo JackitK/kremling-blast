@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpj1hhhlpospr"]
+
+[ext_resource type="PackedScene" uid="uid://dckxsykjevwy2" path="res://level objects/Enemies/kritter.tscn" id="1_mx00i"]
+[ext_resource type="Script" uid="uid://dvatpo8lmhd5n" path="res://level objects/Enemies/rekoil.gd" id="2_d6ord"]
+[ext_resource type="Texture2D" uid="uid://i6jt6je8jj8o" path="res://sprite/Baddies/Rekoil.png" id="2_lfhib"]
+[ext_resource type="Texture2D" uid="uid://b8r1yjl5ruee8" path="res://sprite/Baddies/in_air_shadow.png" id="2_rr0e7"]
+[ext_resource type="AudioStream" uid="uid://j3y5na0s3g3u" path="res://sounds/sound effects/spring_into_air.mp3" id="5_d6ord"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rr0e7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rr0e7")
+}],
+"loop": true,
+"name": &"bouncing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lfhib")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow2ej"]
+size = Vector2(66, 77)
+
+[node name="rekoil" instance=ExtResource("1_mx00i")]
+script = ExtResource("2_d6ord")
+ground_time = 3.0
+air_time = 0.9
+max_speed = 500.0
+score_value = 2
+is_default_foe = false
+
+[node name="shoot_area" parent="." index="0"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="shoot_area" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+metadata/_edit_lock_ = true
+
+[node name="Rekoil_sprite" type="AnimatedSprite2D" parent="." index="2"]
+unique_name_in_owner = true
+position = Vector2(5.5, 1.5)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_rr0e7")
+
+[node name="sprite" parent="." index="3"]
+visible = false
+
+[node name="nearby_dector" parent="." index="5"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="nearby_dector" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="shadow_dector" type="Area2D" parent="." index="6" groups=["baddies"]]
+collision_layer = 4
+collision_mask = 10
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shadow_dector" index="0"]
+position = Vector2(-0.5, 3.25)
+shape = SubResource("RectangleShape2D_ow2ej")
+metadata/_edit_lock_ = true
+
+[node name="bounce_timer" type="Timer" parent="Timers" index="2"]
+unique_name_in_owner = true
+autostart = true
+
+[node name="spring_sound" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
+unique_name_in_owner = true
+stream = ExtResource("5_d6ord")
+
+[connection signal="animation_changed" from="Rekoil_sprite" to="." method="_on_sprite_animation_changed"]
+[connection signal="area_entered" from="shadow_dector" to="." method="_on_nearby_dector_area_entered"]
+[connection signal="area_entered" from="shadow_dector" to="." method="_on_shadow_dector_area_entered"]
+[connection signal="area_exited" from="shadow_dector" to="." method="_on_nearby_dector_area_exited"]
+[connection signal="timeout" from="Timers/bounce_timer" to="." method="_on_bounce_timer_timeout"]

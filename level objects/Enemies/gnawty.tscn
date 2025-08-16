@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://btnj1n1ywtajf"]
+
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="1_b6rv2"]
+[ext_resource type="Script" uid="uid://c51pn0fh4itbp" path="res://level objects/Enemies/gnawty.gd" id="2_crl2r"]
+[ext_resource type="Texture2D" uid="uid://c3cvnkcb6l116" path="res://sprite/Baddies/Gnawty.png" id="2_lsb3o"]
+[ext_resource type="AudioStream" uid="uid://c0e5sqx1krapu" path="res://sounds/sound effects/Baddies/GwantyHurt_1.wav" id="3_n2kti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntt1d"]
+size = Vector2(40, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rixu"]
+atlas = ExtResource("2_lsb3o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oii4y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rixu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndfld"]
+size = Vector2(43, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txr2v"]
+size = Vector2(46, 49)
+
+[node name="Gnawty" instance=ExtResource("1_b6rv2")]
+script = ExtResource("2_crl2r")
+
+[node name="CollisionShape2D" parent="shoot_area" index="0"]
+visible = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="shoot_area" index="1"]
+position = Vector2(-1, 1.5)
+shape = SubResource("RectangleShape2D_ntt1d")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+
+[node name="gwanty_Sprite" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(-2, 0)
+scale = Vector2(1.625, 1.625)
+sprite_frames = SubResource("SpriteFrames_oii4y")
+
+[node name="sprite" parent="." index="3"]
+visible = false
+
+[node name="gwanty_collsion" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_ndfld")
+
+[node name="baddy_sound" parent="." index="5"]
+stream = ExtResource("3_n2kti")
+
+[node name="CollisionShape2D" parent="nearby_dector" index="0"]
+visible = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="nearby_dector" index="1"]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_txr2v")

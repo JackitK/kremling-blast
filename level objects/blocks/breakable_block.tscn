@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://datd4j7a0tieu"]
+
+[ext_resource type="Script" uid="uid://flmdq5pd5sfn" path="res://level objects/blocks/breakable_block.gd" id="1_q2m14"]
+[ext_resource type="Texture2D" uid="uid://bp0opubbes180" path="res://sprite/Field Sprites/glass tile.png" id="2_q2m14"]
+[ext_resource type="AudioStream" uid="uid://3lalp54jklwv" path="res://sounds/sound effects/glass_break.mp3" id="3_xphf8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xphf8"]
+size = Vector2(33, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2m14"]
+size = Vector2(33, 33)
+
+[node name="BreakableBlock" type="Node2D" groups=["breakable_block"]]
+script = ExtResource("1_q2m14")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.499994, -0.499994)
+scale = Vector2(0.992188, 0.992188)
+texture = ExtResource("2_q2m14")
+
+[node name="break_trigger_area" type="Area2D" parent="." groups=["breakable_block"]]
+collision_layer = 7
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="break_trigger_area"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_xphf8")
+
+[node name="wall_area" type="StaticBody2D" parent="." groups=["breakable_block"]]
+visible = false
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_area"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_q2m14")
+
+[node name="break_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xphf8")
+
+[connection signal="mouse_entered" from="break_trigger_area" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="break_trigger_area" to="." method="_on_mouse_exited"]

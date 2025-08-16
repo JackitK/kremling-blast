@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1y8sjoldxrjv"]
+
+[ext_resource type="Script" uid="uid://bhgslpfq6j0fv" path="res://level objects/blocks/no_shoot_zone.gd" id="1_d6bvd"]
+[ext_resource type="Texture2D" uid="uid://1gxnu2a4jm8p" path="res://sprite/Field Sprites/reinforced_glass.png" id="1_j8jf1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8jf1"]
+size = Vector2(32, 32)
+
+[node name="no shoot zone" type="Area2D"]
+modulate = Color(1, 1, 1, 0.627451)
+self_modulate = Color(1, 1, 1, 0.627451)
+show_behind_parent = true
+collision_layer = 0
+collision_mask = 10
+priority = 2
+script = ExtResource("1_d6bvd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_j8jf1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j8jf1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -1,0 +1,133 @@
+[gd_scene load_steps=17 format=3 uid="uid://cq1j7slmmyes0"]
+
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="1_5e870"]
+[ext_resource type="Script" uid="uid://mmcvn5hso8o8" path="res://level objects/Enemies/bristle.gd" id="2_trnsh"]
+[ext_resource type="Texture2D" uid="uid://bsbcsrv44s1ii" path="res://sprite/Baddies/bristles_stand.png" id="2_vr8dc"]
+[ext_resource type="Texture2D" uid="uid://si0e4fxmknnb" path="res://sprite/Baddies/bristles_rolling.png" id="3_trnsh"]
+[ext_resource type="AudioStream" uid="uid://dgsuk0fh1mv86" path="res://sounds/sound effects/Baddies/bristle.wav" id="5_trnsh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vr8dc"]
+radius = 7.36357
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov2rp"]
+atlas = ExtResource("3_trnsh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb1wy"]
+atlas = ExtResource("3_trnsh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfqj7"]
+atlas = ExtResource("3_trnsh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crebh"]
+atlas = ExtResource("3_trnsh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnn3l"]
+atlas = ExtResource("3_trnsh")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axj33"]
+atlas = ExtResource("3_trnsh")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcajm"]
+atlas = ExtResource("3_trnsh")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vg4f7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vr8dc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov2rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gb1wy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfqj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crebh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnn3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axj33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcajm")
+}],
+"loop": true,
+"name": &"rolling",
+"speed": 18.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vr8dc"]
+size = Vector2(22, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trnsh"]
+size = Vector2(12.5, 14.5)
+
+[node name="bristle" instance=ExtResource("1_5e870")]
+script = ExtResource("2_trnsh")
+collide_penality = 5
+base_speed = 0.0
+max_speed = 200.0
+hit_speed = 0.0
+shot_value = 2
+score_value = 8
+weight = "heavy"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="shoot_area" index="0"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_vr8dc")
+
+[node name="CollisionShape2D" parent="shoot_area" index="1"]
+visible = false
+
+[node name="bristle_sprite" type="AnimatedSprite2D" parent="." index="1"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_vg4f7")
+autoplay = "rolling"
+frame_progress = 0.963107
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+
+[node name="bristle_collision" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_vr8dc")
+
+[node name="sprite" parent="." index="4"]
+visible = false
+animation = &"robot"
+
+[node name="baddy_sound" parent="." index="5"]
+stream = ExtResource("5_trnsh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="nearby_dector" index="0"]
+position = Vector2(-0.5, -0.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_trnsh")
+
+[node name="CollisionShape2D" parent="nearby_dector" index="1"]
+visible = false
+
+[node name="roll_timer" type="Timer" parent="Timers" index="2"]
+unique_name_in_owner = true
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="Timers/roll_timer" to="." method="_on_roll_timer_timeout"]

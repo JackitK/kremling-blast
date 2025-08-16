@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://da8f5ofxqjnur"]
+[gd_scene load_steps=16 format=3 uid="uid://da8f5ofxqjnur"]
 
 [ext_resource type="Script" uid="uid://vjxvyxwttatn" path="res://level objects/Good Guys/kong_template.gd" id="1_gfnbd"]
 [ext_resource type="Script" uid="uid://lmagxoxykb0v" path="res://level objects/Good Guys/kong_collison.gd" id="2_yg4hk"]
 [ext_resource type="Texture2D" uid="uid://c6ah14iwiqy88" path="res://sprite/Kongs/Helper Monkey.png" id="3_413k7"]
 [ext_resource type="AudioStream" uid="uid://dq1j0yvnk5rpx" path="res://sounds/sound effects/monkey.wav" id="4_llcik"]
+[ext_resource type="Texture2D" uid="uid://dymgw8u1rcveg" path="res://sprite/effects/shock_sign.png" id="4_q4yu4"]
+[ext_resource type="Texture2D" uid="uid://caph8sh5tfrjd" path="res://sprite/effects/shock_wave.png" id="5_g0p0s"]
+[ext_resource type="Texture2D" uid="uid://c2wtvnci8h7p8" path="res://sprite/Baddies/boss_attacks/egg_splat.png" id="7_g0p0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhnte"]
 size = Vector2(25.3333, 27.3333)
@@ -11,36 +14,176 @@ size = Vector2(25.3333, 27.3333)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6s6w"]
 size = Vector2(30, 32)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_q6s6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_413k7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_q4yu4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../monkey_sprite/shocked_point:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../egg_sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_g0p0s"]
+resource_name = "egged"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../monkey_sprite/hit_flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../monkey_sprite/shocked_point:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../egg_sprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_eb4md"]
+resource_name = "hit"
+length = 3.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../monkey_sprite/hit_flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../monkey_sprite/shocked_point:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g0p0s"]
+_data = {
+&"RESET": SubResource("Animation_q4yu4"),
+&"egged": SubResource("Animation_g0p0s"),
+&"hit": SubResource("Animation_eb4md")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpunk"]
 size = Vector2(25.3333, 27.3333)
 
 [node name="kong" type="CharacterBody2D" groups=["good_guys"]]
-collision_layer = 3
-collision_mask = 15
+z_index = 1
+position = Vector2(1, -1)
+collision_layer = 2
+collision_mask = 11
 script = ExtResource("1_gfnbd")
 hit_speed = 30.0
-kong_type = "monkey"
 fearful = true
+weight = "light"
+is_default_kong = true
 
 [node name="shoot_area" type="Area2D" parent="."]
 script = ExtResource("2_yg4hk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="shoot_area"]
+[node name="default_shoot_area" type="CollisionShape2D" parent="shoot_area"]
 position = Vector2(-2, 2.33333)
 shape = SubResource("RectangleShape2D_lhnte")
 
-[node name="nearby_detector" type="Area2D" parent="." groups=["good_guys"]]
+[node name="nearby_detector" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 10
+collision_mask = 11
 
-[node name="default_area" type="CollisionShape2D" parent="nearby_detector"]
+[node name="default_nearby" type="CollisionShape2D" parent="nearby_detector"]
 position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_q6s6w")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="monkey_sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, 2)
-texture = ExtResource("3_413k7")
+sprite_frames = SubResource("SpriteFrames_q6s6w")
 metadata/_edit_lock_ = true
+
+[node name="shocked_point" type="Sprite2D" parent="monkey_sprite"]
+visible = false
+z_index = -1
+position = Vector2(0, -23)
+scale = Vector2(1.3475, 1.3475)
+texture = ExtResource("4_q4yu4")
+
+[node name="hit_flash" type="Sprite2D" parent="monkey_sprite"]
+visible = false
+z_index = -1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_g0p0s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="monkey_sprite"]
+unique_name_in_owner = true
+root_node = NodePath("../../display")
+libraries = {
+&"": SubResource("AnimationLibrary_g0p0s")
+}
+
+[node name="display" type="Node" parent="."]
 
 [node name="default_collision" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 2.33333)
@@ -50,6 +193,13 @@ metadata/_edit_lock_ = true
 [node name="sound_effects" type="Node" parent="."]
 
 [node name="hurt_cry" type="AudioStreamPlayer2D" parent="sound_effects"]
+unique_name_in_owner = true
+process_mode = 3
+scale = Vector2(1.5, 1.5)
+stream = ExtResource("4_llcik")
+bus = &"Sfx"
+
+[node name="scared" type="AudioStreamPlayer2D" parent="sound_effects"]
 unique_name_in_owner = true
 process_mode = 3
 scale = Vector2(1.5, 1.5)
@@ -68,6 +218,12 @@ autostart = true
 [node name="panic_timer" type="Timer" parent="timers"]
 wait_time = 5.0
 one_shot = true
+
+[node name="egg_sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-3, 1)
+scale = Vector2(0.90625, 0.90625)
+texture = ExtResource("7_g0p0s")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="mouse_entered" from="shoot_area" to="." method="_on_shoot_area_mouse_entered"]

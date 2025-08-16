@@ -1,0 +1,2 @@
+class_name ImageSpawner
+extends Sprite2D

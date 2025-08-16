@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dberknacoivmf"]
+
+[ext_resource type="PackedScene" uid="uid://ccslpusk1rxc8" path="res://level objects/Enemies/bosses/boss_template.tscn" id="1_7nxpl"]
+[ext_resource type="Script" uid="uid://d31ym0jo0qnbh" path="res://level objects/Enemies/bosses/captain_krow.gd" id="2_elakv"]
+[ext_resource type="Texture2D" uid="uid://dvm8l6uwbnv7r" path="res://sprite/Baddies/Krow.png" id="2_pfirt"]
+[ext_resource type="AudioStream" uid="uid://xyd1yq7htcxd" path="res://sounds/sound effects/Baddies/krow-hit.mp3" id="3_htnyj"]
+[ext_resource type="Texture2D" uid="uid://60guegong456" path="res://sprite/Baddies/in_air_krow.png" id="3_vvn82"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htnyj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pfirt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vvn82")
+}],
+"loop": true,
+"name": &"in_air",
+"speed": 5.0
+}]
+
+[node name="Captain_Krow" instance=ExtResource("1_7nxpl")]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("2_elakv")
+weight = "light"
+
+[node name="sprite" type="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(-0.500002, 0.499998)
+scale = Vector2(2.34375, 2.34375)
+sprite_frames = SubResource("SpriteFrames_htnyj")
+
+[node name="fly_timer" type="Timer" parent="Timers" index="3"]
+unique_name_in_owner = true
+wait_time = 5.0
+
+[node name="baddy_sound" parent="Sounds" index="0"]
+stream = ExtResource("3_htnyj")
+volume_db = 5.0

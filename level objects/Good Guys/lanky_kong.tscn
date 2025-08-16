@@ -1,0 +1,412 @@
+[gd_scene load_steps=21 format=3 uid="uid://cya1uq7515xyo"]
+
+[ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="1_daxy2"]
+[ext_resource type="Texture2D" uid="uid://cqaqv215j3xrp" path="res://sprite/Kongs/Lanky Kong.png" id="2_0g6v8"]
+[ext_resource type="Script" uid="uid://dbpsvjtxjjwmf" path="res://level objects/Good Guys/lanky_kong.gd" id="2_ylawt"]
+[ext_resource type="Texture2D" uid="uid://b0rumwj567bkv" path="res://sprite/Kongs/Lanky Kong_handstand.png" id="3_ylawt"]
+[ext_resource type="Texture2D" uid="uid://y0rjucbroahp" path="res://sprite/Kongs/Lanky Kong_handstand_shocked.png" id="5_b3rev"]
+[ext_resource type="Texture2D" uid="uid://dymgw8u1rcveg" path="res://sprite/effects/shock_sign.png" id="5_gtmti"]
+[ext_resource type="AudioStream" uid="uid://dk0k2a5r6dfi4" path="res://sounds/sound effects/Kongs/LankyHurt.wav" id="5_pyvht"]
+[ext_resource type="Texture2D" uid="uid://caph8sh5tfrjd" path="res://sprite/effects/shock_wave.png" id="6_2dm50"]
+[ext_resource type="Texture2D" uid="uid://4iyn4lakmakx" path="res://sprite/Kongs/Lanky Kong_shocked.png" id="6_d5jun"]
+[ext_resource type="AudioStream" uid="uid://c054quipndv27" path="res://sounds/sound effects/Kongs/Lanky_scared.wav" id="6_ddmsx"]
+[ext_resource type="AudioStream" uid="uid://cprkjrk5lyf8f" path="res://sounds/sound effects/Kongs/Lanky Cheer.wav" id="6_vn4jw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uodyf"]
+atlas = ExtResource("2_0g6v8")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01uhe"]
+atlas = ExtResource("3_ylawt")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t4d14"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uodyf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01uhe")
+}],
+"loop": true,
+"name": &"handstand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_b3rev")
+}],
+"loop": true,
+"name": &"handstand_hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_d5jun")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_gtmti"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shocked_point:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hit_flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("shocked_point:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -25)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("shocked_point:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+
+[sub_resource type="Animation" id="Animation_d5jun"]
+resource_name = "egged"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shocked_point:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hit_flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hurt", &"default"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../egg_sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.49997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_sk52f"]
+resource_name = "egged_handstand"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shocked_point:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hit_flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"handstand_hurt", &"handstand"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("shocked_point:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.46667, 1.73333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -5), Vector2(-8, -5), Vector2(-8, -25)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("shocked_point:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333, 1.46667, 1.76667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, -1, -1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../egg_sprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.49997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2dm50"]
+resource_name = "hit"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shocked_point:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hit_flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hurt", &"default"]
+}
+
+[sub_resource type="Animation" id="Animation_b3rev"]
+resource_name = "hit_handstand"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shocked_point:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hit_flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.46667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"handstand_hurt", &"handstand"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("shocked_point:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.46667, 1.73333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-8, -5), Vector2(-8, -5), Vector2(-8, -25)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("shocked_point:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333, 1.46667, 1.76667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, -1, -1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b3rev"]
+_data = {
+&"RESET": SubResource("Animation_gtmti"),
+&"egged": SubResource("Animation_d5jun"),
+&"egged_handstand": SubResource("Animation_sk52f"),
+&"hit": SubResource("Animation_2dm50"),
+&"hit_handstand": SubResource("Animation_b3rev")
+}
+
+[node name="Lanky" instance=ExtResource("1_daxy2")]
+script = ExtResource("2_ylawt")
+hit_speed = 20.0
+fearful = false
+weight = "default"
+is_default_kong = false
+
+[node name="Lanky_sprite" type="AnimatedSprite2D" parent="." index="2"]
+unique_name_in_owner = true
+position = Vector2(-2, 2)
+sprite_frames = SubResource("SpriteFrames_t4d14")
+
+[node name="shocked_point" type="Sprite2D" parent="Lanky_sprite" index="0"]
+visible = false
+z_index = -1
+position = Vector2(-8, -25)
+scale = Vector2(1.3475, 1.3475)
+texture = ExtResource("5_gtmti")
+
+[node name="hit_flash" type="Sprite2D" parent="Lanky_sprite" index="1"]
+visible = false
+z_index = -1
+position = Vector2(-1, -1)
+scale = Vector2(0.5625, 0.5625)
+texture = ExtResource("6_2dm50")
+
+[node name="lanky_AnimationPlayer" type="AnimationPlayer" parent="Lanky_sprite" index="2"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_b3rev")
+}
+
+[node name="monkey_sprite" parent="." index="3"]
+visible = false
+
+[node name="hit_flash" parent="monkey_sprite" index="1"]
+visible = true
+
+[node name="hurt_cry" parent="sound_effects" index="0"]
+stream = ExtResource("5_pyvht")
+
+[node name="scared" parent="sound_effects" index="1"]
+stream = ExtResource("6_ddmsx")
+
+[node name="power_up" parent="sound_effects" index="2"]
+stream = ExtResource("6_vn4jw")
+
+[node name="zoom_timer" type="Timer" parent="timers" index="2"]
+wait_time = 15.0
+
+[connection signal="timeout" from="timers/zoom_timer" to="." method="_on_zoom_timer_timeout"]

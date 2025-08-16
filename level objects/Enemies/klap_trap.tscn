@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://qa4j13hd8trp"]
+
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="1_1rhn5"]
+[ext_resource type="Script" uid="uid://dxvvrduwp1wjk" path="res://level objects/Enemies/klap_trap.gd" id="2_fpshn"]
+[ext_resource type="Texture2D" uid="uid://dx0he6fjvloda" path="res://sprite/Baddies/KlapTrap.png" id="2_hmk40"]
+[ext_resource type="AudioStream" uid="uid://bp2lliydoue73" path="res://sounds/sound effects/Baddies/klaptrap_grrrr.wav" id="3_fpshn"]
+[ext_resource type="AudioStream" uid="uid://c062xmosh3t4" path="res://sounds/sound effects/Baddies/klaptrap_Chomp.wav" id="4_t4nrl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7ird"]
+size = Vector2(21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fna5j"]
+atlas = ExtResource("2_hmk40")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_axgnw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fna5j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmpee"]
+size = Vector2(14, 13.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf540"]
+size = Vector2(32, 32)
+
+[node name="KlapTrap" instance=ExtResource("1_1rhn5")]
+script = ExtResource("2_fpshn")
+shot_value = 2
+score_value = 3
+weight = "light"
+
+[node name="CollisionShape2D" parent="shoot_area" index="0"]
+visible = false
+
+[node name="klap_shoot" type="CollisionShape2D" parent="shoot_area" index="1"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_f7ird")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+
+[node name="sprite_klapTrap" type="AnimatedSprite2D" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_axgnw")
+
+[node name="sprite" parent="." index="3"]
+visible = false
+
+[node name="klap_collision" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(1, 1.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_fmpee")
+
+[node name="baddy_sound" parent="." index="5"]
+stream = ExtResource("3_fpshn")
+
+[node name="nearby_dector" parent="." index="6"]
+collision_mask = 7
+
+[node name="CollisionShape2D" parent="nearby_dector" index="0"]
+visible = false
+
+[node name="klap_nearby" type="CollisionShape2D" parent="nearby_dector" index="1"]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_hf540")
+
+[node name="chomp_sound" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
+unique_name_in_owner = true
+stream = ExtResource("4_t4nrl")

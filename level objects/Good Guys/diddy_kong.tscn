@@ -1,12 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://cd4edf32nb4xh"]
+[gd_scene load_steps=28 format=3 uid="uid://cd4edf32nb4xh"]
 
 [ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="1_rb47x"]
 [ext_resource type="Script" uid="uid://ciec87ujo5wrf" path="res://level objects/Good Guys/diddy_kong.gd" id="2_8xug7"]
 [ext_resource type="Texture2D" uid="uid://dre8d2emt1vb5" path="res://sprite/Kongs/Diddy Kong.png" id="2_sx0xs"]
 [ext_resource type="Texture2D" uid="uid://c2ttgcddheukf" path="res://Effects/jetpack_blaze.png" id="3_o2jgb"]
 [ext_resource type="AudioStream" uid="uid://blyfpuy6ha4ib" path="res://sounds/sound effects/Kongs/DiddyHurt_1.wav" id="4_iycj1"]
+[ext_resource type="Texture2D" uid="uid://cnbh5mavljjil" path="res://sprite/Kongs/Diddy Kong_jetpack.png" id="5_3feot"]
+[ext_resource type="Texture2D" uid="uid://cfvpe4him2mde" path="res://sprite/Kongs/Diddy Kong_shocked.png" id="5_b3ibb"]
 [ext_resource type="AudioStream" uid="uid://dkqrhhk3byhm7" path="res://sounds/sound effects/Kongs/DiddyHappy_1.wav" id="5_o2jgb"]
 [ext_resource type="AudioStream" uid="uid://bnl12b21j6ols" path="res://sounds/sound effects/Kongs/fire.mp3" id="7_6tfo6"]
+[ext_resource type="Texture2D" uid="uid://dymgw8u1rcveg" path="res://sprite/effects/shock_sign.png" id="7_65xnw"]
+[ext_resource type="AudioStream" uid="uid://b0vl2swmjjfi3" path="res://sounds/sound effects/Kongs/DiddyHurt_2.wav" id="7_dmq4w"]
+[ext_resource type="Texture2D" uid="uid://caph8sh5tfrjd" path="res://sprite/effects/shock_wave.png" id="8_dq5eg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tfo6"]
 atlas = ExtResource("3_o2jgb")
@@ -58,24 +63,286 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_6tfo6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sx0xs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_b3ibb")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3feot")
+}],
+"loop": true,
+"name": &"jetpack",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_xufb7"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shocked_point2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_flash2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_65xnw"]
+resource_name = "egged"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hurt", &"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shocked_point2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_flash2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../egg_sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.49997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_dq5eg"]
+resource_name = "egged_flying"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"jetpack", &"jetpack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shocked_point2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_flash2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../egg_sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.49997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_mw7np"]
+resource_name = "hit"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hurt", &"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shocked_point2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_flash2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_b3ibb"]
+resource_name = "hit_flying"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"jetpack", &"jetpack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shocked_point2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_flash2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2y3ml"]
+_data = {
+&"RESET": SubResource("Animation_xufb7"),
+&"egged": SubResource("Animation_65xnw"),
+&"egged_flying": SubResource("Animation_dq5eg"),
+&"hit": SubResource("Animation_mw7np"),
+&"hit_flying": SubResource("Animation_b3ibb")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xug7"]
-size = Vector2(31.3333, 32.6667)
+size = Vector2(26, 28)
 
 [node name="Diddy" instance=ExtResource("1_rb47x")]
 script = ExtResource("2_8xug7")
 hit_speed = 20.0
-kong_type = "test"
+max_points_earned = 100
 fearful = false
+is_default_kong = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="shoot_area" index="0"]
+visible = false
 position = Vector2(-2, 2)
 scale = Vector2(1.2, 1.2)
 polygon = PackedVector2Array(3.88889, -12.2222, 5.55556, -6.66667, 8.88889, -6.66667, 12.2222, -3.33333, 12.2222, 0, 11.6667, 0.555556, 8.88889, 0, 7.22222, -1.66667, 3.88889, -0.555555, 10.5556, 6.66667, 12.7778, 13.3333, 12.2222, 15, -12.7778, 15, -13.3333, 8.88889, -12.2222, 6.66667, -10.5556, 3.33333, -7.77778, 0, -6.11111, -1.66667, -8.33333, -5, -7.22222, -9.44444, -5.55556, -12.2222)
 
-[node name="CollisionShape2D" parent="shoot_area" index="1"]
+[node name="monkey_sprite" parent="." index="2"]
 visible = false
 
-[node name="blaze" type="AnimatedSprite2D" parent="nearby_detector" index="1"]
+[node name="blaze_sprite" type="AnimatedSprite2D" parent="." index="3"]
+unique_name_in_owner = true
 visible = false
 z_index = 2
 position = Vector2(-3, 2)
@@ -84,28 +351,55 @@ sprite_frames = SubResource("SpriteFrames_65xnw")
 autoplay = "default"
 frame_progress = 0.0311252
 
-[node name="Sprite2D" parent="." index="2"]
-scale = Vector2(1.2, 1.2)
-texture = ExtResource("2_sx0xs")
+[node name="Diddy_sprite" type="AnimatedSprite2D" parent="." index="4"]
+position = Vector2(-2, 1)
+sprite_frames = SubResource("SpriteFrames_6tfo6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-position = Vector2(-2.33333, 3.66667)
+[node name="shocked_point2" type="Sprite2D" parent="Diddy_sprite" index="0"]
+visible = false
+z_index = -1
+position = Vector2(-4, -22.5)
+scale = Vector2(0.993125, 0.993125)
+texture = ExtResource("7_65xnw")
+
+[node name="hit_flash2" type="Sprite2D" parent="Diddy_sprite" index="1"]
+visible = false
+z_index = -1
+position = Vector2(2, 2)
+scale = Vector2(0.640625, 0.671875)
+texture = ExtResource("8_dq5eg")
+
+[node name="diddy_animation_player" type="AnimationPlayer" parent="Diddy_sprite" index="2"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_2y3ml")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_8xug7")
+metadata/_edit_lock_ = true
 
-[node name="default_collision" parent="." index="4"]
+[node name="default_collision" parent="." index="7"]
 unique_name_in_owner = true
 visible = false
 
 [node name="hurt_cry" parent="sound_effects" index="0"]
 stream = ExtResource("4_iycj1")
 
-[node name="power_up" parent="sound_effects" index="1"]
-stream = ExtResource("5_o2jgb")
+[node name="scared" parent="sound_effects" index="1"]
+stream = ExtResource("7_dmq4w")
 
 [node name="blaze" type="AudioStreamPlayer2D" parent="sound_effects" index="2"]
 stream = ExtResource("7_6tfo6")
 volume_db = 2.0
 
-[node name="jetpack_timer" type="Timer" parent="." index="7"]
+[node name="power_up" parent="sound_effects" index="3"]
+stream = ExtResource("5_o2jgb")
+
+[node name="jetpack_timer" type="Timer" parent="." index="9"]
+
+[node name="egg_sprite" parent="." index="11"]
+position = Vector2(-2, -1)
 
 [connection signal="timeout" from="jetpack_timer" to="." method="_on_jetpack_timer_timeout"]

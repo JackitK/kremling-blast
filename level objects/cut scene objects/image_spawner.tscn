@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c16uyh7m47b00"]
+
+[ext_resource type="Script" uid="uid://csd2qlbou8hdg" path="res://level objects/cut scene objects/image_spawner.gd" id="1_buara"]
+
+[node name="image_spawner" type="Sprite2D" groups=["cutscene_items"]]
+script = ExtResource("1_buara")

@@ -1,18 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://d183a8xpgyt22"]
+[gd_scene load_steps=36 format=3 uid="uid://d183a8xpgyt22"]
 
 [ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="1_et42i"]
-[ext_resource type="Texture2D" uid="uid://d4bcmf8ibissx" path="res://sprite/Kongs/Donkey Kong.png" id="2_7f52k"]
 [ext_resource type="Script" uid="uid://b8rjwhmcfddms" path="res://level objects/Good Guys/donkey_kong.gd" id="2_s0n4a"]
 [ext_resource type="AudioStream" uid="uid://j1qlu5qc2w1a" path="res://sounds/sound effects/Kongs/DKhurt_1.wav" id="3_7f52k"]
 [ext_resource type="Texture2D" uid="uid://s1x0e2062ul1" path="res://Effects/strong_sparkle.png" id="3_jxg4a"]
+[ext_resource type="Texture2D" uid="uid://3uemspuloeam" path="res://sprite/Kongs/Donkey Kong_animated.png" id="4_jxg4a"]
 [ext_resource type="AudioStream" uid="uid://bmmectqfn3a8r" path="res://sounds/sound effects/Kongs/DKHappy_2.wav" id="4_s0n4a"]
+[ext_resource type="Texture2D" uid="uid://dymgw8u1rcveg" path="res://sprite/effects/shock_sign.png" id="5_brqu0"]
+[ext_resource type="Texture2D" uid="uid://bit015gcu0ltm" path="res://sprite/Kongs/Donkey Kong_hurt.png" id="5_xufb7"]
+[ext_resource type="AudioStream" uid="uid://cgt454nlafwdc" path="res://sounds/sound effects/Kongs/DKhurt_2.wav" id="6_eolrc"]
+[ext_resource type="Texture2D" uid="uid://caph8sh5tfrjd" path="res://sprite/effects/shock_wave.png" id="6_xufb7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxg4a"]
 size = Vector2(64, 63)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_et42i"]
-radius = 28.3333
-height = 56.6667
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eolrc"]
 atlas = ExtResource("3_jxg4a")
@@ -67,23 +67,293 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7f52k"]
 size = Vector2(72, 70)
 
-[node name="Donkey Kong" instance=ExtResource("1_et42i")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxg4a"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(0, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xie62"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(34, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k117y"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(68, 0, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqkno"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(0, 34, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pn36"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(34, 34, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c173e"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(68, 34, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqe3b"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(0, 68, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw2c2"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(34, 68, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgv18"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(68, 68, 34, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsl2m"]
+atlas = ExtResource("4_jxg4a")
+region = Rect2(0, 102, 34, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pn7o0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxg4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xie62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k117y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqkno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pn36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c173e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqe3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw2c2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgv18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsl2m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_xufb7")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_xufb7"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shocked_point2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_flash2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2y3ml"]
+resource_name = "egged"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hurt", &"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shocked_point2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_flash2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../egg_sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.49997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_mw7np"]
+resource_name = "hit"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hurt", &"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shocked_point2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_flash2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_b3ibb"]
+resource_name = "hit_flying"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"jetpack", &"jetpack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shocked_point2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("hit_flash2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2y3ml"]
+_data = {
+&"RESET": SubResource("Animation_xufb7"),
+&"egged": SubResource("Animation_2y3ml"),
+&"hit": SubResource("Animation_mw7np"),
+&"hit_flying": SubResource("Animation_b3ibb")
+}
+
+[node name="Donkey" instance=ExtResource("1_et42i")]
 script = ExtResource("2_s0n4a")
 hit_speed = 20.0
-kong_type = "test"
 fearful = false
+weight = "heavy"
+is_default_kong = false
 
 [node name="collide_area_DK_Area" type="CollisionShape2D" parent="." index="0"]
 position = Vector2(-2, 2.5)
 shape = SubResource("RectangleShape2D_jxg4a")
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" parent="shoot_area" index="0"]
-visible = false
-position = Vector2(-1.66667, 5)
-shape = SubResource("CapsuleShape2D_et42i")
+[node name="shoot_area" parent="." index="1"]
+metadata/_edit_lock_ = true
+
+[node name="default_shoot_area" parent="shoot_area" index="0"]
+metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="shoot_area" index="1"]
+visible = false
 polygon = PackedVector2Array(8.66667, -16, 4, -21.3333, -0.666667, -26.6667, -7.33333, -20, -11.3333, -15.3333, -16.6667, -12, -12, -3.33333, -14, 2, -21.3333, 12.6667, -26, 22, -30.6667, 29.3333, -31.3333, 33.3333, -22.6667, 33.3333, -10.6667, 34, -6.66667, 34, -6, 25.3333, -2, 21.3333, 2.66667, 22, 5.33333, 26, 4, 32.6667, 4.66667, 34, 30, 34, 30, 20.6667, 28, 12.6667, 24.6667, 7.33333, 20, 0.666667, 16, -1.33333, 10.6667, -2, 7.33333, -3.33333, 13.3333, -7.33333, 12, -14)
+metadata/_edit_lock_ = true
 
 [node name="sparkle effect" type="AnimatedSprite2D" parent="." index="2"]
 visible = false
@@ -94,27 +364,63 @@ sprite_frames = SubResource("SpriteFrames_xie62")
 autoplay = "default"
 frame_progress = 0.262451
 
-[node name="default_area" parent="nearby_detector" index="0"]
-visible = false
+[node name="nearby_detector" parent="." index="3"]
+metadata/_edit_lock_ = true
+
+[node name="default_nearby" parent="nearby_detector" index="0"]
+metadata/_edit_lock_ = true
 
 [node name="dk_collison" type="CollisionShape2D" parent="nearby_detector" index="1"]
 position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_7f52k")
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" parent="." index="4"]
-scale = Vector2(2, 2)
-texture = ExtResource("2_7f52k")
-
-[node name="default_collision" parent="." index="5"]
+[node name="monkey_sprite" parent="." index="4"]
 visible = false
 
-[node name="strong_kong_timer" type="Timer" parent="." index="6"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
+position = Vector2(-2, 2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_pn7o0")
+metadata/_edit_lock_ = true
+
+[node name="shocked_point2" type="Sprite2D" parent="AnimatedSprite2D" index="0"]
+visible = false
+z_index = -1
+position = Vector2(-4, -22.5)
+scale = Vector2(0.993125, 0.993125)
+texture = ExtResource("5_brqu0")
+
+[node name="hit_flash2" type="Sprite2D" parent="AnimatedSprite2D" index="1"]
+visible = false
+z_index = -1
+position = Vector2(2, 2)
+scale = Vector2(0.640625, 0.671875)
+texture = ExtResource("6_xufb7")
+
+[node name="dk_animation_player" type="AnimationPlayer" parent="AnimatedSprite2D" index="2"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_2y3ml")
+}
+
+[node name="strong_kong_timer" type="Timer" parent="." index="7"]
 wait_time = 0.5
+
+[node name="default_collision" parent="." index="8"]
+visible = false
 
 [node name="hurt_cry" parent="sound_effects" index="0"]
 stream = ExtResource("3_7f52k")
 
-[node name="power_up" parent="sound_effects" index="1"]
+[node name="scared" parent="sound_effects" index="1"]
+stream = ExtResource("6_eolrc")
+
+[node name="power_up" parent="sound_effects" index="2"]
 stream = ExtResource("4_s0n4a")
+
+[node name="egg_sprite" parent="." index="11"]
+position = Vector2(1, -5)
+scale = Vector2(1.82031, 1.82031)
 
 [connection signal="timeout" from="strong_kong_timer" to="." method="_on_strong_kong_timer_timeout"]

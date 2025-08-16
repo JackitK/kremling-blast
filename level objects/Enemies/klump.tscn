@@ -1,8 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://dofuuv43fk0y8"]
+[gd_scene load_steps=9 format=3 uid="uid://dofuuv43fk0y8"]
 
 [ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="1_7kftl"]
 [ext_resource type="Texture2D" uid="uid://db5np0tx48n2v" path="res://sprite/Baddies/Klump.png" id="2_irq4g"]
+[ext_resource type="Script" uid="uid://c52mfia50xrdq" path="res://level objects/Enemies/klump.gd" id="2_my477"]
 [ext_resource type="AudioStream" uid="uid://bea0qygivcald" path="res://sounds/sound effects/Baddies/klump_knockout.wav" id="3_irq4g"]
+[ext_resource type="Texture2D" uid="uid://cuymeagoguxn" path="res://sprite/Baddies/Klump_pirate.png" id="3_vf51d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_my477"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_irq4g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vf51d")
+}],
+"loop": true,
+"name": &"pirate",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhnte"]
 size = Vector2(31.0625, 36.875)
@@ -10,11 +31,9 @@ size = Vector2(31.0625, 36.875)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ow2ej"]
 size = Vector2(66, 77)
 
-[node name="baddy" instance=ExtResource("1_7kftl")]
-speed = 80.0
-max_speed = 500.0
-hit_speed = 10.0
-scary = true
+[node name="Klump" instance=ExtResource("1_7kftl")]
+script = ExtResource("2_my477")
+weight = "heavy"
 
 [node name="CollisionShape2D" parent="shoot_area" index="0"]
 visible = false
@@ -22,15 +41,15 @@ visible = false
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="shoot_area" index="1"]
 polygon = PackedVector2Array(7, -39, 13, -31, 13, -15, 22, -13, 27, -8, 29, -6, 29, 11, 23, 16, 15, 16, 15, 24, 18, 26, 18, 35, 1, 35, 1, 26, 3, 25, 3, 22, -4, 22, -5, 26, -2, 29, -2, 34, -19, 34, -20, 28, -17, 25, -17, 18, -22, 17, -25, 14, -29, 9, -31, 5, -31, -10, -22, -16, -16, -18, -12, -19, -13, -23, -15, -28, -14, -35, -11, -40)
 
-[node name="Klump Sprite" type="Sprite2D" parent="." index="1"]
+[node name="Klump Sprite" type="AnimatedSprite2D" parent="." index="1"]
 position = Vector2(1.5, -1.5)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_irq4g")
+sprite_frames = SubResource("SpriteFrames_my477")
 
-[node name="Sprite2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="2"]
 visible = false
 
-[node name="CollisionShape2D" parent="." index="3"]
+[node name="sprite" parent="." index="3"]
 visible = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="4"]
@@ -38,7 +57,7 @@ position = Vector2(-0.9375, -1.875)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_lhnte")
 
-[node name="baddy_sound" parent="." index="6"]
+[node name="baddy_sound" parent="." index="5"]
 stream = ExtResource("3_irq4g")
 
 [node name="CollisionShape2D" parent="nearby_dector" index="0"]

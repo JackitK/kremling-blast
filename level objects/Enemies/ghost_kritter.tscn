@@ -1,0 +1,224 @@
+[gd_scene load_steps=17 format=3 uid="uid://b4q610oln4m8y"]
+
+[ext_resource type="PackedScene" uid="uid://comjphfowf338" path="res://level objects/Enemies/baddy_template.tscn" id="1_3tqdi"]
+[ext_resource type="Texture2D" uid="uid://cln0xlm6attx8" path="res://sprite/Baddies/Ghost_Kritter_animated.png" id="2_3eppy"]
+[ext_resource type="Script" uid="uid://6d2cd8ywv8o5" path="res://level objects/Enemies/ghost_kritter.gd" id="2_blm2h"]
+[ext_resource type="AudioStream" uid="uid://dkq25o86rpngu" path="res://sounds/sound effects/Baddies/ghost_krem_short.wav" id="4_f84cr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blm2h"]
+atlas = ExtResource("2_3eppy")
+region = Rect2(0, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f84cr"]
+atlas = ExtResource("2_3eppy")
+region = Rect2(33, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbty7"]
+atlas = ExtResource("2_3eppy")
+region = Rect2(0, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnroh"]
+atlas = ExtResource("2_3eppy")
+region = Rect2(33, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxb0m"]
+atlas = ExtResource("2_3eppy")
+region = Rect2(0, 66, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aupua"]
+atlas = ExtResource("2_3eppy")
+region = Rect2(33, 66, 33, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_glg5w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blm2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f84cr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbty7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnroh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxb0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aupua")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="Animation" id="Animation_cbty7"]
+length = 0.001
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ghost_sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ghost_sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f84cr"]
+resource_name = "go_invisible"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ghost_sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ghost_sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xnroh"]
+resource_name = "reveal"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ghost_sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ghost_sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_kxb0m"]
+resource_name = "temp_reveal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ghost_sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.25, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ghost_sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kxb0m"]
+_data = {
+&"RESET": SubResource("Animation_cbty7"),
+&"go_invisible": SubResource("Animation_f84cr"),
+&"reveal": SubResource("Animation_xnroh"),
+&"temp_reveal": SubResource("Animation_kxb0m")
+}
+
+[node name="GhostKritter" instance=ExtResource("1_3tqdi")]
+script = ExtResource("2_blm2h")
+hide_time = 2.0
+expose_time = 4.0
+max_speed = 500.0
+shot_value = 2
+score_value = 3
+scary = true
+
+[node name="shoot_area" parent="." index="0"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="shoot_area" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="ghost_sprite" type="AnimatedSprite2D" parent="." index="1"]
+unique_name_in_owner = true
+position = Vector2(-3, 1)
+scale = Vector2(2.16667, 2.16667)
+sprite_frames = SubResource("SpriteFrames_glg5w")
+frame_progress = 0.45441
+
+[node name="CollisionShape2D" parent="." index="2"]
+metadata/_edit_lock_ = true
+
+[node name="sprite" parent="." index="3"]
+visible = false
+
+[node name="nearby_dector" parent="." index="5"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" parent="nearby_dector" index="0"]
+metadata/_edit_lock_ = true
+
+[node name="hide_timer" type="Timer" parent="Timers" index="2"]
+wait_time = 2.0
+autostart = true
+
+[node name="ghost_animations" type="AnimationPlayer" parent="." index="7"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_kxb0m")
+}
+
+[node name="spooky_sound" type="AudioStreamPlayer2D" parent="Sounds" index="0"]
+stream = ExtResource("4_f84cr")
+
+[connection signal="timeout" from="Timers/hide_timer" to="." method="_on_hide_timer_timeout"]
