@@ -25,6 +25,7 @@ signal in_no_shoot_zone(state:bool)
 @export_enum("default", "light", "heavy") var weight: String = "default"
 @export var start_still: bool = false
 @export var is_default_kong:bool = false
+@export var ignore_mobile_size_boost: bool = false
 
 var dir_x : float = 1
 var dir_y : float = 1
@@ -48,13 +49,16 @@ func _ready() -> void:
 	Events.power_up.connect(check_for_power_up)
 	remote_sound_call.connect(sound_from_string)
 	in_no_shoot_zone.connect(check_if_in_shoot_zone)
+	Events.stop_sounds.connect(stop_all_sounds)
 	diff_adjustments()
+	mobile_adjustments()
 	if start_still:
 		speed = 0
 	else:
 		speed = base_speed
-	motion = Vector2(speed,speed)
-	velocity = Vector2(speed,speed)
+	if start_still == false:
+		motion = Vector2(speed,speed)
+		velocity = Vector2(speed,speed)
 	base_scale = scale
 	start_position = global_position
 	egged_event.connect(get_egged)
@@ -65,9 +69,11 @@ func _physics_process(delta) -> void:
 
 func check_for_hit():
 	if mouse_inside == true and shootable == true:
-		shot_event()
+		if cursor_overlaps_baddy() == false:
+			shot_event()
 	elif mouse_inside == true and shootable == false:
-		pass
+			pass
+			
 func check_for_power_up():
 	if mouse_inside == true:
 		kong_power()
@@ -78,11 +84,20 @@ func shot_event():
 	if invulnerable:
 		power_up.play()
 		return
-	randomly_change_direction()
-	if speed + hit_speed >= max_speed:
+	if start_still == true and speed == 0:
+		if base_speed > 0:
+			speed = base_speed
+		else:
+			speed = 30
+		# Disable hit_speed on easy mode after shot
+		if SettingsDataContainer.difficulty == 0:
+			hit_speed = 0
+	elif speed + hit_speed >= max_speed:
 		speed = max_speed
 	else:
 		speed += hit_speed
+	randomly_change_direction()
+	
 	hurt_cry.play()
 	trigger_hurt_animation()
 	Events.emit_ally_hit(shot_value)
@@ -127,6 +142,8 @@ func _on_change_direction_timer_timeout() -> void:
 	change_direction_timer.start(new_time)
 
 func randomly_change_direction() -> void:
+	if stunned or (start_still and speed == 0 and panicking == false):
+		return
 	var ran_dir = randi_range(1,3)
 	if ran_dir > 1:
 		dir_x *= -1
@@ -183,7 +200,7 @@ func _on_nearby_detector_area_entered(area: Area2D) -> void:
 func panic_event() -> void:
 	if invulnerable:
 		return
-	randomly_change_direction()
+	
 	if not panicking:
 		panicking = true
 		if speed == 0 and not stunned:
@@ -191,6 +208,7 @@ func panic_event() -> void:
 			speed = max_speed
 		else:
 			speed = speed * 3
+		randomly_change_direction()
 		panic_timer.start()
 		sound_from_string("scared")
 
@@ -226,3 +244,24 @@ func diff_adjustments() -> void:
 			2: #Hard
 				base_speed *= 1.2
 				max_speed *= 1.2
+				
+func mobile_adjustments() -> void:
+	if OS.has_feature("mobile") || DisplayServer.is_touchscreen_available():
+		if ignore_mobile_size_boost == false:
+			base_scale *= 1.3
+			scale *= 1.3
+		
+func stop_all_sounds() -> void:
+	hurt_cry.stop()
+	scared_sound.stop()
+	power_up.stop()
+
+# Used to avoid shooting kong and baddy at the same time 
+# by allowing us to see if the mouse cusor is inside a baddy object when this function is called
+func cursor_overlaps_baddy() -> bool:
+	var enemy_group = get_tree().get_nodes_in_group("baddies")
+	for i in enemy_group:
+		if i is Baddy:
+			if i.mouse_inside == true:
+				return true
+	return false

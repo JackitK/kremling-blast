@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqqolvobbmfqi"]
+
+[ext_resource type="Texture2D" uid="uid://cwk3w7e3m563w" path="res://sprite/icon.svg" id="1_3bqdn"]
+[ext_resource type="Script" uid="uid://d02wn1fdh1ugv" path="res://touch_test.gd" id="1_cl4pu"]
+
+[node name="touch_test" type="TouchScreenButton"]
+texture_normal = ExtResource("1_3bqdn")
+action = "shoot"
+script = ExtResource("1_cl4pu")
