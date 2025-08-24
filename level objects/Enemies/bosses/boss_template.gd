@@ -14,13 +14,16 @@ var boss_flags:Dictionary = {
 
 var score_losted:int = 0
 var max_score_lost:int = 50
+var mid_health_perc:float = 50
+var low_health_perc:float = 25
+var overlow_health_perc:float = 120
 
 func _ready() -> void:
+	super()
 	inv_timer.wait_time = toogle_time
 	inv_timer.start()
 	Events.hits_to_win.connect(set_health, ConnectFlags.CONNECT_DEFERRED)
-	print(boss_flags)
-	super()
+	
 
 func set_sprite_to_child_sprite() -> void:
 	pass
@@ -74,12 +77,12 @@ func check_for_damaged_events() -> void:
 			pass
 		{"half_health": false, "low_health": false}:
 			print("check for health")
-			if percent <= 50:
+			if percent <= mid_health_perc:
 				boss_flags["half_health"] = true
 				half_health_event()
 		{"half_health": true, "low_health": false}:
 			print("check for low health")
-			if percent <= 25:
+			if percent <= low_health_perc:
 				boss_flags["low_health"] = true
 				low_health_event()
 		_:
@@ -95,12 +98,12 @@ func hit_while_invul_penalty() -> void:
 		{}:
 			pass
 		{"half_health": true, "low_health": true}:
-			if percent < 25:
+			if percent < low_health_perc:
 				increase_health()
 				
 		{"half_health": true, "low_health": false}:
 			print("check for low health")
-			if percent < 50:
+			if percent < mid_health_perc:
 				increase_health()
 		_:
 			if percent < 120:
@@ -143,3 +146,23 @@ func low_health_event() -> void:
 func increase_health() -> void:
 	Events.emit_enemy_hit(-1)
 	health_remain += 1
+	print("remaining health: " + str(health_remain))
+#
+func diff_adjustments() -> void:
+	match SettingsDataContainer.difficulty:
+			0: #Easy
+				if start_still == false:
+					hit_speed = 0
+				base_speed *= .8
+				max_speed *= .8
+				#boss exclusive adjustments
+				overlow_health_perc = 100
+			1: #Normal
+				pass
+			2: #Hard
+				base_speed *= 1.2
+				max_speed *= 1.2
+				#boss exclusive adjustments
+				mid_health_perc = 75
+				low_health_perc = 50
+				

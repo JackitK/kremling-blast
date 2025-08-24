@@ -28,6 +28,7 @@ func _ready() -> void:
 	anti_wood_check.connect(destroy_wood)
 	break_sound.finished.connect(finish_break_event)
 	destroy_self.connect(finish_break_event)
+	Events.stop_sounds.connect(stop_all_sounds)
 
 func set_features_tied_to_wall_type() -> void:
 	match wall_type:
@@ -127,3 +128,6 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	mouse_inside = false
+
+func stop_all_sounds() -> void:
+	break_sound.stop()

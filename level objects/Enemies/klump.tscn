@@ -33,6 +33,7 @@ size = Vector2(66, 77)
 
 [node name="Klump" instance=ExtResource("1_7kftl")]
 script = ExtResource("2_my477")
+scary = true
 weight = "heavy"
 
 [node name="CollisionShape2D" parent="shoot_area" index="0"]

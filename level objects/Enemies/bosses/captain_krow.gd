@@ -8,18 +8,10 @@ func _ready() -> void:
 	egged_event.connect(get_egged)
 
 func shot_event():
-	if invulnerable == true:
-		hit_while_invul_penalty()
-	elif sprite.animation == "in_air":
-		pass
+	if sprite.animation == "in_air":
+		return
 	else:
-		#If vulnerable 
 		super()
-		if health_remain > 0:
-			health_remain -= 1
-		if score_losted > 0:
-			score_losted -= score_value
-		check_for_damaged_events()
 
 func check_for_damaged_events() -> void:
 	super()

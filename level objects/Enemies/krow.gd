@@ -6,6 +6,8 @@ class_name Krow
 @export var air_time:float = 2.0
 var is_in_air:bool = false
 @onready var shadow_dector: Area2D = $shadow_dector
+@onready var mobile_shot_collision: CollisionShape2D = $shoot_area/mobile_shot_collision
+
 
 func set_sprite_to_child_sprite() -> void:
 	sprite = krow_sprite
@@ -96,3 +98,8 @@ func get_egged(egg:Egg) -> void:
 		hit_by_flying_obj()
 		egg.sprite.animation = "splat"
 		animation_player.play("egged")
+
+func more_forgiving_mobile_collision() -> void:
+	if OS.has_feature("mobile") || DisplayServer.is_touchscreen_available():
+		mobile_shot_collision.disabled = false
+		mobile_shot_collision.visible = true

@@ -38,6 +38,7 @@ var base_scale: Vector2 = Vector2 (1.0, 1.0)
 var mouse_inside: bool = false
 @export var is_default_foe: bool = false
 @export var has_gold_state: bool = false
+@export var ignore_mobile_size_boost: bool = false
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
@@ -46,13 +47,16 @@ func _ready() -> void:
 	Events.shot_triggered.connect(check_for_hit)
 	remote_sound_call.connect(sound_from_string)
 	in_no_shoot_zone.connect(check_if_in_shoot_zone)
+	Events.stop_sounds.connect(stop_all_sounds)
 	diff_adjustments()
+	mobile_adjustments()
 	if start_still:
 		speed = 0
 	else:
 		speed = base_speed
-	motion = Vector2(speed,speed)
-	velocity = Vector2(speed,speed)
+	if start_still == false:
+		motion = Vector2(speed,speed)
+		velocity = Vector2(speed,speed)
 	start_position = global_position
 	if special_trait == "golden":
 		implement_gold_mode()
@@ -70,7 +74,16 @@ func check_for_hit():
 		shot_event()
 
 func shot_event():
-	if speed + hit_speed >= max_speed:
+	if start_still == true and speed == 0:
+		if base_speed > 0:
+			speed = base_speed
+		else:
+			speed = 30
+		enemy_movement()
+		# Disable hit_speed on easy mode after shot
+		if SettingsDataContainer.difficulty == 0:
+			hit_speed = 0
+	elif speed + hit_speed >= max_speed:
 		speed = max_speed
 	else:
 		speed += hit_speed
@@ -93,17 +106,18 @@ func enemy_movement():
 		dir_y *= -1
 	velocity.x = speed * dir_x
 	velocity.y = speed * dir_y
-	move_and_slide()
+	if speed != 0:
+		move_and_slide()
 
 
 func _on_change_direction_timer_timeout() -> void:
-	if stunned:
-		return
 	randomly_change_direction()
 	var new_time = randi_range(0.5,2.5)
 	change_direction_timer.start(new_time)
 
 func randomly_change_direction() -> void:
+	if stunned or (start_still and speed == 0):
+		return
 	var ran_dir = randi_range(1,3)
 	if ran_dir > 1:
 		dir_x *= -1
@@ -200,12 +214,22 @@ func check_if_in_shoot_zone(state:bool) -> void:
 func diff_adjustments() -> void:
 	match SettingsDataContainer.difficulty:
 			0: #Easy
-				if start_still == false:
-					hit_speed = 0
 				base_speed *= .8
 				max_speed *= .8
+				if start_still == false:
+					hit_speed = 0
 			1: #Normal
 				pass
 			2: #Hard
 				base_speed *= 1.2
 				max_speed *= 1.2
+
+func mobile_adjustments() -> void:
+	if OS.has_feature("mobile") || DisplayServer.is_touchscreen_available():
+		if ignore_mobile_size_boost == false:
+			base_scale *= 1.3
+			scale *= 1.3
+
+func stop_all_sounds() -> void:
+	baddy_sound.stop()
+	
