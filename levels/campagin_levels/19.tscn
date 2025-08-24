@@ -19,7 +19,7 @@ time_bonus = 30
 baddy_count_max = 14
 
 [node name="MissCounter" parent="level_ui" index="2"]
-miss_count = 5
+miss_count = 6
 
 [node name="help_button" parent="level_ui" index="3"]
 export_file_path = "res://Dialogue/Squawks_hints/eggs.txt"

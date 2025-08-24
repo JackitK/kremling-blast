@@ -32,6 +32,7 @@ position = Vector2(747.182, 490.934)
 
 [node name="kong" parent="kong_group" index="0" instance=ExtResource("3_cpie4")]
 position = Vector2(524, 374)
+scale = Vector2(1.2, 1.2)
 
 [node name="Donkey Kong" parent="kong_group" index="1" instance=ExtResource("4_0fm5q")]
 position = Vector2(756.499, 320.566)

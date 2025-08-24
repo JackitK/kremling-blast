@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://bn7xwtowhw00r"]
 
 [ext_resource type="PackedScene" uid="uid://lsilrbvu1g2x" path="res://levels/level_templates/level_template.tscn" id="1_kkfmn"]
-[ext_resource type="PackedScene" uid="uid://vtwdgl42khku" path="res://levels/cutscene_2_diddy.tscn" id="2_kkfmn"]
+[ext_resource type="PackedScene" uid="uid://vtwdgl42khku" path="res://levels/cutscenes/cutscene_2_diddy.tscn" id="2_kkfmn"]
 [ext_resource type="PackedScene" uid="uid://ckxgd8d3nkpwm" path="res://level objects/Enemies/bosses/very_gnawty.tscn" id="3_sghmq"]
 [ext_resource type="PackedScene" uid="uid://da8f5ofxqjnur" path="res://level objects/Good Guys/kong_template.tscn" id="4_aio5h"]
 [ext_resource type="AudioStream" uid="uid://nbgdghaak8nh" path="res://sounds/music/Boss_classic.mp3" id="4_sghmq"]
@@ -10,6 +10,7 @@
 [node name="level" instance=ExtResource("1_kkfmn")]
 next_level = ExtResource("2_kkfmn")
 time_bonus = 0
+is_boss_stage = true
 
 [node name="BaddyLeftMeter" parent="level_ui" index="1"]
 baddy_count_max = 20
@@ -28,6 +29,7 @@ scale = Vector2(5, 5)
 collision_layer = 0
 collision_mask = 1
 scary = false
+ignore_mobile_size_boost = true
 
 [node name="kong" parent="kong_group" index="0" instance=ExtResource("4_aio5h")]
 position = Vector2(931, 339)

@@ -34,6 +34,7 @@ position = Vector2(728, 360)
 
 [node name="Donkey Kong" parent="kong_group" index="0" instance=ExtResource("4_p1v1l")]
 position = Vector2(544, 376)
+ignore_mobile_size_boost = true
 
 [node name="monkey" parent="kong_group" index="1" instance=ExtResource("5_vjpoa")]
 position = Vector2(280, 544)

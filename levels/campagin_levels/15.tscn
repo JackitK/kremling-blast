@@ -49,6 +49,7 @@ scale = Vector2(1.3, 1.3)
 
 [node name="Donkey" parent="kong_group" index="4" instance=ExtResource("5_ba8om")]
 position = Vector2(526, 415)
+ignore_mobile_size_boost = true
 
 [node name="breakable block group" type="Node2D" parent="collectables" index="0"]
 

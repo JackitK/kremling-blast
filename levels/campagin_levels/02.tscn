@@ -27,6 +27,7 @@ position = Vector2(435, 452)
 
 [node name="kong" parent="kong_group" index="0" instance=ExtResource("3_xqcfu")]
 position = Vector2(524, 374)
+scale = Vector2(1.2, 1.2)
 
 [node name="level_track" parent="audio_player" index="0"]
 stream = ExtResource("5_uwwnr")

@@ -61,6 +61,7 @@ func end_of_bonus_level() -> void:
 
 func bonus_level_fail() -> void:
 	pop_up_message.visible = true
+	stop_all_sounds()
 	get_tree().paused = true
 	pop_up_message.text = "You Failed"
 	victory_theme.stream = load("res://sounds/sound effects/bonus_miss.wav")

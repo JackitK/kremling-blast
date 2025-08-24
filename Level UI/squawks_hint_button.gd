@@ -38,6 +38,7 @@ func _on_mouse_entered() -> void:
 
 
 func _on_mouse_exited() -> void:
+	#anti_squawks_abuse_check()
 	if paused_for_hint == true:
 		get_tree().paused = false
 		hint_label.visible = false
@@ -61,3 +62,10 @@ func hide_while_in_options() -> void:
 		visible = false
 	else:
 		visible = true
+		
+#Triggers a pause delay in the level to prevent tapping while the game is pause for a free shot
+#Current build just makes the exploit worst. So I removed it until I'm ready to work more on it.
+func anti_squawks_abuse_check() -> void:
+	if OS.has_feature("mobile") || DisplayServer.is_touchscreen_available():
+		if get_tree().paused == false:
+			Events.emit_pause_delay()

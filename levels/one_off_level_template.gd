@@ -4,7 +4,6 @@ class_name One_off_Level
 
 	
 func track_highscore() -> void:
-	print("tracking Highscore for endless mode")
 	var play_session_score: int = Events.total_score
 	var best_score = SaveManager.save_data.endless_score
 	var mode:String

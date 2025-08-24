@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk73buwq8fmt2"]
+
+[ext_resource type="PackedScene" uid="uid://3er5iu5rv6x5" path="res://levels/level_templates/cutscene_template.tscn" id="1_6iw5y"]
+[ext_resource type="PackedScene" uid="uid://b7tuftj2atpdh" path="res://levels/campagin_levels/01.tscn" id="2_6ekme"]
+[ext_resource type="PackedScene" uid="uid://c16uyh7m47b00" path="res://level objects/cut scene objects/image_spawner.tscn" id="3_olur2"]
+[ext_resource type="Texture2D" uid="uid://snva2l7pej8j" path="res://splash_art/cut scene props/coconut gun_png.png" id="4_vya3w"]
+[ext_resource type="Texture2D" uid="uid://djuvhfqw480yu" path="res://splash_art/Good Shoot.png" id="5_ama4y"]
+[ext_resource type="Texture2D" uid="uid://6jv2p5kaefb1" path="res://splash_art/Dont Shoot.png" id="6_02i36"]
+
+[node name="CutsceneTemplate" instance=ExtResource("1_6iw5y")]
+next_level = ExtResource("2_6ekme")
+export_mobile_path = "res://Dialogue/cutscene_1_mobile.txt"
+
+[node name="coconut_gun" parent="cutscene_props" index="0" instance=ExtResource("3_olur2")]
+visible = false
+position = Vector2(639, 385)
+rotation = 3.42783
+scale = Vector2(0.845, 0.845)
+texture = ExtResource("4_vya3w")
+
+[node name="okay_to_shoot" parent="cutscene_props" index="1" instance=ExtResource("3_olur2")]
+visible = false
+position = Vector2(962, 278)
+scale = Vector2(2, 2)
+texture = ExtResource("5_ama4y")
+
+[node name="don\'t_shoot" parent="cutscene_props" index="2" instance=ExtResource("3_olur2")]
+visible = false
+position = Vector2(962, 278)
+scale = Vector2(2, 2)
+texture = ExtResource("6_02i36")

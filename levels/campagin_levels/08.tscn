@@ -17,59 +17,69 @@ baddy_count_max = 25
 
 [node name="klump still 1" parent="baddy group" index="0" instance=ExtResource("3_1eeqx")]
 position = Vector2(712, 472)
-base_speed = 250.0
+base_speed = 170.0
 hit_speed = 50.0
-shot_value = 2
 score_value = 2
 start_still = true
+ignore_mobile_size_boost = true
 
 [node name="klump still 2" parent="baddy group" index="1" instance=ExtResource("3_1eeqx")]
 position = Vector2(712, 312)
-base_speed = 250.0
+base_speed = 170.0
 hit_speed = 50.0
 score_value = 2
 start_still = true
+ignore_mobile_size_boost = true
 
 [node name="Gnawty" parent="baddy group" index="2" instance=ExtResource("4_1eeqx")]
 position = Vector2(288, 448)
+ignore_mobile_size_boost = true
 
 [node name="Gnawty2" parent="baddy group" index="3" instance=ExtResource("4_1eeqx")]
 position = Vector2(440, 456)
+ignore_mobile_size_boost = true
 
 [node name="Gnawty3" parent="baddy group" index="4" instance=ExtResource("4_1eeqx")]
 position = Vector2(360, 384)
+ignore_mobile_size_boost = true
 
 [node name="kong2" parent="kong_group" index="0" instance=ExtResource("5_1eeqx")]
 position = Vector2(816, 296)
 scale = Vector2(1.3, 1.3)
 base_speed = 500.0
 start_still = true
+ignore_mobile_size_boost = true
 
 [node name="kong4" parent="kong_group" index="1" instance=ExtResource("5_1eeqx")]
 position = Vector2(624, 296)
 scale = Vector2(1.3, 1.3)
 base_speed = 500.0
 start_still = true
+ignore_mobile_size_boost = true
 
 [node name="kong7" parent="kong_group" index="2" instance=ExtResource("5_1eeqx")]
 position = Vector2(440, 296)
 scale = Vector2(1.3, 1.3)
+ignore_mobile_size_boost = true
 
 [node name="kong6" parent="kong_group" index="3" instance=ExtResource("5_1eeqx")]
 position = Vector2(280, 296)
 scale = Vector2(1.3, 1.3)
+ignore_mobile_size_boost = true
 
 [node name="kong5" parent="kong_group" index="4" instance=ExtResource("5_1eeqx")]
 position = Vector2(822, 543)
 scale = Vector2(1.3, 1.3)
 base_speed = 500.0
 start_still = true
+ignore_mobile_size_boost = true
 
 [node name="kong3" parent="kong_group" index="5" instance=ExtResource("5_1eeqx")]
 position = Vector2(616, 536)
 scale = Vector2(1.3, 1.3)
 base_speed = 500.0
 start_still = true
+ignore_mobile_size_boost = true
 
 [node name="wall" type="Node" parent="collectables" index="0"]
 
@@ -85,6 +95,7 @@ volume_db = 0.0
 
 [node name="Gnawty3" parent="." index="11" instance=ExtResource("4_1eeqx")]
 position = Vector2(360, 536)
+ignore_mobile_size_boost = true
 
 [node name="OutOfBounds3" parent="Walls" index="2"]
 position = Vector2(1050, 390)

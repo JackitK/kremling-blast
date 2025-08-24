@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgfngm8dw11bl"]
+
+[ext_resource type="PackedScene" uid="uid://3er5iu5rv6x5" path="res://levels/level_templates/cutscene_template.tscn" id="1_fwytt"]
+[ext_resource type="Script" uid="uid://dolb8wxgxoq7e" path="res://levels/cutscenes/thats_it.gd" id="2_7q53k"]
+[ext_resource type="PackedScene" uid="uid://deqv5uxkqpjhx" path="res://levels/cutscenes/credits.tscn" id="2_ta60p"]
+[ext_resource type="Texture2D" uid="uid://jlft5kk73238" path="res://splash_art/menu art/jungle_full_dull.jpg" id="3_rtf3g"]
+[ext_resource type="PackedScene" uid="uid://c16uyh7m47b00" path="res://level objects/cut scene objects/image_spawner.tscn" id="4_rtf3g"]
+[ext_resource type="FontFile" uid="uid://cf1ukv41uov1k" path="res://Font/Jumpman.ttf" id="4_tjul5"]
+[ext_resource type="Texture2D" uid="uid://blwcigsqcaiki" path="res://splash_art/cut scene props/cranky_png.png" id="5_tjul5"]
+[ext_resource type="Texture2D" uid="uid://bibfb72fyhlya" path="res://splash_art/cut scene props/DK_prop.png" id="7_tjul5"]
+[ext_resource type="Texture2D" uid="uid://bwecjwktiaor4" path="res://splash_art/cut scene props/Diddy prop.png" id="8_njmif"]
+
+[node name="ending_teaser_cutscene" instance=ExtResource("1_fwytt")]
+script = ExtResource("2_7q53k")
+next_level = ExtResource("2_ta60p")
+export_file_path = "res://Dialogue/ending_teaser.txt"
+
+[node name="congrats_label" type="Label" parent="." index="0"]
+offset_top = 85.0
+offset_right = 1152.0
+offset_bottom = 556.0
+theme_override_fonts/font = ExtResource("4_tjul5")
+theme_override_font_sizes/font_size = 180
+text = "The End"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="cutscene_image" parent="." index="3"]
+texture = ExtResource("3_rtf3g")
+
+[node name="music_player" parent="." index="7"]
+autoplay = false
+
+[node name="image_spawner" parent="cutscene_props" index="0" instance=ExtResource("4_rtf3g")]
+visible = false
+position = Vector2(316, 576)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_tjul5")
+
+[node name="image_spawner2" parent="cutscene_props" index="1" instance=ExtResource("4_rtf3g")]
+visible = false
+position = Vector2(923, 583)
+scale = Vector2(0.495745, 0.495745)
+texture = ExtResource("7_tjul5")
+flip_h = true
+
+[node name="image_spawner3" parent="cutscene_props" index="2" instance=ExtResource("4_rtf3g")]
+visible = false
+position = Vector2(623, 598)
+scale = Vector2(0.210053, 0.210053)
+texture = ExtResource("8_njmif")
+flip_h = true

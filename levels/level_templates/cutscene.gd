@@ -3,13 +3,16 @@ extends Node2D
 
 @export var next_level: PackedScene = null
 @export var export_file_path: String = ""
+@export var export_mobile_path = ""
 @export var is_final_scene: bool = false
 @onready var default_file_path = "res://Dialogue/cutscene_1.txt"
+@onready var default_audio_path = "res://sounds/music/Cranky's Lab.mp3"
 @onready var cutscene_dialouge_box: Label = %cutscene_dialouge_box
 @onready var next_button: Button = %next_button
 @onready var skip_button: Button = %skip_button
 @onready var score_display_timer: Timer = $Score_display_timer
 @onready var displaying_score: bool = false
+@onready var music_player: AudioStreamPlayer2D = $music_player
 
 var cutscene_dict: Dictionary = {}
 var cutscene_array: PackedStringArray
@@ -44,15 +47,24 @@ func go_to_next_level():
 		if is_final_scene:
 			track_highscore()
 			clear_save_and_unlock_level_select()
+			update_clear_medals()
 		else:
 			back_to_startmenu()
 
 func load_and_store_dialouge_from_file():
 	var filePath = ""
-	if export_file_path != "" and export_file_path != null:
-		filePath = export_file_path
+	if OS.has_feature("mobile") || DisplayServer.is_touchscreen_available():
+		if export_mobile_path != "" and export_mobile_path != null:
+			filePath = export_mobile_path
+		elif export_file_path != "" and export_file_path != null:
+			filePath = export_file_path
+		else:
+			filePath = default_file_path
 	else:
-		filePath = default_file_path
+		if export_file_path != "" and export_file_path != null:
+			filePath = export_file_path
+		else:
+			filePath = default_file_path
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	var content = file.get_as_text()
 	cutscene_array = content.split("->",true, 0)
@@ -65,10 +77,11 @@ func display_line():
 		line = line.replacen("[hide_all_props]", "")
 		hide_all_props()
 	if line.contains("[prop]"):
-		print("prop found")
 		line = line.replacen("[prop]", "")
 		reveal_prop()
-		print(line)
+	if line.contains("[play]"):
+		line = line.replacen("[play]", "")
+		play_music()
 	cutscene_dialouge_box.text = line
 
 func next_line():
@@ -131,7 +144,6 @@ func prep_cutscene_items() -> void:
 	for i in item_list:
 		if i is ImageSpawner:
 			cutscene_prop_array.append(i)
-	print(cutscene_prop_array)
 			
 func reveal_prop() -> void:
 	if prop_index < cutscene_prop_array.size():
@@ -143,3 +155,82 @@ func reveal_prop() -> void:
 func hide_all_props() -> void:
 	for i in cutscene_prop_array:
 		i.visible = false
+
+func play_music() -> void:
+	if music_player.stream != null:
+		music_player.play()
+
+func swap_tracks(audio_filepath:String) -> void:
+	var filePath:String = ""
+	if audio_filepath != "" and audio_filepath != null:
+		filePath = audio_filepath
+	else:
+		filePath = default_audio_path
+	var new_track = load(filePath)
+	music_player.stream = new_track
+
+func update_clear_medals() -> void:
+	#Don't change if player used level select to skip levels:
+	if Events.level_select_used == true:
+		return
+	
+	#Otherwise resume function
+	var current_clear_type = SettingsDataContainer.lives_type
+	var current_diff = SettingsDataContainer.difficulty
+	
+	### Check for Endurance Lives Type: ###
+	if current_clear_type == 1:
+		#translate best clear to a number
+		var best_clear:int
+		match SaveManager.save_data.best_campaign_win_endure:
+			"Easy":
+				best_clear = 0
+			"Normal":
+				best_clear = 1
+			"Hard":
+				best_clear = 2
+			"":
+				best_clear = -1
+			_:
+				best_clear = -1
+		if best_clear >= current_diff:
+			return
+		else:
+			match current_diff:
+				0:
+					SaveManager.save_data.best_campaign_win_endure = "Easy"
+				1:
+					SaveManager.save_data.best_campaign_win_endure = "Normal"
+				2:
+					SaveManager.save_data.best_campaign_win_endure = "Hard"
+				_:
+					pass
+	### Check for Fixed Lives Type: ###
+	else:
+		#translate best clear to a number
+		var best_clear:int
+		match SaveManager.save_data.best_campaign_win_fixed:
+			"Easy":
+				best_clear = 0
+			"Normal":
+				best_clear = 1
+			"Hard":
+				best_clear = 2
+			"":
+				best_clear = -1
+			_:
+				best_clear = -1
+		if best_clear >= current_diff:
+			return
+		else:
+			match current_diff:
+				0:
+					SaveManager.save_data.best_campaign_win_fixed = "Easy"
+				1:
+					SaveManager.save_data.best_campaign_win_fixed = "Normal"
+				2:
+					SaveManager.save_data.best_campaign_win_fixed = "Hard"
+				_:
+					pass
+	### Save the data adjusted ###
+	SaveManager.save_data.save()

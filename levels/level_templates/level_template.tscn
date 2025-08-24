@@ -93,6 +93,14 @@ theme_override_font_sizes/font_size = 50
 text = "Bonus Time here:"
 horizontal_alignment = 1
 
+[node name="skip_fanfare_button" type="Button" parent="level_ui/prompt_box"]
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 658.0
+offset_bottom = 186.0
+
 [node name="banana_count" parent="level_ui" instance=ExtResource("5_5pr7o")]
 unique_name_in_owner = true
 position = Vector2(896, 72)
@@ -174,6 +182,10 @@ wait_time = 20.0
 [node name="time_bonus_ticker" type="Timer" parent="timers"]
 autostart = true
 
+[node name="pause_delay_timer" type="Timer" parent="timers"]
+wait_time = 0.1
+one_shot = true
+
 [node name="LevelBackground" type="TextureRect" parent="."]
 z_index = -50
 offset_right = 1685.0
@@ -213,7 +225,9 @@ position = Vector2(-76, 405)
 scale = Vector2(10, 50)
 metadata/_edit_lock_ = true
 
+[connection signal="pressed" from="level_ui/prompt_box/skip_fanfare_button" to="." method="_on_skip_fanfare_button_pressed"]
 [connection signal="pressed" from="Camera2D/touch_options/prompt_pause Button" to="." method="_on_prompt_pause_button_pressed"]
 [connection signal="finished" from="audio_player/victory_theme" to="." method="_on_victory_theme_finished"]
 [connection signal="timeout" from="timers/autofire_timer" to="." method="_on_autofire_timeout"]
 [connection signal="timeout" from="timers/time_bonus_ticker" to="." method="_on_time_bonus_ticker_timeout"]
+[connection signal="timeout" from="timers/pause_delay_timer" to="." method="_on_pause_delay_timer_timeout"]

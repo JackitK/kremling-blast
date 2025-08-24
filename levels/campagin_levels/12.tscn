@@ -31,22 +31,30 @@ unique_name_in_owner = true
 z_index = 10
 position = Vector2(560, 416)
 special_trait = "pirate"
+ignore_mobile_size_boost = true
 
 [node name="baddy2" parent="baddy group" index="1" instance=ExtResource("4_qo475")]
 position = Vector2(296, 424)
 special_trait = "pirate"
+ignore_mobile_size_boost = true
 
 [node name="baddy3" parent="baddy group" index="2" instance=ExtResource("5_iw5p8")]
 position = Vector2(760, 352)
-base_speed = 0.0
+base_speed = 170.0
 hit_speed = 50.0
+scary = true
 special_trait = "pirate"
+start_still = true
+ignore_mobile_size_boost = true
 
 [node name="baddy5" parent="baddy group" index="3" instance=ExtResource("5_iw5p8")]
 position = Vector2(760, 496)
-base_speed = 0.0
+base_speed = 170.0
 hit_speed = 50.0
+scary = true
 special_trait = "pirate"
+start_still = true
+ignore_mobile_size_boost = true
 
 [node name="Diddy" parent="kong_group" index="0" instance=ExtResource("6_yfj75")]
 position = Vector2(392, 480)
@@ -62,10 +70,13 @@ position = Vector2(560, 256)
 position = Vector2(336, 256)
 
 [node name="Banana3" parent="collectables" index="0" instance=ExtResource("8_kotdf")]
-position = Vector2(760, 576)
+position = Vector2(735, 576)
 
 [node name="Banana5" parent="collectables" index="1" instance=ExtResource("8_kotdf")]
-position = Vector2(752, 232)
+position = Vector2(732, 257)
+
+[node name="Banana5" parent="collectables/Banana5" index="3" instance=ExtResource("8_kotdf")]
+position = Vector2(-2, 163.386)
 
 [node name="Level Tile Map" parent="." index="6"]
 tile_map_data = PackedByteArray("AAAEAAQAAAADAAEAAAAEAAUAAAADAAEAAAAEAAYAAAADAAEAAAAEAAcAAAADAAEAAAAEAAgAAAADAAEAAAAEAAkAAAADAAEAAAAEAAoAAAADAAEAAAAEAAwAAAADAAEAAAARAAwAAAADAAEAAAAEAAsAAAADAAEAAAARAAQAAAADAAEAAAAEAA0AAAAEAAMAAAAFAA0AAAABAAMAAAAGAA0AAAABAAMAAAAHAA0AAAABAAMAAAAIAA0AAAABAAMAAAAJAA0AAAABAAMAAAAKAA0AAAABAAMAAAALAA0AAAABAAMAAAAMAA0AAAABAAMAAAANAA0AAAABAAMAAAAOAA0AAAABAAMAAAAPAA0AAAABAAMAAAAQAA0AAAABAAMAAAARAA0AAAAHAAMAAAAEAAMAAAAEAAAAAAAFAAMAAAABAAMAAAAGAAMAAAABAAMAAAAHAAMAAAABAAMAAAAIAAMAAAABAAMAAAAJAAMAAAABAAMAAAAKAAMAAAABAAMAAAALAAMAAAABAAMAAAAMAAMAAAABAAMAAAANAAMAAAABAAMAAAAOAAMAAAABAAMAAAAPAAMAAAABAAMAAAAQAAMAAAABAAMAAAARAAMAAAAHAAAAAAARAAsAAAADAAEAAAARAAoAAAADAAEAAAARAAkAAAADAAEAAAARAAgAAAADAAEAAAARAAcAAAADAAEAAAARAAYAAAADAAEAAAARAAUAAAADAAEAAAA=")

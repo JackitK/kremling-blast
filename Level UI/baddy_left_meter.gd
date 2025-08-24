@@ -1,4 +1,5 @@
 extends Node2D
+class_name BaddyLeftMeter
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var baddy_left_label: Label = %baddy_left_label
 

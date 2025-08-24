@@ -3,6 +3,7 @@ extends Node2D
 @export var next_level: PackedScene = null
 @export var spawn_point:Vector2 = Vector2(500.0, 500.0)
 @export var time_bonus:int = 50.0
+@export var is_boss_stage:bool = false
 
 var score: int = 0
 var starting_score:int = 0
@@ -15,7 +16,7 @@ var game_over_state:bool = false
 @onready var victory_theme: AudioStreamPlayer2D = %victory_theme
 @onready var banana_counter: Node2D = %banana_count
 @onready var level_track: AudioStreamPlayer2D = $audio_player/level_track
-@onready var baddy_left_meter: Node2D = %BaddyLeftMeter
+@onready var baddy_left_meter: BaddyLeftMeter = %BaddyLeftMeter
 @onready var miss_counter: Miss_Counter = %MissCounter
 @onready var pause_menu: Control = $CanvasLayer/PauseMenu
 
@@ -31,6 +32,8 @@ var kong_selection:String = ""
 @onready var autofire_timer: Timer = %autofire_timer
 @onready var gameover_timer: Timer = %gameover_timer
 @onready var time_bonus_ticker: Timer = $timers/time_bonus_ticker
+@onready var pause_delay_timer: Timer = $timers/pause_delay_timer
+
 
 @onready var kong_button: KongButton = %"Kong Button"
 @onready var touch_options: CanvasLayer = %touch_options
@@ -38,6 +41,7 @@ var kong_selection:String = ""
 
 var autofire_ticker: float = 0.5
 var click_quque: bool = false
+var is_pause_delay = false
 
 signal enemy_hit
 signal ally_hit
@@ -69,6 +73,8 @@ func _ready() -> void:
 	Events.pause_prompt.connect(_on_prompt_pause_button_pressed)
 	Events.kong_button_prompt.connect(kong_mobile_button_pressed)
 	Events.live_update_settings.connect(on_fly_options_update)
+	Events.stop_sounds.connect(stop_all_sounds)
+	Events.pause_delay.connect(set_pause_delay)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -80,8 +86,14 @@ func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_APPLICATION_FOCUS_OUT:
 			AudioServer.set_bus_mute(0, true)
+			if get_tree().paused == false:
+				pause_menu.pause()
 		NOTIFICATION_APPLICATION_FOCUS_IN:
 			AudioServer.set_bus_mute(0, false)
+		NOTIFICATION_APPLICATION_PAUSED:
+			AudioServer.set_bus_mute(0, true)
+			if get_tree().paused == false:
+				pause_menu.pause()
 
 func score_event(value:int):
 	score += value
@@ -105,10 +117,11 @@ func save_current_game_progress() -> void:
 	SaveManager.last_saved_lv.saved_lives_mode = SettingsDataContainer.lives_type
 	if SettingsDataContainer.difficulty == 1:
 		SaveManager.last_saved_lv.saved_life_count = Events.global_lives
+	SaveManager.last_saved_lv.level_select_used = 	Events.level_select_used
 	SaveManager.last_saved_lv.save()
 
 func level_cleared_event():
-	level_track.stop()
+	Events.emit_stop_sounds()
 	level_prompt.set_deferred("visible", true)
 	pop_up_message.text = "Level Cleared!"
 	implement_time_bonus()
@@ -159,7 +172,7 @@ func go_to_next_level():
 	if next_level is PackedScene:
 		get_tree().change_scene_to_packed(next_level)
 	else:
-		get_tree().change_scene_to_file("res://levels/credits.tscn")
+		get_tree().change_scene_to_file("res://levels/cutscenes/credits.tscn")
 func back_to_startmenu():
 	Events.total_score = score
 	if self is One_off_Level:
@@ -168,10 +181,10 @@ func back_to_startmenu():
 		if game_over_state == false:
 			save_current_game_progress()
 		else:
+			track_highscore()
 			clear_save_progress_data()
 	if get_tree().paused == true:
 		get_tree().paused = false
-	track_highscore()
 	get_tree().change_scene_to_file("res://Menus/start_menu.tscn")
 	Events.total_score = 0
 
@@ -189,10 +202,10 @@ func _on_autofire_timeout() -> void:
 		
 func player_input_check() -> void:
 	if Input.is_action_just_pressed("shoot") and SettingsDataContainer.autofire_state == false:
-		if click_quque == false:
+		if click_quque == false and is_pause_delay == false:
 			Events.emit_shot_triggered()
 	elif Input.is_action_just_pressed("power_up"):
-		triggering_kong_power()
+		triggering_kong_power(false)
 	elif Input.is_action_pressed("ui_cancel"):
 		"cancel ui pressed"
 		pass
@@ -200,6 +213,8 @@ func player_input_check() -> void:
 func cheat_check () -> void:
 	if OS.is_debug_build() == false:
 		return
+	if Input.is_action_just_pressed("clear_lv_select_flag") and Input.is_action_just_pressed("banana cheat"):
+		level_cleared_event()
 	if Input.is_action_just_pressed("banana cheat"):
 		Events.emit_banana_tally(1)
 		if banana_counter.visible == false:
@@ -217,10 +232,9 @@ func cheat_check () -> void:
 			SettingsDataContainer.simplify_kong_rate = true
 		else:
 			SettingsDataContainer.simplify_kong_rate = false
-	if Input.is_action_just_pressed("save_game"):
-		save_current_game_progress()
-		back_to_startmenu()
-
+	if Input.is_action_just_pressed("clear_lv_select_flag"):
+		Events.level_select_used = false
+	
 func hide_unused_counters() -> void:
 	var ban_count = get_tree().get_nodes_in_group("banana").size()
 	if ban_count <= 1:
@@ -234,6 +248,7 @@ func update_score_globally() -> void:
 func track_highscore() -> void:
 	var play_session_score: int = Events.total_score
 	var best_score = SaveManager.save_data.high_score
+	
 	var mode:String
 	match SettingsDataContainer.difficulty:
 		0:
@@ -276,8 +291,8 @@ func _on_time_bonus_ticker_timeout() -> void:
 	score_display.bonus_time_label.text = "Bonus: " + str(time_bonus)
 
 
-func triggering_kong_power() -> void:
-	if SettingsDataContainer.simplify_kong_rate == true or kong_button.visible == true:
+func triggering_kong_power(kong_button_prompted:bool) -> void:
+	if SettingsDataContainer.simplify_kong_rate == true or (touch_options.visible == true and kong_button_prompted):
 		var kong_stash = get_tree().get_nodes_in_group("good_guys")
 		var hero_kongs: Array[Kong]
 		for node in kong_stash:
@@ -379,11 +394,15 @@ func difficulty_adjustments() -> void:
 	
 	match SettingsDataContainer.difficulty:
 			0: #Easy
-				pass
+				if is_boss_stage and baddy_left_meter.baddy_count_max > 5:
+					baddy_left_meter.baddy_count_max -= 2
 			1: #Normal
 				pass
 			2: #Hard
-				pass
+				if is_boss_stage:
+					baddy_left_meter.baddy_count_max += 5
+					baddy_left_meter.baddy_left_count += 5
+					baddy_left_meter.set_progress_bar() 
 	
 	if SettingsDataContainer.lives_type == 1:
 		print("set current lives to global lives of")
@@ -412,7 +431,7 @@ func _on_prompt_pause_button_pressed() -> void:
 func kong_mobile_button_pressed() -> void:
 	if kong_button.visible:
 		if banana_counter.banana_count > 0:
-			triggering_kong_power()
+			triggering_kong_power(true)
 		else:
 			kong_button.disclaim_signal.emit()
 		
@@ -438,3 +457,21 @@ func on_fly_options_update() -> void:
 	set_mobile_mode()
 	Events.load_audio_settings()
 	Events.load_graphics_settings()
+
+func stop_all_sounds() -> void:
+	level_track.stop()
+
+
+func _on_skip_fanfare_button_pressed() -> void:
+	if victory_theme.playing == true:
+		victory_theme.stop()
+		_on_victory_theme_finished()
+
+# used to disable clicks/taps that happen the moment the game unpauses
+func set_pause_delay() -> void:
+	is_pause_delay = true
+	pause_delay_timer.start()
+
+
+func _on_pause_delay_timer_timeout() -> void:
+	is_pause_delay = false

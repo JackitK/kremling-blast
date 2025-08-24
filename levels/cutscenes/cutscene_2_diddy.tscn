@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://vtwdgl42khku"]
+
+[ext_resource type="PackedScene" uid="uid://3er5iu5rv6x5" path="res://levels/level_templates/cutscene_template.tscn" id="1_2fk0h"]
+[ext_resource type="PackedScene" uid="uid://3t7u1plp5e0e" path="res://levels/campagin_levels/11.tscn" id="2_lrymw"]
+[ext_resource type="Texture2D" uid="uid://c84v6ww3gxaa0" path="res://splash_art/Diddy Saved.png" id="2_qfc3y"]
+[ext_resource type="AudioStream" uid="uid://cnp4ec6yelfyf" path="res://sounds/music/Kong Saved.mp3" id="3_qfc3y"]
+
+[node name="CutsceneTemplate" instance=ExtResource("1_2fk0h")]
+next_level = ExtResource("2_lrymw")
+export_file_path = "res://Dialogue/cutscene_diddysaved.txt"
+export_mobile_path = ""
+
+[node name="cutscene_image" parent="." index="2"]
+texture = ExtResource("2_qfc3y")
+
+[node name="music_player" parent="." index="6"]
+stream = ExtResource("3_qfc3y")

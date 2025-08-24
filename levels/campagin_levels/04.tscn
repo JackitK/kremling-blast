@@ -17,28 +17,35 @@ export_file_path = "res://Dialogue/Squawks_hints/tiles_glass.txt"
 hint_available = true
 
 [node name="baddy" parent="baddy group" index="0" instance=ExtResource("4_mdw0g")]
-position = Vector2(784, 496)
+position = Vector2(784, 509)
+ignore_mobile_size_boost = true
 
 [node name="baddy3" parent="baddy group" index="1" instance=ExtResource("4_mdw0g")]
-position = Vector2(784, 384)
+position = Vector2(784, 397)
+ignore_mobile_size_boost = true
 
 [node name="baddy4" parent="baddy group" index="2" instance=ExtResource("4_mdw0g")]
-position = Vector2(784, 288)
+position = Vector2(784, 301)
+ignore_mobile_size_boost = true
 
 [node name="Donkey Kong" parent="kong_group" index="0" instance=ExtResource("6_gh4cy")]
 position = Vector2(352, 416)
+ignore_mobile_size_boost = true
 
 [node name="monkey3" parent="kong_group" index="1" instance=ExtResource("5_naavy")]
 position = Vector2(472, 440)
 scale = Vector2(1.3, 1.3)
+ignore_mobile_size_boost = true
 
 [node name="monkey4" parent="kong_group" index="2" instance=ExtResource("5_naavy")]
 position = Vector2(472, 536)
 scale = Vector2(1.3, 1.3)
+ignore_mobile_size_boost = true
 
 [node name="monkey2" parent="kong_group" index="3" instance=ExtResource("5_naavy")]
 position = Vector2(472, 328)
 scale = Vector2(1.3, 1.3)
+ignore_mobile_size_boost = true
 
 [node name="block_group" type="Node" parent="collectables" index="0"]
 

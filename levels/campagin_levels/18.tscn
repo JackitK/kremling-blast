@@ -20,54 +20,55 @@ metadata/_edit_lock_ = true
 
 [node name="krow2" parent="baddy group" index="0" instance=ExtResource("3_4nk6b")]
 position = Vector2(593, 724)
-scale = Vector2(1.8, 1.8)
+scale = Vector2(2.2, 2.2)
 
 [node name="krow3" parent="baddy group" index="1" instance=ExtResource("3_4nk6b")]
 position = Vector2(823, 726)
-scale = Vector2(1.8, 1.8)
+scale = Vector2(2.2, 2.2)
 
 [node name="krow6" parent="baddy group" index="2" instance=ExtResource("3_4nk6b")]
 position = Vector2(814, 346)
-scale = Vector2(1.8, 1.8)
+scale = Vector2(2.2, 2.2)
 
 [node name="krow7" parent="baddy group" index="3" instance=ExtResource("3_4nk6b")]
 position = Vector2(630.5, 338.8)
-scale = Vector2(1.8, 1.8)
+scale = Vector2(2.2, 2.2)
 
 [node name="krow8" parent="baddy group" index="4" instance=ExtResource("3_4nk6b")]
 position = Vector2(720, 263)
-scale = Vector2(1.8, 1.8)
+scale = Vector2(2.2, 2.2)
 ground_time = 4.0
 air_time = 3.0
 
 [node name="krow4" parent="baddy group" index="5" instance=ExtResource("3_4nk6b")]
 position = Vector2(693, 814)
-scale = Vector2(1.8, 1.8)
+scale = Vector2(2.2, 2.2)
 ground_time = 4.0
 air_time = 3.0
 
 [node name="kong" parent="kong_group" index="0" instance=ExtResource("4_7rbx1")]
 position = Vector2(931, 339)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.6, 1.6)
 
 [node name="kong2" parent="kong_group" index="1" instance=ExtResource("4_7rbx1")]
 position = Vector2(931, 723)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.6, 1.6)
 
 [node name="kong3" parent="kong_group" index="2" instance=ExtResource("4_7rbx1")]
 position = Vector2(523, 339)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.6, 1.6)
 
 [node name="kong4" parent="kong_group" index="3" instance=ExtResource("4_7rbx1")]
 position = Vector2(523, 723)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.6, 1.6)
 
 [node name="Donkey Kong" parent="kong_group" index="4" instance=ExtResource("5_o2tj7")]
-position = Vector2(724, 333)
+position = Vector2(725, 343)
+scale = Vector2(1.2, 1.2)
 
 [node name="Diddy" parent="kong_group" index="5" instance=ExtResource("6_yhofn")]
 position = Vector2(712, 651)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.8, 1.8)
 
 [node name="BreakableBlock" parent="collectables" index="0" instance=ExtResource("7_rhtgd")]
 z_index = -1

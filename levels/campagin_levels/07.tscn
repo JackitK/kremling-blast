@@ -17,12 +17,15 @@ hint_available = true
 
 [node name="baddy2" parent="baddy group" index="0" instance=ExtResource("3_82aog")]
 position = Vector2(528, 525)
+ignore_mobile_size_boost = true
 
 [node name="baddy4" parent="baddy group" index="1" instance=ExtResource("3_82aog")]
 position = Vector2(529, 302)
+ignore_mobile_size_boost = true
 
 [node name="Donkey Kong" parent="kong_group" index="0" instance=ExtResource("4_0fwep")]
 position = Vector2(535, 402)
+ignore_mobile_size_boost = true
 
 [node name="kong2" parent="kong_group" index="1" instance=ExtResource("5_jbys7")]
 position = Vector2(753, 536)
