@@ -210,7 +210,10 @@ func default_settings_reset() -> void:
 	difficulty = 1
 	lives_type = 0
 	custom_cursor = true
-	mobile_buttons = false
+	if OS.has_feature("mobile") || DisplayServer.is_touchscreen_available():
+		mobile_buttons = true
+	else:
+		mobile_buttons = false
 
 func handle_signals() -> void:
 	#Window mode

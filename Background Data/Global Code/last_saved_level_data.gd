@@ -5,6 +5,7 @@ class_name LastSavedLevelData extends Resource
 @export var saved_difficulty: int = 0
 @export var saved_lives_mode: int = 0
 @export var saved_life_count: int = 0
+@export var level_select_used: bool = false
 
 const SAVE_PATH:String = "user://save_data.tres"
 

@@ -13,21 +13,22 @@ signal back_to_start_menu
 signal save_the_game
 signal hits_to_win(value: int)
 signal play_sound(value:String)
-signal current_score_update()
-signal pause_prompt()
-signal kong_button_prompt()
+signal current_score_update
+signal pause_prompt
+signal kong_button_prompt
 signal kong_selection(value:String)
-signal live_update_settings()
-signal hide_while_in_options()
+signal live_update_settings
+signal hide_while_in_options
+signal reset_room_signal
+signal stop_sounds
+signal pause_delay
 
 var enable_banana_movement: bool = false
 var has_mobile_warning_been_displayed:bool = false
 var total_score: int = 0
 #var used to track number of misses/lives between levels. Only used for certain challenges.
 var global_lives: int = 5 
-
-
-
+var level_select_used: bool = false
 	
 
 func emit_enemy_hit(value: int) -> void:
@@ -73,6 +74,9 @@ func emit_play_sound(value:String) -> void:
 func emit_confirm_kong_selection(kong:String) -> void:
 	kong_selection.emit(kong)
 	
+func emit_stop_sounds() -> void:
+	stop_sounds.emit()
+	
 func set_score(score:int) -> void:
 	total_score = score
 
@@ -93,6 +97,10 @@ func emit_live_update_settings() -> void:
 	
 func emit_hide_while_in_options() -> void:
 	hide_while_in_options.emit()
+	
+func emit_pause_delay() -> void:
+	pause_delay.emit()
+
 	
 # To hopefull reduce leaks caused by custom mouse cursor (and maybe custom mouse events)
 func _exit_tree() -> void:
