@@ -27,7 +27,7 @@ func load_data() -> void:
 		"Sfx":
 			on_value_changed(SettingsDataContainer.get_sfx_sound())
 		"Gun":
-			on_value_changed(SettingsDataContainer.get_sfx_sound())
+			on_value_changed(SettingsDataContainer.get_gun_sound())
 
 func set_name_label_text() -> void:
 	audio_name_lbl.text = str(bus_name) + " Volume"

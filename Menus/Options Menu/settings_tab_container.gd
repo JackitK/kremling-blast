@@ -26,12 +26,16 @@ var confirm_message:ConfirmContainer
 @onready var sound_file = preload("res://sounds/sound effects/enivornment/boom.wav")
 @onready var sound_player: AudioStreamPlayer2D = $sound_player
 
+@onready var autofire_option: Control = $TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer/Autofire_option
+@onready var autofire_rate_slider: Control = $TabContainer/General/MarginContainer/ScrollContainer/VBoxContainer/autofire_rate_slider
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Events.play_sound.connect(play_sound_effect)
 	SettingsSignalBus.res_butt_reveal.connect(hide_reveal_resolution_butt)
+	toggle_autofire_slider(SettingsDataContainer.autofire_state)
+	SettingsSignalBus.on_autofire_toggled.connect(toggle_autofire_slider)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -101,7 +105,7 @@ func play_sound_effect(prompt:String) ->void:
 	sound_player.play()
 
 func check_for_input() -> void:
-	if Input.is_action_just_pressed("k_key") || SettingsDataContainer.campaign_beat == true:
+	if Input.is_action_just_pressed("k_key") and SettingsDataContainer.campaign_beat == false:
 		play_sound_effect("cheat")
 		SettingsDataContainer.on_set_campaign_beaten(true)
 
@@ -121,3 +125,9 @@ func _on_exit_pressed() -> void:
 		Events.emit_live_update_settings()
 		Events.emit_hide_while_in_options()
 		queue_free()
+
+func toggle_autofire_slider(value:bool) -> void:
+	if value == false:
+		autofire_rate_slider.visible = false
+	else:
+		autofire_rate_slider.visible = true

@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://8mmtpy1c35hw"]
+
+[ext_resource type="Theme" uid="uid://b177n7wrjbcw5" path="res://Themes/Kong_theme.tres" id="1_h1ma1"]
+[ext_resource type="Script" uid="uid://gruy4t311nuc" path="res://Menus/credits_screen.gd" id="2_h1ma1"]
+[ext_resource type="FontFile" uid="uid://cf1ukv41uov1k" path="res://Font/Jumpman.ttf" id="3_d1jpt"]
+[ext_resource type="Texture2D" uid="uid://becyc8y3ekfyo" path="res://splash_art/menu art/jungle.jpg" id="3_nhx4g"]
+[ext_resource type="AudioStream" uid="uid://ccryfhthek4tt" path="res://sounds/music/Credits.mp3" id="5_h1ma1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dlvif"]
+
+[sub_resource type="Theme" id="Theme_hsi7t"]
+Label/colors/font_color = Color(0.699223, 0, 0, 1)
+Label/colors/font_outline_color = Color(0.8341, 0.781064, 2.31028e-06, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/outline_size = 4
+Label/font_sizes/font_size = 17
+Label/fonts/font = null
+Label/styles/normal = SubResource("StyleBoxTexture_dlvif")
+
+[node name="credits_screen" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_h1ma1")
+script = ExtResource("2_h1ma1")
+metadata/_edit_horizontal_guides_ = [47.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("3_nhx4g")
+
+[node name="MainMenu" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_hsi7t")
+theme_override_fonts/font = ExtResource("3_d1jpt")
+theme_override_font_sizes/font_size = 80
+text = "credits"
+horizontal_alignment = 1
+
+[node name="Seperator" type="Control" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="credit_details" type="Label" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_d1jpt")
+theme_override_font_sizes/font_size = 30
+text = "Development & Sprite Art:
+JackitK
+Background & mis custom Art:
+JackitK
+Visual and audio rips:
+DKC1 GBA, DKC2, DKC3, DK64, 
+& royality free sources
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="Button" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 30
+text = "Back to 
+Start Menu"
+
+[node name="music_player" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_h1ma1")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/Back" to="." method="on_exit_level_select_pressed"]

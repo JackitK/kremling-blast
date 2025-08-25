@@ -43,9 +43,10 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 
 [node name="General" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 focus_neighbor_right = NodePath("../Sound")
 metadata/_tab_index = 0
@@ -126,7 +127,6 @@ theme = SubResource("Theme_481ea")
 theme_override_constants/separation = 50
 
 [node name="Sound" type="TabBar" parent="TabContainer"]
-visible = false
 layout_mode = 2
 focus_neighbor_right = NodePath("../Graphics")
 focus_neighbor_bottom = NodePath("MarginContainer/ScrollContainer/VBoxContainer/Audio_Slider_Settings")
@@ -252,6 +252,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="sound_player" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("8_epnk3")
 volume_db = 8.0
 

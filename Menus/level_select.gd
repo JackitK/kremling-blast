@@ -7,6 +7,7 @@ const level_folder_path: = "res://levels/campagin_levels/"
 signal exit_level_select
 
 func _ready() -> void:
+	Events.level_select_used = true
 	fill_levels()
 	exit_level_select.connect(on_exit_level_select_pressed)
 	if levels_container.get_child_count() > 0:
@@ -26,11 +27,10 @@ func fill_levels() -> void:
 			print("Prestrip " + new_file_path)
 			print("Remove web exclusive extensions")
 			new_file_path = new_file_path.rstrip(".remap")
-			#.remap seems to keep coming back, no matter how I attempt to remove it.
-		print(new_file_path)
 		
 		button.pressed.connect(func():
 			get_tree().change_scene_to_file(new_file_path)
+			set_conditions_for_special_modes()
 		)
 
 func update_custom_level_names(old_name:String) -> String:
@@ -52,5 +52,16 @@ func on_exit_level_select_pressed() -> void:
 	SettingsSignalBus.emit_set_settings_dictionary(SettingsDataContainer.create_storage_dictionary())
 	SettingsSignalBus.emit_set_levels_dictionary(LevelData.create_level_data_dictionary())
 	await LevelTransition.fade_to_black()
+	Events.level_select_used = false
 	get_tree().change_scene_to_file("res://Menus/start_menu.tscn")
 	LevelTransition.fade_from_back()
+	
+func set_conditions_for_special_modes() -> void:
+	if SettingsDataContainer.lives_type == 01:
+		match SettingsDataContainer.difficulty:
+			0: #Easy
+				Events.global_lives = 30
+			1: #Normal
+				Events.global_lives = 20
+			2: #Hard
+				Events.global_lives = 5

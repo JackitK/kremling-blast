@@ -4,6 +4,7 @@ extends Control
 @export_enum("reset_score", "default_settings", "erase_everything", "continue_game") var confirmation_type: String = "reset_score"
 @onready var extra_details: Label = %extra_details
 @onready var question_label: Label = %Question_label
+@onready var answered_confirmed:String = "no_answer"
 
 signal action_done
 
@@ -12,11 +13,11 @@ func _ready() -> void:
 	adjust_confirmation_message()
 
 func _on_button_yes_pressed() -> void:
+	answered_confirmed = "yes"
 	match confirmation_type:
 		"reset_score":
 			reset_score()
 		"default_settings":
-			print("yes on default settings")
 			set_settings_to_default()
 		"erase_everything":
 			erase_all()
@@ -24,12 +25,12 @@ func _on_button_yes_pressed() -> void:
 			Events.will_you_continue.emit(true)
 
 func _on_button_no_pressed() -> void:
+	answered_confirmed = "no"
 	if confirmation_type == "continue_game":
 		Events.will_you_continue.emit(false)
 	emit_signal("action_done")
 	
 func reset_score() -> void:
-	print("resetting score")
 	Events.emit_play_sound("boom")
 	SaveManager.save_data.high_score = 0
 	SaveManager.save_data.endless_score = 0
@@ -39,6 +40,11 @@ func reset_score() -> void:
 func remove_message() ->void:
 	if confirmation_type != "continue_game":
 		get_tree().paused = false
+	if answered_confirmed == "yes":
+		if confirmation_type == "reset_score":
+			pass
+		elif confirmation_type == "default_settings" or "erase_everything":
+			Events.reset_room_signal.emit()
 	call_deferred("free")
 	
 func set_settings_to_default() -> void:
@@ -53,6 +59,8 @@ func erase_all() -> void:
 	Events.emit_play_sound("boom")
 	SaveManager.save_data.high_score = 0
 	SaveManager.save_data.endless_score = 0
+	SaveManager.save_data.best_campaign_win_fixed = ""
+	SaveManager.save_data.best_campaign_win_endure = ""
 	SaveManager.save_data.save()
 	SaveManager.last_saved_lv.current_level = ""
 	SaveManager.last_saved_lv.current_score = 0
@@ -78,4 +86,4 @@ func adjust_confirmation_message() -> void:
 			question_label.text = "Continue?"
 			extra_details.text = "Retry this level, at the cost of half your score."
 		"welcome":
-			extra_details.text = "If you are playing on a mobile device, please assure \n the mobile buttons setting is on before playing."
+			extra_details.text = "The game has been adjusted for mobile play. \nKeep mobile buttons on for the best experience."

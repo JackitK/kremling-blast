@@ -11,11 +11,20 @@ extends CenterContainer
 @onready var high_score_label: Label = $MainMenu/VBoxContainer/high_score_label
 @onready var endless_score_label: Label = $MainMenu/VBoxContainer/endless_score_label
 
+@onready var best_clear_fixed: CanvasLayer = %best_clear_fixed
+@onready var fixed_clear_label: Label = $best_clear_fixed/best_clear_label
+@onready var medal_fixed_sprite: Sprite2D = $best_clear_fixed/medal_fixed
+@onready var best_clear_endure: CanvasLayer = %best_clear_endure
+@onready var endure_clear_label: Label = $best_clear_endure/best_clear_label
+@onready var medal_endure_sprite: Sprite2D = $best_clear_endure/medal_fixed
+
+
 
 @export var options_menu = preload("res://Menus/Options Menu/Options_Menu.tscn") as PackedScene
-@export var start_level = preload("res://levels/cutscene_1.tscn") as PackedScene
+@export var start_level = preload("res://levels/cutscenes/cutscene_1.tscn") as PackedScene
 @export var endless_level = preload("res://levels/chaos_mode.tscn") as PackedScene
 @export var level_select = preload("res://Menus/level_select.tscn") as PackedScene
+@export var credits = preload("res://Menus/credits_screen.tscn") as PackedScene
 
 @onready var welcome_template = preload("res://Menus/Options Menu/welcome_screen.tscn")
 var welcome_screen:ConfirmContainer
@@ -57,6 +66,7 @@ func _ready() -> void:
 		endless_score_label.visible = false
 	else:
 		endless_score_label.visible = true
+	handle_banana_medals()
 	handle_hiding_elements()
 		
 	if OS.has_feature("web"):
@@ -75,16 +85,23 @@ func on_options_pressed() -> void:
 	LevelTransition.fade_from_back()
 	
 func load_past_game():
+	# Load saved level and score
 	Events.total_score = SaveManager.last_saved_lv.current_score
 	var loaded_level_path = SaveManager.last_saved_lv.current_level
+	#Load up difficulty and game mode/lives type
 	SettingsDataContainer.difficulty = SaveManager.last_saved_lv.saved_difficulty
 	SettingsDataContainer.lives_type = SaveManager.last_saved_lv.saved_lives_mode
 	#If in endurance mode, load up the saved life count as well
 	if SaveManager.last_saved_lv.saved_lives_mode == 1:
 		Events.global_lives = SaveManager.last_saved_lv.saved_life_count
+	# If player used level select to start game, reapply that tag
+	Events.level_select_used = SaveManager.last_saved_lv.level_select_used
+	
+	#load level
 	var loaded_level = load(loaded_level_path)
 	if loaded_level != null:
 		start_level = loaded_level
+	
 	#Start the game
 	await LevelTransition.fade_to_black()
 	get_tree().change_scene_to_packed(start_level)
@@ -115,8 +132,6 @@ func handle_connecting_signals() -> void:
 func handle_hiding_elements() -> void:
 	if SaveManager.last_saved_lv.current_level == "":
 		load_game_button.visible = false
-	print("Campaign beaten:")
-	print(SettingsDataContainer.campaign_beat)
 	if SettingsDataContainer.campaign_beat == false:
 		level_select_button.visible = false
 
@@ -166,3 +181,41 @@ func mobile_welcome(type:String) -> void:
 		welcome_screen = welcome_template.instantiate()
 		welcome_screen.confirmation_type = type
 		canvas_layer.add_child(welcome_screen)
+
+
+func _on_credits_button_pressed() -> void:
+	await LevelTransition.fade_to_black()
+	get_tree().change_scene_to_packed(credits)
+	LevelTransition.fade_from_back()
+
+func handle_banana_medals() -> void:
+	# Handle fixed lives campaign
+	if SaveManager.save_data.best_campaign_win_fixed == "":
+		best_clear_fixed.visible = false
+	else:
+		best_clear_fixed.visible = true
+		match SaveManager.save_data.best_campaign_win_fixed:
+			"Easy":
+				medal_fixed_sprite.texture = load("res://sprite/banana_medals/easy_fixed.png")
+				fixed_clear_label.text = "Easy"
+			"Normal":
+				medal_fixed_sprite.texture = load("res://sprite/banana_medals/normal_fixed.png")
+				fixed_clear_label.text = "Normal"
+			"Hard":
+				medal_fixed_sprite.texture = load("res://sprite/banana_medals/hard_fixed.png")
+				fixed_clear_label.text = "Hard"
+	# Handle endure lives campaign
+	if SaveManager.save_data.best_campaign_win_endure == "":
+		best_clear_endure.visible = false
+	else:
+		best_clear_endure.visible = true
+		match SaveManager.save_data.best_campaign_win_endure:
+			"Easy":
+				medal_endure_sprite.texture = load("res://sprite/banana_medals/easy_endurance.png")
+				endure_clear_label.text = "Easy"
+			"Normal":
+				medal_endure_sprite.texture = load("res://sprite/banana_medals/normal_endurance.png")
+				endure_clear_label.text = "Normal"
+			"Hard":
+				medal_endure_sprite.texture = load("res://sprite/banana_medals/hard_endurance.png")
+				endure_clear_label.text = "Hard"

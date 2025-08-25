@@ -3,6 +3,7 @@ extends Node
 @onready var state_label: Label = %State_Label
 @onready var check_button: CheckButton = %CheckButton
 
+signal button_toggled
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
