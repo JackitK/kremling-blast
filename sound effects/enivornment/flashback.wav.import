@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dsn3p7l8ghkkd"
+path="res://.godot/imported/flashback.wav-6dd85c71bab5453a0b9bea6d9c9bbdd2.sample"
+
+[deps]
+
+source_file="res://sounds/sound effects/enivornment/flashback.wav"
+dest_files=["res://.godot/imported/flashback.wav-6dd85c71bab5453a0b9bea6d9c9bbdd2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
