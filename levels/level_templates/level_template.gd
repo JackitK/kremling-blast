@@ -115,7 +115,7 @@ func save_current_game_progress() -> void:
 	SaveManager.last_saved_lv.current_score = starting_score
 	SaveManager.last_saved_lv.saved_difficulty = SettingsDataContainer.difficulty
 	SaveManager.last_saved_lv.saved_lives_mode = SettingsDataContainer.lives_type
-	if SettingsDataContainer.difficulty == 1:
+	if SettingsDataContainer.lives_type == 1:
 		SaveManager.last_saved_lv.saved_life_count = Events.global_lives
 	SaveManager.last_saved_lv.level_select_used = 	Events.level_select_used
 	SaveManager.last_saved_lv.save()
